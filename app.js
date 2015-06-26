@@ -38,7 +38,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+app.get('/', function(req, res){
+  var url = path.resolve( __dirname + '/views/index.html');
+  res.sendFile(url);
+})
 //start the app
 app.listen(PORT, function() {
   console.log("Application running on port:", PORT);
