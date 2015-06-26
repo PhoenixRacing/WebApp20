@@ -26,17 +26,17 @@ mongoose.connect(mongoURI);
 
 //attach userful middleware
 app.use(logger('dev'));
-app.use(bodyParser.json());
+app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({
-    secret: 'This is not a secret ;)',
-    resave: false,
-    saveUninitialized: true
-}));
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(session({
+//     secret: 'This is not a secret ;)',
+//     resave: false,
+//     saveUninitialized: true
+// }));
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 app.get('/', function(req, res){
   var url = path.resolve( __dirname + '/views/index.html');
