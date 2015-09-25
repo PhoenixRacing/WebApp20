@@ -29,3 +29,4 @@ app.get("/api/home", function(req, res) {
 var PORT = 3000;
 
 app.listen(process.env.PORT || PORT);
+console.log('Listening on Port', PORT);
