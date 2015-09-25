@@ -13,6 +13,11 @@ var mongoose = require("mongoose");
 // Initialize express app
 var app = express();
 
+var PORT = process.env.PORT || 3000;
+var mongoURI = process.env.MONGOURI || "mongodb://localhost/test";
+
+mongoose.connect(mongoURI);
+
 //Middleware
 app.use(logger("dev"));
 app.use(bodyParser.json());
@@ -26,7 +31,13 @@ app.get("/api/home", function(req, res) {
 	res.send("Hello world");
 });
 
-var PORT = 3000;
+app.get('/purchasing/toBePurchased', function(req, res) {
+	
+});
 
-app.listen(process.env.PORT || PORT);
+app.post('/purchasing/newPurchases', function(req, res) {
+
+});
+
+app.listen(PORT);
 console.log('Listening on Port', PORT);
