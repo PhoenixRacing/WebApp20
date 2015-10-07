@@ -10,6 +10,9 @@ var session = require('express-session');
 
 // custom modules
 var dbConfig = require('./database/db.js');
+var models = require('./models/models.js');
+var User = models.User;
+var Data = models.Data;
 
 // setup things
 mongoose.connect(dbConfig.url);
@@ -30,16 +33,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser(function(user, done) {
-  done(null, user._id);
-});
- 
-passport.deserializeUser(function(id, done) {
-  User.findOne({ '_id' : id }, function(err, user) {
-    done(err, user);
-  });
-});
-
 //Middleware
 app.use(logger("dev"));
 app.use(bodyParser.json());
@@ -47,13 +40,23 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+// configure passport 
+require('./config/passport')(passport);
+
+// this sets up all of the routes
+var routes = require('./routes/routes.js');
+routes(app, passport);
 
 //API routes that angular will use to get and post data 
 app.get("/api/home", function(req, res) {
 	res.send("Hello world");
 });
 
-var PORT = 3000;
+app.get("/api/sawyerssecretroute", function(req, res) {
+	res.send("Go back, this is a secret");
+});
+
+var PORT = process.env.PORT || 3000;
 
 app.listen(process.env.PORT || PORT);
 console.log('Listening on Port', PORT);
