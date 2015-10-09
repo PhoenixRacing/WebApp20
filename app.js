@@ -7,6 +7,7 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var passport = require('passport');
 var session = require('express-session');
+var flash = require('connect-flash');
 
 // custom modules
 var dbConfig = require('./database/db.js');
@@ -39,6 +40,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(flash());
 
 // configure passport 
 require('./config/passport')(passport);
