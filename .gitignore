@@ -27,3 +27,6 @@ build/Release
 node_modules
 
 ./auth.js
+
+# uploads directory
+uploads/*
