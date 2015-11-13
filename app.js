@@ -11,6 +11,7 @@ var flash = require('connect-flash');
 
 // custom modules
 var dbConfig = require('./database/db.js');
+var auth = require('./auth.js');
 var models = require('./models/models.js');
 var User = models.User;
 var Data = models.Data;
@@ -26,7 +27,7 @@ var app = express();
 
 //Passport setup
 app.use(session({
-	secret: 'NotASecret;)',
+	secret: auth.secret,
 	name: 'TrojanHorse',
 	resave: false,
 	saveUninitialized: false
