@@ -41,11 +41,11 @@ app.get("/test/JSON", function(req, res) {
   res.sendFile(url);
 })
 
-app.get('/purchasing/toBePurchased', function(req, res) {
+app.get('/api/completedPurchases', function(req, res) {
 	
 });
 
-app.post('/purchasing/newPurchases', function(req, res) {
+app.post('/api/addPurchase', function(req, res) {
 
 });
 
