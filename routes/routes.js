@@ -32,6 +32,26 @@ module.exports = function(app, passport) {
 		res.sendFile(path.join(__dirname, '../views', 'profile.html'));
 	});
 
+	app.get("/team", function(req, res) {
+		User.find({}, function(err, users) {
+			if (err) {
+				res.sendStatus(500);
+				return;
+			}
+			var response = [];
+			users.map(function(value, index, array) {
+				response.push({
+					"email":value.email, 
+					"_id":value._id,
+					"firstName":value.firstName,
+					"lastName":value.lastName
+				})
+			});
+			res.json(response);
+			return;
+		});
+	});
+
 	app.get("/uploadImage", function(req, res) {//isLoggedIn, function(req, res) {
 		res.sendFile(path.join(__dirname, '../views', 'uploadImage.html'));
 	});
