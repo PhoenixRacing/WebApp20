@@ -30,7 +30,7 @@ function mvPushMatrix() {
 }
 
 function mvPopMatrix() {
-    if (mvMatrixStack.length == 0) {
+    if (mvMatrixStack.length === 0) {
       throw "Invalid popMatrix!";
     }
     mvMatrix = mvMatrixStack.pop();
@@ -64,13 +64,13 @@ function createGLContext(canvas) {
 
 function loadShaderFromDOM(id) {
   var shaderScript = document.getElementById(id);
-  
+
   // If we don't find an element with the specified id
-  // we do an early exit 
+  // we do an early exit
   if (!shaderScript) {
     return null;
   }
-  
+
   // Loop through the children for the found DOM element and
   // build up the shader source code as a string
   var shaderSource = "";
@@ -81,7 +81,7 @@ function loadShaderFromDOM(id) {
     }
     currentChild = currentChild.nextSibling;
   }
- 
+
   var shader;
   if (shaderScript.type == "x-shader/x-fragment") {
     shader = gl.createShader(gl.FRAGMENT_SHADER);
@@ -90,21 +90,21 @@ function loadShaderFromDOM(id) {
   } else {
     return null;
   }
- 
+
   gl.shaderSource(shader, shaderSource);
   gl.compileShader(shader);
- 
+
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
     alert(gl.getShaderInfoLog(shader));
     return null;
-  } 
+  }
   return shader;
 }
 
 function setupShaders() {
   vertexShader = loadShaderFromDOM("shader-vs");
   fragmentShader = loadShaderFromDOM("shader-fs");
-  
+
   shaderProgram = gl.createProgram();
   gl.attachShader(shaderProgram, vertexShader);
   gl.attachShader(shaderProgram, fragmentShader);
@@ -122,7 +122,7 @@ function setupShaders() {
   gl.enableVertexAttribArray(shaderProgram.vertexColorAttribute);
   shaderProgram.mvMatrixUniform = gl.getUniformLocation(shaderProgram, "uMVMatrix");
   shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, "uPMatrix");
-  
+
 }
 
 function setupBuffers() {
@@ -132,19 +132,19 @@ function setupBuffers() {
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(triangleVertices), gl.STATIC_DRAW);
   vertexPositionBuffer.itemSize = 3;
   vertexPositionBuffer.numberOfItems = GLOBALS.cad.faces.length;
-    
+
   vertexColorBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexColorBuffer);
   var colors = [];
   for (var i = 0; i<triangleVertices; i++) {
-    colors.push(1.0, 0.0, 0.0, 1.0)
+    colors.push(1.0, 0.0, 0.0, 1.0);
   }
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
   vertexColorBuffer.itemSize = 4;
-  vertexColorBuffer.numItems = triangleVertices.length/4;  
+  vertexColorBuffer.numItems = triangleVertices.length/4;
 }
 
-function draw() { 
+function draw() {
   console.log("Drawing");
   var transformVec = vec3.create();
 
@@ -157,22 +157,22 @@ function draw() {
   mvPushMatrix();
   vec3.set(transformVec,10.0,10.0,10.0);
   mat4.rotateX(mvMatrix, mvMatrix, angle*Math.PI/180);
-  mat4.rotateY(mvMatrix, mvMatrix, angle*Math.PI/180); 
-  mat4.rotateZ(mvMatrix, mvMatrix, angle*Math.PI/180); 
+  mat4.rotateY(mvMatrix, mvMatrix, angle*Math.PI/180);
+  mat4.rotateZ(mvMatrix, mvMatrix, angle*Math.PI/180);
   mat4.scale(mvMatrix, mvMatrix,transformVec);
 
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexPositionBuffer);
-  gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, 
+  gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute,
                          vertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexColorBuffer);
-  gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, 
+  gl.vertexAttribPointer(shaderProgram.vertexColorAttribute,
                             vertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
-  
-  setMatrixUniforms();                      
+
+  setMatrixUniforms();
   gl.drawArrays(gl.TRIANGLES, 0, vertexPositionBuffer.numberOfItems);
 }
 
-function getCAD(callback) {  
+function getCAD(callback) {
   var request = new XMLHttpRequest();
   request.open('GET', '/test/JSON', true);
 
@@ -191,7 +191,7 @@ function getCAD(callback) {
   request.onerror = function() {
     // There was a connection error of some sort
     var err = new Error('Bad Request: getting CAD');
-    return callback(err, null)
+    return callback(err, null);
   };
 
   request.send();
@@ -203,7 +203,7 @@ function setupTriangleArray() {
   for (var i = 0; i<GLOBALS.cad.faces.length; i++) {
     face = GLOBALS.cad.faces[i];
     for (var j = 0; j<face.length-1; j++) {
-      vert = GLOBALS.cad.verts[face[j]]
+      vert = GLOBALS.cad.verts[face[j]];
       for (var k = 0; k<vert.length; k++) {
         triangles.push(vert[k]);
       }
@@ -213,7 +213,7 @@ function setupTriangleArray() {
 }
 
 function animate() {
-    angle=angle+1.;
+    angle=angle+1.0;
 }
 
 function init() {
@@ -222,13 +222,13 @@ function init() {
     setupTriangleArray();
     canvas = document.getElementById("test");
     gl = createGLContext(canvas);
-    setupShaders(); 
+    setupShaders();
     setupBuffers();
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     draw();
     tick();
   });
-  
+
 }
 
 function tick() {
