@@ -31,6 +31,16 @@ app.get("/api/home", function(req, res) {
 	res.send("Hello world");
 });
 
+app.get("/test", function(req, res) {
+  var url = path.resolve( __dirname + '/test.html');
+  res.sendFile(url);
+});
+
+app.get("/test/JSON", function(req, res) {
+  var url = path.resolve(__dirname + '/cad.json');
+  res.sendFile(url);
+})
+
 app.get('/purchasing/toBePurchased', function(req, res) {
 	
 });
