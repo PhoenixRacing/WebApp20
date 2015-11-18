@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<meta charset="utf-8"></meta>
+		<title>WebGl Test</title>
+	</head>
+	<script id="shader-vs" type="x-shader/x-vertex">
+	attribute vec4 aVertexColor;
+	attribute vec3 aVertexPosition;
+	uniform mat4 uMVMatrix;
+    uniform mat4 uPMatrix;
+
+	varying vec4 vColor;
+	void main(void) {
+	    gl_Position = uPMatrix*uMVMatrix*vec4(aVertexPosition, 1.0);
+	    vColor = vec4(1.0, 0.0, 0.0, 1.0);
+	}
+	</script>
+	  
+	<script id="shader-fs" type="x-shader/x-fragment">
+	precision mediump float;
+	varying vec4 vColor;
+	void main(void) {
+	        gl_FragColor = vColor;
+	 }
+	</script>
+	<script type="text/javascript" src="/javascripts/gl-matrix-min.js"></script>
+	<script type="text/javascript" src="/javascripts/test.js"></script>
+	<body>
+		<canvas id="test" width="800" height="800"></canvas>	
+	</body>
+	<script type="text/javascript">
+	console.log("running?")
+	init();
+	</script>
+</html>

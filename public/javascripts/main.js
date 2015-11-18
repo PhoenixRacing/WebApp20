@@ -5,7 +5,10 @@
 	app.config(function($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl : './pages/home.html',
+            templateUrl : './pages/home.html'
+        })
+        .when('/car', {
+        	templateUrl : './pages/car.html'
         });
     });
 
