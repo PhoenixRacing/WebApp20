@@ -1,6 +1,7 @@
 var path = require('path');
 var fs = require('fs');
 var multiparty = require('multiparty');
+var Purchase = require('../models/models.js').Purchase;
 
 module.exports = function(app, passport) {
 
@@ -41,14 +42,76 @@ module.exports = function(app, passport) {
 			var response = [];
 			users.map(function(value, index, array) {
 				response.push({
-					"email":value.email, 
+					"email":value.email,
 					"_id":value._id,
 					"firstName":value.firstName,
 					"lastName":value.lastName
-				})
+				});
 			});
 			res.json(response);
 			return;
+		});
+	});
+
+	app.post("/purchase", function(req, res) {//isLoggedIn, function(req, res) {
+		var newPurchase = new Purchase({
+	    user: req.body.user, // replace with logged in user!
+	    itemName: req.body.item,
+	    url: req.body.url,
+	    cost: req.body.cost,
+	    date: new Date(),
+	    quantity: req.body.quantity,
+			status: "Received",
+	    notes: req.body.notes
+		});
+
+		newPurchase.save(function (err) {
+			if (err) {
+				res.status(500).send(err);
+				console.log(err);
+				return;
+			}
+		});
+
+		return res.json(newPurchase);
+	});
+
+	app.get("/purchase", function(req, res) {//isLoggedIn, function(req, res) {
+		Purchase.find({}, function(err, purchases) {
+			if (err) {
+				res.status(500).send(err);
+				console.log(err);
+				return;
+			}
+
+			return res.json(purchases);
+		});
+	});
+
+	app.delete("/purchase/:id", function(req, res) {//isLoggedIn, function(req, res) {
+		var purchaseId = req.params.id;
+
+		Purchase.findById( purchaseId, function(err, purchase) {
+			if (err) {
+				res.status(500).send(err);
+				console.log(err);
+				return;
+			}
+			else {
+				if (purchase){
+					purchase.remove( { _id: purchase._id }, function(err) {
+						if (err) {
+							res.status(500).send(err);
+							console.log(err);
+							return;
+						}
+						res.send("Purchase deleted");
+					});
+				}
+				else {
+					res.send("Could not find purchase");
+				}
+			}
 		});
 	});
 
