@@ -88,18 +88,66 @@ module.exports = function(app, passport) {
 		});
 	});
 
-	app.delete("/purchase/:id", function(req, res) {//isLoggedIn, function(req, res) {
+	app.put("/purchase/:id", function(req, res) {//isLoggedIn, function(req, res) {
 		var purchaseId = req.params.id;
 
-		Purchase.findById( purchaseId, function(err, purchase) {
+		var update = {
+	    itemName: req.body.item,
+	    url: req.body.url,
+	    cost: req.body.cost,
+	    quantity: req.body.quantity,
+			status: req.body.status,
+	    notes: req.body.notes
+		};
+
+		Purchase.findById(purchaseId, function(err, purchase) {
 			if (err) {
 				res.status(500).send(err);
 				console.log(err);
 				return;
 			}
 			else {
-				if (purchase){
-					purchase.remove( { _id: purchase._id }, function(err) {
+				if (purchase) {
+					if (update.itemName)
+						purchase.itemName = update.itemName;
+					if (update.url)
+						purchase.url = update.url;
+					if (update.cost)
+						purchase.cost = update.cost;
+					if (update.quantity)
+						purchase.quantity = update.quantity;
+					if (update.status)
+						purchase.status = update.status;
+					if (update.notes)
+						purchase.notes = update.notes;
+					purchase.save(function(err) {
+						if (err) {
+							res.status(500).send(err);
+							console.log(err);
+							return;
+						}
+					});
+					return res.json(purchase);
+				}
+				else {
+					res.send("Could not find purchase");
+				}
+			}
+		});
+	});
+
+	app.delete("/purchase/:id", function(req, res) {//isLoggedIn, function(req, res) {
+		var purchaseId = req.params.id;
+
+		Purchase.findById(purchaseId, function(err, purchase) {
+			if (err) {
+				res.status(500).send(err);
+				console.log(err);
+				return;
+			}
+			else {
+				if (purchase) {
+					purchase.remove({ _id: purchase._id }, function(err) {
 						if (err) {
 							res.status(500).send(err);
 							console.log(err);
