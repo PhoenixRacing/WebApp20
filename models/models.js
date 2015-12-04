@@ -11,6 +11,7 @@ var purchaseSchema = mongoose.Schema({
     url: String,
     cost: Number,
     date: Date,
+    status: String,
     quantity: Number,
     notes: String
 });
