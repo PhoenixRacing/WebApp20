@@ -19,7 +19,7 @@ module.exports = function(app, passport) {
     }));
 
 	app.get("/signup", function(req, res) {
-		console.log("Get signup")
+		console.log("Get signup");
 		res.sendFile(path.join(__dirname, '../views', 'signup.html'));
 	});
 
@@ -30,6 +30,26 @@ module.exports = function(app, passport) {
 
 	app.get("/profile", isLoggedIn, function(req, res) {
 		res.sendFile(path.join(__dirname, '../views', 'profile.html'));
+	});
+
+	app.get("/team", function(req, res) {
+		User.find({}, function(err, users) {
+			if (err) {
+				res.sendStatus(500);
+				return;
+			}
+			var response = [];
+			users.map(function(value, index, array) {
+				response.push({
+					"email":value.email, 
+					"_id":value._id,
+					"firstName":value.firstName,
+					"lastName":value.lastName
+				})
+			});
+			res.json(response);
+			return;
+		});
 	});
 
 	app.get("/uploadImage", function(req, res) {//isLoggedIn, function(req, res) {
@@ -43,7 +63,7 @@ module.exports = function(app, passport) {
 
 			var img = files.image[0];
 			console.log(img);
-			var filename = img.originalFilename.split(".")
+			var filename = img.originalFilename.split(".");
 			var filetype = filename[filename.length-1].toLowerCase();
 
 			// figure out if it's actually an image
@@ -79,17 +99,16 @@ module.exports = function(app, passport) {
 				});
 			});
 		});
+	});
 
-	})
 
 	// route middleware to make sure a user is logged in
 	function isLoggedIn(req, res, next) {
-
-	    // if user is authenticated in the session, carry on 
+	    // if user is authenticated in the session, carry on
 	    if (req.isAuthenticated())
 	        return next();
 
 	    // if they aren't redirect them to the home page
 	    res.redirect('/');
 	}
-}
+};
