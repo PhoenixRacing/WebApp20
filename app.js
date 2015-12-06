@@ -62,6 +62,7 @@ app.get("/test", function(req, res) {
 });
 
 app.get("/test/JSON", function(req, res) {
+  console.log("Sending file")
   var url = path.resolve(__dirname + '/cad.json');
   res.sendFile(url);
 })
