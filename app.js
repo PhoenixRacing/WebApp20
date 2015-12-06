@@ -49,7 +49,9 @@ require('./config/passport')(passport);
 
 // this sets up all of the routes
 var routes = require('./routes/routes.js');
-routes(app, passport);
+var admin = require('./routes/admin.js');
+app.use("/", routes);
+app.use("/admin", admin);
 
 //API routes that angular will use to get and post data
 app.get("/api/home", function(req, res) {
