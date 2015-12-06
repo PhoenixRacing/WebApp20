@@ -1,4 +1,4 @@
-//Require npm modules 
+//Require npm modules
 var express = require("express");
 var path = require("path");
 var logger = require("morgan");
@@ -44,7 +44,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(flash());
 
-// configure passport 
+// configure passport
 require('./config/passport')(passport);
 
 // this sets up all of the routes
@@ -53,7 +53,7 @@ var admin = require('./routes/admin.js');
 app.use("/", routes);
 app.use("/admin", admin);
 
-//API routes that angular will use to get and post data 
+//API routes that angular will use to get and post data
 app.get("/api/home", function(req, res) {
 	res.send("Hello world");
 });
@@ -64,12 +64,12 @@ app.get("/test", function(req, res) {
 });
 
 app.get("/test/JSON", function(req, res) {
+  console.log("Sending file")
   var url = path.resolve(__dirname + '/cad.json');
   res.sendFile(url);
 })
 
 app.get('/api/completedPurchases', function(req, res) {
-	
 });
 
 app.post('/api/addPurchase', function(req, res) {

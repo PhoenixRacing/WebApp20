@@ -101,7 +101,7 @@ app.post("/uploadImage", function(req, res) {//isLoggedIn, function(req, res) {
 		});
 	});
 
-})
+});
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
