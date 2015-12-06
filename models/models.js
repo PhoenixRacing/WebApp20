@@ -5,6 +5,17 @@ var dataSchema = mongoose.Schema({
 
 });
 
+var purchaseSchema = mongoose.Schema({
+    user: String,
+    item_name: String,
+    url: String,
+    cost: Number,
+    date: Date,
+    status: String,
+    quantity: Number,
+    notes: String
+});
+
 // define the schema
 var userSchema = mongoose.Schema({
     username: String,
@@ -25,5 +36,6 @@ userSchema.methods.validPassword = function(password) {
 // expose the model for users
 module.exports = {
 	User : mongoose.model('User', userSchema),
-	Data : mongoose.model('Data', dataSchema)
+	Data : mongoose.model('Data', dataSchema),
+  Purchase: mongoose.model('Purchase', purchaseSchema)
 };
