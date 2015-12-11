@@ -1,0 +1,21 @@
+<div>
+	<table border="1">
+		<tr ng-repeat="user in team">
+			<td>{{ user.username }}</td>
+			<td>{{ user.major }}</td>
+			<td>
+				<form action="/admin/edit" method="post">
+					<input type="hidden" name="userId" value="{{ user._id }}">
+					<input type="hidden" name="isAdmin" value="true">
+					<input type="submit" value="Make admin">
+				</form>
+			</td>
+			<td>
+				<form action="/admin/deleteUser" method="post">
+					<input type="hidden" name="userId" value="{{ user._id }}">
+					<input type="submit" value="Delete user">
+				</form>
+			</td>
+		</tr>
+	</table>
+</div>

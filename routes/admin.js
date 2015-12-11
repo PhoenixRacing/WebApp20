@@ -12,7 +12,7 @@ admin.get("/", isLoggedIn, isAdmin, function(req, res) {
 
 admin.post("/edit", function(req, res) {
 	// this route takes an admin userId and another userId and a boolean to give or revoke admin priveledges
-	var adminId = req.body.adminId;
+	var adminId = req.user ? req.user._id : req.body.adminId;
 	var userId = req.body.userId;
 	var isAdmin = req.body.isAdmin;
 
@@ -22,6 +22,8 @@ admin.post("/edit", function(req, res) {
 			res.sendStatus(500);
 			return;
 		}
+
+		console.log(admin);
 
 		if (!admin || !admin.admin) {
 			res.sendStatus(401);
@@ -53,7 +55,7 @@ admin.post("/edit", function(req, res) {
 
 admin.post("/deleteUser", function(req, res) {
 	// this route takes an admin userId and another userId and a boolean to give or revoke admin priveledges
-	var adminId = req.body.adminId;
+	var adminId = req.user ? req.user._id : req.body.adminId;
 	var userId = req.body.userId;
 
 	User.findOne({'_id':adminId}, function(err, admin) {

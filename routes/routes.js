@@ -4,6 +4,8 @@ var multiparty = require('multiparty');
 var Purchase = require('../models/models.js').Purchase;
 var passport = require('passport');
 var app = require("express").Router();
+var models = require('./../models/models.js');
+var User = models.User;
 
 app.get('/index', function(req, res) {
 	res.send("HI");
@@ -46,7 +48,9 @@ app.get("/team", function(req, res) {
 				"email":value.email,
 				"_id":value._id,
 				"firstName":value.firstName,
-				"lastName":value.lastName
+				"lastName":value.lastName,
+				"username":value.username,
+				"major":value.major
 			});
 		});
 		res.json(response);

@@ -21,6 +21,7 @@ var userSchema = mongoose.Schema({
     username: String,
     password: String,
     email: String,
+    major: String,
     admin: Boolean,
     data: [dataSchema]
 });
