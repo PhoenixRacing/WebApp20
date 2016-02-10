@@ -1,0 +1,10 @@
+div.background {
+	   width: 100%;
+    height: 90vh;
+    top: -10rem;
+    position: relative;
+}
+div.background img {
+	width: 100%;
+    height: auto;
+}
