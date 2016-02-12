@@ -1,10 +1,54 @@
 div.background {
-	   width: 100%;
-    height: 90vh;
-    top: -10rem;
+	width: 100%;
     position: relative;
 }
-div.background img {
+
+div.about {
+	height:45rem;
 	width: 100%;
-    height: auto;
+	position: relative;
+	background-color: #222;
+	color:#eee;
+	padding:25px;
+}
+
+@media (min-width: 900px) {
+	div.background {
+		height: 93vh;
+    	top: -10rem;
+	}
+
+	div.background img {
+		width: 100%;
+		height: auto;
+		left:0;
+	}
+
+}
+
+@media (max-width: 900px) {
+	div.background {
+		top:0;
+		height: 100vh;
+		width: 100%;
+	}
+
+	div.background img {
+		left:-10rem;
+		width: auto;
+		height:100vh;
+	}
+}
+
+@media (max-width: 600px) {
+	div.background {
+		height: 100vh;
+	}
+
+	div.background img {
+		position: relative;
+		left:-20rem;
+		width: auto;
+		height: 95vh;
+	}
 }

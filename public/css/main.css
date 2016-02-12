@@ -6,6 +6,8 @@ button.donate {
 	padding:2rem;
 	font-size: 18px;
 	background-color: blue;
+	width: 19rem;
+	height: 8rem;
 }
 
 .footer {
@@ -26,12 +28,15 @@ footer .footer-above {
 }
 
 footer .footer-col {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
+    margin-top:30px;
+    height:10rem;
 }
 
 footer .footer-below {
     padding: 25px 0;
     background-color: red;
+    color:#eee;
 }
 
 footer .footer-above a {
