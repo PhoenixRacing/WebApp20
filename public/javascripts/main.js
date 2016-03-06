@@ -2,7 +2,7 @@
 	//initialize the angular app and inject dependencies.
 	var app = angular.module("olinbaja", ['ngRoute']);
 
-	app.config(function($routeProvider) {
+	app.config(function($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
         templateUrl : './pages/home.html'
@@ -16,20 +16,71 @@
         templateUrl : './pages/admin.html',
         controller : 'AdminController'
       });
+
+    $locationProvider.html5Mode({
+      enabled: true,
+      requireBase: false
+    });
   });
 
-  app.controller('AdminController', ['$scope', '$http', function($scope, $http) {
-    //$scope.team = [{'name':'Sawyer Vaughan', 'degree':'ECE'}, {'name':'Radmer Van der Heyde', 'degree':'ECE'}];
-    $http({
-      method:'GET',
-      url: '/team'
-    }).then(function successCallback(response) {
-      console.log("RETURNED");
-      console.log(response.data);
-      $scope.team = response.data;
-    }, function errorCallback(response) {
-      console.log(response);
-    });
+  app.controller('AdminController', ['$scope', '$http', '$window', function($scope, $http, $window) {
+
+    function reloadTeam() {
+      $http({
+        method:'GET',
+        url: '/team'
+      }).then(function successCallback(response) {
+        $scope.team = response.data;
+      }, function errorCallback(response) {
+        console.log(response);
+      });
+    }
+
+    $scope.editAdmin = function(user, isAdmin) {
+      console.log(user);
+      $http({
+        method:'POST',
+        url: '/admin/edit',
+        data: { 
+          userId: user._id,
+          isAdmin: isAdmin
+        }
+      }).then(function successCallback(response) {
+        console.log(response);
+        reloadTeam();
+      }, function errorCallback(response) {
+        console.log(response);
+      });
+    };
+
+    $scope.removeUser = function(user) {
+      $http({
+        method:'POST',
+        url: '/admin/deleteUser',
+        data: { 
+          userId: user._id
+        }
+      }).then(function successCallback(response) {
+        console.log(response);
+        reloadTeam();
+      }, function errorCallback(response) {
+        console.log(response);
+      });
+    };
+
+    $http.get('/auth/isAdmin', {}).then(
+      function success(response) {
+        console.log(response);
+        reloadTeam();
+      }, function error(response) {
+        console.log(status);
+        if (response.status == 401) {
+          $window.location = "/";
+        } else {
+          $window.location = "/auth/login?next=/#/admin";
+        }
+      }
+    );
   }]);
 
   app.controller('CarController', ['$http', function($http){

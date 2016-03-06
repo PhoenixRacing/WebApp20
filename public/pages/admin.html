@@ -1,19 +1,45 @@
-<div>
-	<table border="1">
-		<tr ng-repeat="user in team">
-			<td>{{ user.username }}</td>
-			<td>{{ user.major }}</td>
-			<td>
-				<form action="/admin/edit" method="post">
-					<input type="hidden" name="userId" value="{{ user._id }}">
-					<input type="hidden" name="isAdmin" value="true">
-					<input type="submit" value="Make admin">
+<div ng-controller="AdminController">
+	<script src="./../javascripts/main.js"></script>
+	<style type="text/css">
+		#admin-table {
+			width:80%;
+			margin-left: 10%;
+			margin-right: 10%;
+			margin-top: 20px;
+		}
+		.admin-table-row {
+			height: 20px;
+		}
+		.admin-table-column-name {
+			width: 50%;
+			padding-left: 4px;
+		}
+		.admin-table-column-major {
+			width: 30%;
+			padding-left: 4px;
+		}
+		.admin-table-column-edit {
+			width: 10%;
+		}
+		.admin-table-column-delete {
+			width: 10%;
+		}
+	</style>
+	<table border="1" id="admin-table">
+		<tr ng-repeat="user in team" class="admin-table-row">
+			<td class="admin-table-column-name">{{ user.username }}</td>
+			<td class="admin-table-column-major">{{ user.major }}</td>
+			<td class="admin-table-column-edit">
+				<form id="make-admin-form" ng-hide="{{ user.admin }}">
+					<input type="submit" value="Make admin" ng-click="editAdmin(user, true)">
+				</form>
+				<form id="remove-admin-form" ng-show="{{ user.admin }}">
+					<input type="submit" value="Remove admin" ng-click="editAdmin(user, false)">
 				</form>
 			</td>
-			<td>
-				<form action="/admin/deleteUser" method="post">
-					<input type="hidden" name="userId" value="{{ user._id }}">
-					<input type="submit" value="Delete user">
+			<td class="admin-table-column-delete">
+				<form id="delete-user-form">
+					<input type="submit" value="Delete user" ng-click="removeUser(user)">
 				</form>
 			</td>
 		</tr>

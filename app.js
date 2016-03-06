@@ -50,8 +50,11 @@ require('./config/passport')(passport);
 // this sets up all of the routes
 var routes = require('./routes/routes.js');
 var admin = require('./routes/admin.js');
+var auth = require('./routes/auth.js');
+
 app.use("/", routes);
 app.use("/admin", admin);
+app.use("/auth", auth);
 
 //API routes that angular will use to get and post data
 app.get("/api/home", function(req, res) {
@@ -79,6 +82,10 @@ app.post('/api/addPurchase', function(req, res) {
 app.get("/api/sawyerssecretroute", function(req, res) {
 	res.send("Go back, this is a secret");
 });
+
+app.get("*", function(req, res) {
+	res.redirect("/#"+req.path);
+})
 
 app.listen(PORT);
 console.log('Listening on Port', PORT);

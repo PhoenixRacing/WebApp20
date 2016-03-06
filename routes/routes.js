@@ -5,33 +5,14 @@ var Purchase = require('../models/models.js').Purchase;
 var passport = require('passport');
 var app = require("express").Router();
 var models = require('./../models/models.js');
+var authHelper = require('./../helpers/authHelper.js');
 var User = models.User;
 
 app.get('/index', function(req, res) {
 	res.send("HI");
 });
 
-app.get("/login", function(req, res) {
-	console.log("Get login");
-	res.sendFile(path.join(__dirname, '../views', 'login.html'));
-});
-
-app.post('/login', passport.authenticate('local-login', {
-    successRedirect : '/profile', // redirect to the secure profile section
-    failureRedirect : '/login', // redirect back to the signup page if there is an error
-}));
-
-app.get("/signup", function(req, res) {
-	console.log("Get signup");
-	res.sendFile(path.join(__dirname, '../views', 'signup.html'));
-});
-
-app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect : '/profile', // redirect to the secure profile section
-    failureRedirect : '/signup', // redirect back to the signup page if there is an error
-}));
-
-app.get("/profile", isLoggedIn, function(req, res) {
+app.get("/profile", authHelper.isLoggedIn, function(req, res) {
 	console.log(req.user);
 	res.sendFile(path.join(__dirname, '../views', 'profile.html'));
 });
@@ -50,27 +31,8 @@ app.get("/team", function(req, res) {
 				"firstName":value.firstName,
 				"lastName":value.lastName,
 				"username":value.username,
-				"major":value.major
-			});
-		});
-		res.json(response);
-		return;
-	});
-});
-
-app.get("/team", function(req, res) {
-	User.find({}, function(err, users) {
-		if (err) {
-			res.sendStatus(500);
-			return;
-		}
-		var response = [];
-		users.map(function(value, index, array) {
-			response.push({
-				"email":value.email,
-				"_id":value._id,
-				"firstName":value.firstName,
-				"lastName":value.lastName
+				"major":value.major,
+				"admin":value.admin
 			});
 		});
 		res.json(response);
@@ -237,30 +199,5 @@ app.post("/uploadImage", function(req, res) {//isLoggedIn, function(req, res) {
 	});
 
 });
-
-// route middleware to make sure a user is logged in
-function isLoggedIn(req, res, next) {
-
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
-        return next();
-
-    // if they aren't redirect them to the home page
-    res.redirect('/login');
-}
-
-function isAdmin(req, res, next) {
-	if (!req.user) {
-		res.redirect('/login');
-		return;
-	}
-
-	if (!req.user.admin) {
-		res.redirect('/');
-		return;
-	}
-
-	return next();
-}
 
 module.exports = app;
