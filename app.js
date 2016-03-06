@@ -85,7 +85,7 @@ app.get("/api/sawyerssecretroute", function(req, res) {
 
 app.get("*", function(req, res) {
 	res.redirect("/#"+req.path);
-})
+});
 
 app.listen(PORT);
 console.log('Listening on Port', PORT);
