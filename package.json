@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/PhoenixRacing/WebApp20",
   "dependencies": {
+    "aws-sdk": "^2.2.41",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.13.1",
     "connect-flash": "^0.1.1",

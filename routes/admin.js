@@ -2,7 +2,7 @@ var path = require('path');
 var fs = require('fs');
 var multiparty = require('multiparty');
 var models = require('./../models/models.js');
-var authHelper = require('./../helpers/authHelper.js');
+var authHelper = require('./../utils/authHelper.js');
 var User = models.User;
 var admin = require("express").Router();
 

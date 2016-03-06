@@ -51,10 +51,14 @@ require('./config/passport')(passport);
 var routes = require('./routes/routes.js');
 var admin = require('./routes/admin.js');
 var auth = require('./routes/auth.js');
+var purchasing = require('./routes/purchasing.js');
+var upload = require('./routes/upload.js');
 
 app.use("/", routes);
 app.use("/admin", admin);
 app.use("/auth", auth);
+app.use("/purchasing", purchasing);
+app.use("/upload", upload);
 
 //API routes that angular will use to get and post data
 app.get("/api/home", function(req, res) {
@@ -70,13 +74,6 @@ app.get("/test/JSON", function(req, res) {
   console.log("Sending file")
   var url = path.resolve(__dirname + '/cad.json');
   res.sendFile(url);
-})
-
-app.get('/api/completedPurchases', function(req, res) {
-});
-
-app.post('/api/addPurchase', function(req, res) {
-
 });
 
 app.get("/api/sawyerssecretroute", function(req, res) {
