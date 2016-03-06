@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Image Upload Example</h1>
+    <form action="/upload/galleryimage" method="post" enctype="multipart/form-data">
+		<div>
+			<label>Title:</label>
+			<input type="text" name="title" />
+			<br/>
+		</div>
+		<div>
+			<label>Description:</label>
+			<input type="text" name="description" />
+			<br/>
+		</div>
+		<div>
+			<input type="file" name="image" accept="image/gif, image/jpeg, image/png" />
+			<input type="submit" value="Submit" />
+		</div>
+  	</form>
+  </body>
+</html>
