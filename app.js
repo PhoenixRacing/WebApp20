@@ -81,7 +81,8 @@ app.get("/api/sawyerssecretroute", function(req, res) {
 });
 
 app.get("*", function(req, res) {
-	res.redirect("/#"+req.path);
+	var url = path.resolve(__dirname + '/public/index.html');
+	res.sendFile(url);
 });
 
 app.listen(PORT);

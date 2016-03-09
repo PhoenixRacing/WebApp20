@@ -3,6 +3,7 @@ var path = require('path');
 var models = require('./../models/models.js');
 var authHelper = require('./../utils/authHelper.js');
 var User = models.User;
+var GalleryImage = models.GalleryImage;
 
 app.get('/index', function(req, res) {
 	res.send("HI");
@@ -35,5 +36,16 @@ app.get("/team", function(req, res) {
 		return;
 	});
 });
+
+app.get("/gallerydata", function(req, res) {
+	GalleryImage.find({}, function(err, images) {
+		if (err) {
+			res.sendStatus(500);
+			return;
+		}
+		res.json(images);
+		return;
+	});
+})
 
 module.exports = app;

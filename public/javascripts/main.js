@@ -15,6 +15,10 @@
       .when('/admin', {
         templateUrl : './pages/admin.html',
         controller : 'AdminController'
+      })
+      .when('/gallery', {
+        templateUrl : './pages/gallery.html',
+        controller : 'GalleryController'
       });
 
     $locationProvider.html5Mode({
@@ -22,6 +26,28 @@
       requireBase: false
     });
   });
+
+  app.controller('GalleryController', ['$scope', '$http', '$window', function($scope, $http, $window) {
+
+    function reloadTeam() {
+      $http({
+        method:'GET',
+        url: '/team'
+      }).then(function successCallback(response) {
+        $scope.team = response.data;
+      }, function errorCallback(response) {
+        console.log(response);
+      });
+    }
+
+    $http.get('/gallerydata', {}).then(
+      function success(response) {
+        $scope.images = response;
+      }, function error(response) {
+        console.log(status);
+      }
+    );
+  }]);
 
   app.controller('AdminController', ['$scope', '$http', '$window', function($scope, $http, $window) {
 
