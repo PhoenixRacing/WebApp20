@@ -42,7 +42,8 @@
 
     $http.get('/gallerydata', {}).then(
       function success(response) {
-        $scope.images = response;
+        console.log(response);
+        $scope.images = response.data;
       }, function error(response) {
         console.log(status);
       }

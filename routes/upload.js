@@ -41,7 +41,7 @@ app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
 			var time = new Date().getTime();
 
 			aws.s3.upload({
-				Key : String(time),
+				Key : String(new Date().getTime()),
 				Body : data
 			}, function(err, d) {
 	            if (err) {

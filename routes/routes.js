@@ -43,9 +43,10 @@ app.get("/gallerydata", function(req, res) {
 			res.sendStatus(500);
 			return;
 		}
+		console.log(images);
 		res.json(images);
 		return;
 	});
-})
+});
 
 module.exports = app;

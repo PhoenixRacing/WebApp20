@@ -27,21 +27,12 @@
 		}
 	</style>
 	<table border="1" id="admin-table">
-		<tr ng-repeat="user in team" class="admin-table-row">
-			<td class="admin-table-column-name">{{ user.username }}</td>
-			<td class="admin-table-column-major">{{ user.major }}</td>
-			<td class="admin-table-column-edit">
-				<form id="make-admin-form" ng-hide="{{ user.admin }}">
-					<input type="submit" value="Make admin" ng-click="editAdmin(user, true)">
-				</form>
-				<form id="remove-admin-form" ng-show="{{ user.admin }}">
-					<input type="submit" value="Remove admin" ng-click="editAdmin(user, false)">
-				</form>
-			</td>
-			<td class="admin-table-column-delete">
-				<form id="delete-user-form">
-					<input type="submit" value="Delete user" ng-click="removeUser(user)">
-				</form>
+		<tr ng-repeat="image in images">
+			<td>Test</td>
+			<td>
+				<div>
+					<img src="{{ image.url }}" />
+				</div>
 			</td>
 		</tr>
 	</table>
