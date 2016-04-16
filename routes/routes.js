@@ -21,7 +21,7 @@ app.get("/team", function(req, res) {
 			return;
 		}
 		var response = [];
-		users.map(function(value, index, array) {
+		users.forEach(function(value, index, array) {
 			response.push({
 				"email":value.email,
 				"_id":value._id,
