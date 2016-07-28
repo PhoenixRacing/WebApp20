@@ -17,7 +17,7 @@ app.get("/profile", authHelper.isLoggedIn, function(req, res) {
 	res.sendFile(path.join(__dirname, '../views', 'profile.html'));
 });
 
-app.get("/team", function(req, res) {
+app.get("/teamdata", function(req, res) {
 	User.find({}, function(err, users) {
 		if (err) {
 			res.sendStatus(500);

@@ -1,1 +1,7 @@
 <h1>Team Page</h1>	
+<div ng-repeat="user in team">
+	<h2>{{ user.username }}</h2>
+	<p>{{ user.major }}</p>
+	<p>Is admin: {{ user.admin }}</p>
+	<!-- <img src="{{ user.image }}"> -->
+</div>

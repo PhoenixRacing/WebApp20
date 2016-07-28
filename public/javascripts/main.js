@@ -8,9 +8,20 @@
         templateUrl : './pages/home.html'
       })
       .when('/car', {
-      	templateUrl : './pages/car.html',
+        templateUrl : './pages/car.html',
         controller: 'CarController',
         controllerAs: 'car'
+      })
+      .when('/team', {
+        templateUrl : './pages/team.html',
+        controller: 'TeamController'
+      })
+      .when('/login', {
+        templateUrl : './pages/login.html',
+        controller : 'LoginController'
+      })
+      .when('/signup', {
+        templateUrl : './pages/signup.html'
       })
       .when('/admin', {
         templateUrl : './pages/admin.html',
@@ -28,7 +39,7 @@
     function reloadTeam() {
       $http({
         method:'GET',
-        url: '/team'
+        url: '/teamdata'
       }).then(function successCallback(response) {
         $scope.team = response.data;
       }, function errorCallback(response) {
@@ -81,6 +92,32 @@
         }
       }
     );
+  }]);
+
+  app.controller('TeamController', ['$scope', '$http', function($scope, $http) {
+    $http.get('/teamdata', {}).then(
+      function success(response) {
+        console.log(response);
+        $scope.team = response.data;
+      }, function error(response) {
+        console.log(status);
+      }
+    );
+  }]);
+
+  app.controller('LoginController', ['$scope', '$http', '$window', function($scope, $http, $window) {
+    $http.get('/auth/isAuthenticated', {}).then(
+      function success(response) {
+        if (response.status == 200) {
+          $window.location = "/profile";
+        }
+      }, function error(response) {
+      }
+    );
+
+    $scope.login(user) {
+      $http.post()
+    }
   }]);
 
   app.controller('CarController', ['$http', function($http){

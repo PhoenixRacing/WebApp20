@@ -8,7 +8,7 @@ var auth = require("express").Router()
 
 auth.get("/isAuthenticated", function(req, res) {
 	if (!req.user) {
-		res.sendStatus(500);
+		res.sendStatus(401);
 	} else {
 		res.sendStatus(200);
 	}
@@ -24,9 +24,9 @@ auth.get("/isAdmin", function(req, res) {
 	}
 });
 
-auth.get("/login", function(req, res) {
-	res.sendFile(path.join(__dirname, '../views', 'login.html'));
-});
+// auth.get("/login", function(req, res) {
+// 	res.sendFile(path.join(__dirname, '../views', 'login.html'));
+// });
 
 auth.post('/login', function(req, res, next) {
   passport.authenticate('local-login', function(err, user, info) {
@@ -42,16 +42,16 @@ auth.post('/login', function(req, res, next) {
   })(req, res, next);
 });
 
-auth.get("/signup", function(req, res) {
-	res.sendFile(path.join(__dirname, '../views', 'signup.html'));
-});
+// auth.get("/signup", function(req, res) {
+// 	res.sendFile(path.join(__dirname, '../views', 'signup.html'));
+// });
 
 auth.post('/signup', passport.authenticate('local-signup', {
     successRedirect : '/profile', // redirect to the secure profile section
     failureRedirect : '/auth/signup', // redirect back to the signup page if there is an error
 }));
 
-auth.get('/logout', function(req, res) {
+auth.post('/logout', function(req, res) {
 	req.logout();
 	res.redirect('/');
 });
