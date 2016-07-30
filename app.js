@@ -19,9 +19,6 @@ var Data = models.Data;
 // setup things
 mongoose.connect(dbConfig.url);
 
-//route files will go here
-// var dataCollection = require('./routes/data.js')
-
 // Initialize express app
 var app = express();
 
@@ -56,11 +53,6 @@ app.use("/", routes);
 app.use("/admin", admin);
 app.use("/auth", auth);
 
-//API routes that angular will use to get and post data
-app.get("/api/home", function(req, res) {
-	res.send("Hello world");
-});
-
 app.get("/test", function(req, res) {
   var url = path.resolve( __dirname + '/test.html');
   res.sendFile(url);
@@ -70,17 +62,6 @@ app.get("/test/JSON", function(req, res) {
   console.log("Sending file")
   var url = path.resolve(__dirname + '/cad.json');
   res.sendFile(url);
-})
-
-app.get('/api/completedPurchases', function(req, res) {
-});
-
-app.post('/api/addPurchase', function(req, res) {
-
-});
-
-app.get("/api/sawyerssecretroute", function(req, res) {
-	res.send("Go back, this is a secret");
 });
 
 app.get("*", function(req, res) {

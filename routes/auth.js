@@ -30,10 +30,16 @@ auth.get("/isAdmin", function(req, res) {
 
 auth.post('/login', function(req, res, next) {
   passport.authenticate('local-login', function(err, user, info) {
-    if (err) { return next(err); }
-    if (!user) { return res.redirect('/auth/login?error=Try%20again'); }
+    if (err) {
+    	return next(err);
+    }
+    if (!user) {
+    	return res.sendStatus(401);
+    }
     req.logIn(user, function(err) {
-      if (err) { return next(err); }
+      if (err) {
+      	return next(err);
+      }
 
       console.log(req.query);
 
