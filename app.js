@@ -64,8 +64,9 @@ app.get("/test/JSON", function(req, res) {
   res.sendFile(url);
 });
 
-app.get("*", function(req, res) {
-	res.redirect("/#"+req.path);
+app.get("/*", function(req, res) {
+  var url = path.resolve(__dirname + '/public/index.html');
+  res.sendfile(url);
 });
 
 app.listen(PORT);
