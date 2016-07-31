@@ -24,10 +24,6 @@ auth.get("/isAdmin", function(req, res) {
 	}
 });
 
-// auth.get("/login", function(req, res) {
-// 	res.sendFile(path.join(__dirname, '../views', 'login.html'));
-// });
-
 auth.post('/login', function(req, res, next) {
   passport.authenticate('local-login', function(err, user, info) {
     if (err) {
@@ -48,13 +44,9 @@ auth.post('/login', function(req, res, next) {
   })(req, res, next);
 });
 
-// auth.get("/signup", function(req, res) {
-// 	res.sendFile(path.join(__dirname, '../views', 'signup.html'));
-// });
-
 auth.post('/signup', passport.authenticate('local-signup', {
     successRedirect : '/profile', // redirect to the secure profile section
-    failureRedirect : '/auth/signup', // redirect back to the signup page if there is an error
+    failureRedirect : '/signup', // redirect back to the signup page if there is an error
 }));
 
 auth.post('/logout', function(req, res) {
@@ -70,12 +62,12 @@ function isLoggedIn(req, res, next) {
         return next();
 
     // if they aren't redirect them to the home page
-    res.redirect('/auth/login');
+    res.redirect('/login');
 }
 
 function isAdmin(req, res, next) {
 	if (!req.user) {
-		res.redirect('/auth/login');
+		res.redirect('/login');
 		return;
 	}
 

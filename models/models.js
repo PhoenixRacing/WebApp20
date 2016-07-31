@@ -5,6 +5,11 @@ var dataSchema = mongoose.Schema({
 
 });
 
+var donorSchema = mongoose.Schema({
+	name: String,
+	image: String
+});
+
 var purchaseSchema = mongoose.Schema({
     user: String,
     item_name: String,
@@ -23,6 +28,8 @@ var userSchema = mongoose.Schema({
     email: String,
     major: String,
     admin: Boolean,
+    requestDisplayInTeamPage: Boolean,
+    shownInTeamPage: Boolean,
     data: [dataSchema]
 });
 
@@ -36,7 +43,8 @@ userSchema.methods.validPassword = function(password) {
 
 // expose the model for users
 module.exports = {
+	Donor : mongoose.model('Donor', donorSchema),
 	User : mongoose.model('User', userSchema),
 	Data : mongoose.model('Data', dataSchema),
-  Purchase: mongoose.model('Purchase', purchaseSchema)
+	Purchase: mongoose.model('Purchase', purchaseSchema)
 };

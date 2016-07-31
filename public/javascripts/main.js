@@ -5,7 +5,8 @@
     'olinbaja.login',
     'olinbaja.car',
     'olinbaja.admin',
-    'olinbaja.team'
+    'olinbaja.team',
+    'olinbaja.donor'
   ])
   .config(function($routeProvider, $locationProvider) {
     $routeProvider
