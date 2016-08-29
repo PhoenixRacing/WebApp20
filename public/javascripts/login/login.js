@@ -22,7 +22,7 @@
     $http.get('/auth/isAuthenticated', {}).then(
       function success(response) {
         if (response.status == 200) {
-          $window.location = "/profile";
+          $window.location = "/";
         }
       }, function error(response) {
       }
@@ -52,7 +52,7 @@
       $http.post('/auth/login', body).then(
         function success(response) {
           if (response.status == 200) {
-            $window.location = "/profile";
+            $window.location = "/";
           }
           console.log(response);
         }, function error(response) {

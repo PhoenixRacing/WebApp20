@@ -1,10 +1,11 @@
-var path = require('path');
+var auth = require("express").Router()
+
 var fs = require('fs');
 var multiparty = require('multiparty');
-var models = require('./../models/models.js');
 var passport = require('passport');
-var User = models.User;
-var auth = require("express").Router()
+var path = require('path');
+
+var models = require('./../models/userModel').User;
 
 auth.get("/isAuthenticated", function(req, res) {
 	if (!req.user) {
@@ -39,14 +40,14 @@ auth.post('/login', function(req, res, next) {
 
       console.log(req.query);
 
-      return res.redirect('/profile');
+      return res.redirect('/');
     });
   })(req, res, next);
 });
 
 auth.post('/signup', passport.authenticate('local-signup', {
-    successRedirect : '/profile', // redirect to the secure profile section
-    failureRedirect : '/signup', // redirect back to the signup page if there is an error
+    successRedirect : '/',
+    failureRedirect : '/signup',
 }));
 
 auth.post('/logout', function(req, res) {
@@ -56,7 +57,6 @@ auth.post('/logout', function(req, res) {
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
-
     // if user is authenticated in the session, carry on 
     if (req.isAuthenticated())
         return next();

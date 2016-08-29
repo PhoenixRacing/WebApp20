@@ -1,10 +1,11 @@
-var path = require('path');
+var admin = require("express").Router();
+
 var fs = require('fs');
 var multiparty = require('multiparty');
-var models = require('./../models/models.js');
-var authHelper = require('./../helpers/authHelper.js');
-var User = models.User;
-var admin = require("express").Router();
+var path = require('path');
+
+var authHelper = require('./../helpers/authHelper');
+var User = require('./../models/userModel').User;
 
 admin.post("/edit", function(req, res) {
 	// this route takes an admin userId and another userId and a boolean to give or revoke admin priveledges

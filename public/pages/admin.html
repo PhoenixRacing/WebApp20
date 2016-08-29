@@ -1,5 +1,5 @@
 <style type="text/css">
-	#admin-table {
+	.admin-table {
 		width:80%;
 		margin-left: 10%;
 		margin-right: 10%;
@@ -8,36 +8,75 @@
 	.admin-table-row {
 		height: 20px;
 	}
-	.admin-table-column-name {
+	.admin-team-column-name {
 		width: 50%;
 		padding-left: 4px;
 	}
-	.admin-table-column-major {
+	.admin-team-column-major {
 		width: 30%;
 		padding-left: 4px;
 	}
-	.admin-table-column-edit {
+	.admin-team-column-edit {
 		width: 10%;
 	}
-	.admin-table-column-delete {
+	.admin-team-column-delete {
 		width: 10%;
+	}
+	.admin-donor-column-name {
+		width: 80%;
+		padding-left: 4px;
+	}
+	.admin-donor-column-delete {
+		width: 20%;
+		padding-left: 4px;
+	}
+	.admin-donor-column-name {
+		width: 60%;
+		padding-left: 4px;
+	}
+	.admin-donor-column-image {
+		width: 20%;
+		padding-left: 4px;
+	}
+	.admin-donor-column-submit {
+		width: 20%;
+		padding-left: 4px;
 	}
 </style>
-<table border="1" id="admin-table">
+<table border="1" class="admin-table">
 	<tr ng-repeat="user in vm.team" class="admin-table-row">
-		<td class="admin-table-column-name">{{ user.username }}</td>
-		<td class="admin-table-column-major">{{ user.major }}</td>
-		<td class="admin-table-column-edit">
+		<td class="admin-team-column-name">{{ user.username }}</td>
+		<td class="admin-team-column-major">{{ user.major }}</td>
+		<td class="admin-team-column-edit">
 			<form id="make-admin-form" ng-hide="{{ user.admin }}">
-				<input type="submit" value="Make admin" ng-click="editAdmin(user, true)">
+				<input type="submit" value="Make admin" ng-click="vm.editAdmin(user, true)">
 			</form>
 			<form id="remove-admin-form" ng-show="{{ user.admin }}">
-				<input type="submit" value="Remove admin" ng-click="editAdmin(user, false)">
+				<input type="submit" value="Remove admin" ng-click="vm.editAdmin(user, false)">
 			</form>
 		</td>
 		<td class="admin-table-column-delete">
 			<form id="delete-user-form">
-				<input type="submit" value="Delete user" ng-click="removeUser(user)">
+				<input type="submit" value="Delete user" ng-click="vm.removeUser(user)">
+			</form>
+		</td>
+	</tr>
+</table>
+<table border="1" class="admin-table">
+	<tr ng-repeat="donor in vm.donors" class="admin-table-row">
+		<td class="admin-donor-column-name">{{ donor.name }}</td>
+		<td class="admin-donor-column-delete">
+			<form id="delete-donor-form">
+				<input type="submit" value="Delete" ng-click="vm.removeDonor(donor._id)">
+			</form>
+		</td>
+	</tr>
+	<tr class="admin-table-row">
+		<td class="admin-donor-column-delete">
+			<form id="delete-donor-form">
+				<input type="text" value="Name" ng-model="vm.newDonor.name">
+				<input type="text" value="Image" ng-model="vm.newDonor.image">
+				<input type="submit" value="Add Donor" ng-click="vm.addDonor(vm.newDonor)">
 			</form>
 		</td>
 	</tr>

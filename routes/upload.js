@@ -1,14 +1,12 @@
 var app = require("express").Router();
-var path = require('path');
+
 var fs = require('fs');
 var multiparty = require('multiparty');
-var aws = require('./../utils/aws.js');
-var authHelper = require('./../utils/authHelper.js');
-var GalleryImage = require('./../models/models.js').GalleryImage;
+var path = require('path');
 
-app.get("/profileimage", authHelper.isLoggedIn, function(req, res) {
-	res.sendFile(path.join(__dirname, '../views', 'uploadProfile.html'));
-});
+var authHelper = require('./../utils/authHelper.js');
+var aws = require('./../utils/aws.js');
+var GalleryImage = require('./../models/galleryImageModel.js').GalleryImage;
 
 app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
 	var form = new multiparty.Form();
@@ -65,11 +63,6 @@ app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
 			fs.unlink(img.path, function() {});
 		});
 	});
-
-});
-
-app.get("/galleryimage", authHelper.isAdmin, function(req, res) {
-	res.sendFile(path.join(__dirname, '../views', 'uploadGallery.html'));
 });
 
 app.post("/galleryimage", authHelper.isAdmin, function(req, res) {

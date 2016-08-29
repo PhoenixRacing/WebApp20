@@ -19,7 +19,7 @@
   function TeamController($http) {
     var vm = this;
 
-    $http.get('/teamdata', {}).then(
+    $http.post('/team/data', {}).then(
       function success(response) {
         console.log(response);
         vm.team = response.data;
