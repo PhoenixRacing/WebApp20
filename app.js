@@ -45,13 +45,11 @@ require('./config/passport')(passport);
 
 // this sets up all of the routes
 var routes = require('./routes/routes.js');
-var admin = require('./routes/admin.js');
 var auth = require('./routes/auth.js');
 var donor = require('./routes/donor.js');
 var team = require('./routes/team.js');
 
 app.use("/", routes);
-app.use("/admin", admin);
 app.use("/auth", auth);
 app.use("/donor", donor);
 app.use("/team", team);
