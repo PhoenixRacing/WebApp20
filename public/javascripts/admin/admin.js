@@ -21,8 +21,8 @@
 
     function reloadTeam() {
       $http({
-        method:'GET',
-        url: '/teamdata'
+        method: 'POST',
+        url: '/team/data'
       }).then(function successCallback(response) {
         vm.team = response.data;
       }, function errorCallback(response) {
@@ -30,14 +30,25 @@
       });
     }
 
-    vm.editAdmin = function(user, isAdmin) {
+    function reloadDonors() {
+      $http({
+        method: 'POST',
+        url: '/donor/data'
+      }).then(function successCallback(response) {
+        vm.donors = response.data;
+      }, function errorCallback(response) {
+        console.log(response);
+      });
+    }
+
+    vm.editAdmin = function(user, makeAdmin) {
       console.log(user);
       $http({
-        method:'POST',
-        url: '/admin/edit',
+        method: 'POST',
+        url: '/team/editAdmin',
         data: { 
           userId: user._id,
-          isAdmin: isAdmin
+          makeAdmin: makeAdmin
         }
       }).then(function successCallback(response) {
         console.log(response);
@@ -50,7 +61,7 @@
     vm.removeUser = function(user) {
       $http({
         method:'POST',
-        url: '/admin/deleteUser',
+        url: '/team/delete',
         data: { 
           userId: user._id
         }
@@ -62,16 +73,45 @@
       });
     };
 
+    vm.addDonor = function(donor) {
+      $http({
+        method:'POST',
+        url: '/donor/new',
+        data: { 
+          donorName: donor.name,
+          donorImage: donor.image
+        }
+      }).then(function successCallback(response) {
+        console.log(response);
+        reloadDonors();
+      }, function errorCallback(response) {
+        console.log(response);
+      });
+    };
+
+    vm.removeDonor = function(donorId) {
+      $http({
+        method:'POST',
+        url: '/donor/delete',
+        data: { 
+          donorId: donorId
+        }
+      }).then(function successCallback(response) {
+        reloadDonors();
+      }, function errorCallback(response) {
+        console.log(response);
+      });
+    };
+
     $http.get('/auth/isAdmin', {}).then(
       function success(response) {
-        console.log(response);
         reloadTeam();
+        reloadDonors();
       }, function error(response) {
-        console.log(status);
         if (response.status == 401) {
           $window.location = "/";
         } else {
-          $window.location = "/login?next=/#/admin";
+          $window.location = "/login?next=/admin";
         }
       }
     );

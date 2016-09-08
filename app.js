@@ -12,9 +12,8 @@ var flash = require('connect-flash');
 // custom modules
 var dbConfig = require('./database/db.js');
 var auth = require('./auth.js');
-var models = require('./models/models.js');
-var User = models.User;
-var Data = models.Data;
+var User = require('./models/userModel.js').User;
+var Data = require('./models/dataModel.js').Data;
 
 // setup things
 mongoose.connect(dbConfig.url);
@@ -46,12 +45,14 @@ require('./config/passport')(passport);
 
 // this sets up all of the routes
 var routes = require('./routes/routes.js');
-var admin = require('./routes/admin.js');
 var auth = require('./routes/auth.js');
+var donor = require('./routes/donor.js');
+var team = require('./routes/team.js');
 
 app.use("/", routes);
-app.use("/admin", admin);
 app.use("/auth", auth);
+app.use("/donor", donor);
+app.use("/team", team);
 
 app.get("/test", function(req, res) {
   var url = path.resolve( __dirname + '/test.html');
@@ -66,7 +67,7 @@ app.get("/test/JSON", function(req, res) {
 
 app.get("/*", function(req, res) {
   var url = path.resolve(__dirname + '/public/index.html');
-  res.sendfile(url);
+  res.sendFile(url);
 });
 
 app.listen(PORT);

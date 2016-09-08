@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/PhoenixRacing/WebApp20.git"
   },
-  "author": "Radmer van der Heyde, Deborah Helen, Kai Levy, Patrick Huston",
+  "author": "Radmer van der Heyde, Deborah Helen, Kai Levy, Patrick Huston, Sawyer Vaughan",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/PhoenixRacing/WebApp20/issues"
@@ -23,7 +23,6 @@
     "cookie-parser": "^1.3.5",
     "express": "^4.13.0",
     "express-session": "^1.11.3",
-    "fs": "0.0.2",
     "mongoose": "^4.1.7",
     "morgan": "^1.6.0",
     "multer": "^1.0.6",
