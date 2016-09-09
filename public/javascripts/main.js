@@ -12,7 +12,7 @@
   .config(function($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
-          templateUrl : './pages/home.html'
+        templateUrl : './pages/home.html'
       })
       .otherwise({
         templateUrl:'./pages/404.html'
