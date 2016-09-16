@@ -81,3 +81,19 @@
 		</td>
 	</tr>
 </table>
+<form enctype="multipart/form-data">
+	<div>
+		<label>Title:</label>
+		<input type="text" name="title" ng-model="vm.newGalleryImage.title" />
+		<br/>
+	</div>
+	<div>
+		<label>Description:</label>
+		<input type="text" name="description" ng-model="vm.newGalleryImage.description" />
+		<br/>
+	</div>
+	<div>
+		<input type="file" name="image" accept="image/gif, image/jpeg, image/png" ng-model="vm.newGalleryImage.image" />
+		<input type="submit" value="Submit" ng-click="vm.addGallery(vm.newGalleryImage)" />
+	</div>
+</form>

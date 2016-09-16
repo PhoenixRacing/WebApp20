@@ -46,7 +46,7 @@
       $http({
         method: 'POST',
         url: '/team/editAdmin',
-        data: { 
+        data: {
           userId: user._id,
           makeAdmin: makeAdmin
         }
@@ -62,7 +62,7 @@
       $http({
         method:'POST',
         url: '/team/delete',
-        data: { 
+        data: {
           userId: user._id
         }
       }).then(function successCallback(response) {
@@ -77,7 +77,7 @@
       $http({
         method:'POST',
         url: '/donor/new',
-        data: { 
+        data: {
           donorName: donor.name,
           donorImage: donor.image
         }
@@ -93,7 +93,7 @@
       $http({
         method:'POST',
         url: '/donor/delete',
-        data: { 
+        data: {
           donorId: donorId
         }
       }).then(function successCallback(response) {
@@ -102,6 +102,22 @@
         console.log(response);
       });
     };
+
+    vm.addGallery = function(galleryImage) {
+      $http({
+        method: 'POST',
+        url: '/upload/galleryimage',
+        data: {
+          title: galleryImage.title,
+          description: galleryImage.description,
+          image: galleryImage.image
+        }
+      }).then(function success(response) {
+        console.log(response);
+      }, function failure(response) {
+        console.log(response);
+      });
+    }
 
     $http.get('/auth/isAdmin', {}).then(
       function success(response) {

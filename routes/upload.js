@@ -68,6 +68,8 @@ app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
 app.post("/galleryimage", authHelper.isAdmin, function(req, res) {
 	var form = new multiparty.Form();
 
+	console.log(req.body);
+
 	form.parse(req, function(err, fields, files) {
 		var title = fields.title[0];
 		var description = fields.description[0];
@@ -83,7 +85,7 @@ app.post("/galleryimage", authHelper.isAdmin, function(req, res) {
 
 			// delete the temp file
 			fs.unlink(img.path, function() {});
-			res.redirect("/upload/galleryimage");
+			res.sendStatus(400);
 			return;
 		}
 
@@ -106,14 +108,19 @@ app.post("/galleryimage", authHelper.isAdmin, function(req, res) {
 			}, function(err, d) {
 	            if (err) {
 	            	console.log(err);
-					res.redirect("/upload/galleryimage");
+					res.sendStatus(500);
 	            	return;
 	            }
 
 	            // Update question
 	            galleryImage.url = d.Location;
 	            galleryImage.save(function(err, img) {
-					res.redirect("/upload/galleryimage");
+	            	if (err) {
+						res.sendStatus(500);
+						return;
+					}
+
+					res.sendStatus(200);
 					return;
 	            });
 	        });
