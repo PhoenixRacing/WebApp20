@@ -68,11 +68,10 @@ app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
 app.post("/galleryimage", authHelper.isAdmin, function(req, res) {
 	var form = new multiparty.Form();
 
-	console.log(req.body);
-
 	form.parse(req, function(err, fields, files) {
-		var title = fields.title[0];
-		var description = fields.description[0];
+		console.log(fields, files);
+		var title = fields.title;
+		var description = fields.description;
 		var img = files.image[0];
 
 		var filename = img.originalFilename.split(".");

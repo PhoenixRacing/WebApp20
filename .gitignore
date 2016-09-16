@@ -30,3 +30,8 @@ node_modules
 
 # uploads directory
 uploads/*
+
+# Ignore file upload in order to always get the latest version
+/public/vendor/file-upload/
+
+

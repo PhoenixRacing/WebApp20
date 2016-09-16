@@ -19,7 +19,7 @@
   function LoginController($http, $window) {
     var vm = this;
 
-    $http.get('/auth/isAuthenticated', {}).then(
+    $http.post('/auth/isAuthenticated', {}).then(
       function success(response) {
         if (response.status == 200) {
           $window.location = "/";
@@ -29,7 +29,6 @@
     );
 
     vm.submit = function(user) {
-      console.log(user.email);
       if (!user.email || user.email === '')
       {
         vm.error('Please provide a valid e-mail');
@@ -54,7 +53,6 @@
           if (response.status == 200) {
             $window.location = "/";
           }
-          console.log(response);
         }, function error(response) {
           if (response.status == 401) {
             vm.error('There was a problem with your login.');

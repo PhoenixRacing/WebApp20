@@ -21,10 +21,8 @@
 
     $http.post('/team/data', {}).then(
       function success(response) {
-        console.log(response);
         vm.team = response.data;
       }, function error(response) {
-        console.log(status);
       }
     );
   }

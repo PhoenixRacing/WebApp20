@@ -1,6 +1,6 @@
 (function(){
   //initialize the angular app and inject dependencies.
-  angular.module("olinbaja.admin", ['ngRoute'])
+  angular.module("olinbaja.admin", ['ngRoute', 'ngFileUpload'])
     .config(function($routeProvider, $locationProvider) {
       $routeProvider
         .when('/admin', {
@@ -16,7 +16,7 @@
     })
     .controller('AdminController', AdminController);
 
-  function AdminController($http, $window) {
+  function AdminController($http, $window, Upload) {
     var vm = this;
 
     function reloadTeam() {
@@ -26,7 +26,6 @@
       }).then(function successCallback(response) {
         vm.team = response.data;
       }, function errorCallback(response) {
-        console.log(response);
       });
     }
 
@@ -37,12 +36,10 @@
       }).then(function successCallback(response) {
         vm.donors = response.data;
       }, function errorCallback(response) {
-        console.log(response);
       });
     }
 
     vm.editAdmin = function(user, makeAdmin) {
-      console.log(user);
       $http({
         method: 'POST',
         url: '/team/editAdmin',
@@ -51,10 +48,8 @@
           makeAdmin: makeAdmin
         }
       }).then(function successCallback(response) {
-        console.log(response);
         reloadTeam();
       }, function errorCallback(response) {
-        console.log(response);
       });
     };
 
@@ -66,10 +61,8 @@
           userId: user._id
         }
       }).then(function successCallback(response) {
-        console.log(response);
         reloadTeam();
       }, function errorCallback(response) {
-        console.log(response);
       });
     };
 
@@ -82,10 +75,8 @@
           donorImage: donor.image
         }
       }).then(function successCallback(response) {
-        console.log(response);
         reloadDonors();
       }, function errorCallback(response) {
-        console.log(response);
       });
     };
 
@@ -99,27 +90,26 @@
       }).then(function successCallback(response) {
         reloadDonors();
       }, function errorCallback(response) {
-        console.log(response);
       });
     };
 
     vm.addGallery = function(galleryImage) {
-      $http({
-        method: 'POST',
+      var file = galleryImage.image;
+      file.upload = Upload.upload({
         url: '/upload/galleryimage',
-        data: {
-          title: galleryImage.title,
-          description: galleryImage.description,
-          image: galleryImage.image
-        }
-      }).then(function success(response) {
-        console.log(response);
+        data: {title: galleryImage.title, description: galleryImage.description, image: file},
+      });
+
+      file.upload.then(function success(response) {
+        // This will clear the form
+        // TODO: Show success
+        vm.newGalleryImage = {};
       }, function failure(response) {
-        console.log(response);
+        // TODO: Show a failure to the user
       });
     }
 
-    $http.get('/auth/isAdmin', {}).then(
+    $http.post('/auth/isAdmin', {}).then(
       function success(response) {
         reloadTeam();
         reloadDonors();

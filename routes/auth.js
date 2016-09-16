@@ -7,7 +7,7 @@ var path = require('path');
 
 var models = require('./../models/userModel').User;
 
-auth.get("/isAuthenticated", function(req, res) {
+auth.post("/isAuthenticated", function(req, res) {
 	if (!req.user) {
 		res.sendStatus(401);
 	} else {
@@ -15,7 +15,7 @@ auth.get("/isAuthenticated", function(req, res) {
 	}
 });
 
-auth.get("/isAdmin", function(req, res) {
+auth.post("/isAdmin", function(req, res) {
 	if (!req.user) {
 		res.sendStatus(500);
 	} else if (!req.user.admin) {
@@ -38,8 +38,6 @@ auth.post('/login', function(req, res, next) {
       	return next(err);
       }
 
-      console.log(req.query);
-
       return res.redirect('/');
     });
   })(req, res, next);
@@ -57,7 +55,7 @@ auth.post('/logout', function(req, res) {
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
-    // if user is authenticated in the session, carry on 
+    // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
         return next();
 
