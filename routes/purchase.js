@@ -1,5 +1,5 @@
 var app = require("express").Router();
-var Purchase = require('../models/models.js').Purchase;
+var Purchase = require('../models/purchaseModel').Purchase;
 
 app.post("/purchase", function(req, res) {//isLoggedIn, function(req, res) {
 	var newPurchase = new Purchase({

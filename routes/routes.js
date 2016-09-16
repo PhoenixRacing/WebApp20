@@ -5,7 +5,7 @@ var multiparty = require('multiparty');
 var passport = require('passport');
 var path = require('path');
 
-var authHelper = require('./../helpers/authHelper');
+var authHelper = require('./../utils/authHelper');
 var Purchase = require('../models/purchaseModel').Purchase;
 var User = require('../models/userModel').User;
 

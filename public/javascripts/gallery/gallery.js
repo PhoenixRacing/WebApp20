@@ -3,8 +3,8 @@
 
     function reloadTeam() {
       $http({
-        method:'GET',
-        url: '/teamdata'
+        method:'POST',
+        url: '/team/data'
       }).then(function successCallback(response) {
         $scope.team = response.data;
       }, function errorCallback(response) {
@@ -12,7 +12,7 @@
       });
     }
 
-    $http.get('/gallerydata', {}).then(
+    $http.get('/gallery/data', {}).then(
       function success(response) {
         console.log(response);
         $scope.images = response.data;

@@ -6,7 +6,7 @@ var path = require('path');
 
 var authHelper = require('./../utils/authHelper.js');
 var aws = require('./../utils/aws.js');
-var GalleryImage = require('./../models/galleryImageModel.js').GalleryImage;
+var GalleryImage = require('./../models/galleryModel.js').GalleryImage;
 
 app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
 	var form = new multiparty.Form();
@@ -47,7 +47,7 @@ app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
 					res.redirect("/upload/profileimage");
 	            	return;
 	            }
-	            
+
 	            // Update question
 	            req.user.image = d.Location;
 	            req.user.save(function(err, u) {
@@ -109,7 +109,7 @@ app.post("/galleryimage", authHelper.isAdmin, function(req, res) {
 					res.redirect("/upload/galleryimage");
 	            	return;
 	            }
-	            
+
 	            // Update question
 	            galleryImage.url = d.Location;
 	            galleryImage.save(function(err, img) {
