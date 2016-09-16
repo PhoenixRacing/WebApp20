@@ -48,14 +48,14 @@ var routes = require('./routes/routes.js');
 var auth = require('./routes/auth.js');
 var donor = require('./routes/donor.js');
 var team = require('./routes/team.js');
-var purchasing = require('./routes/purchasing.js');
+var purchase = require('./routes/purchase.js');
 var upload = require('./routes/upload.js');
 
 app.use("/", routes);
 app.use("/auth", auth);
 app.use("/donor", donor);
 app.use("/team", team);
-app.use("/purchasing", purchasing);
+app.use("/purchase", purchase);
 app.use("/upload", upload);
 
 app.get("/test", function(req, res) {
