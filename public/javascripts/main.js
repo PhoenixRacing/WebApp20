@@ -6,15 +6,16 @@
     'olinbaja.car',
     'olinbaja.admin',
     'olinbaja.team',
-    'olinbaja.donor'
+    'olinbaja.donor',
+    'olinbaja.gallery'
   ])
   .config(function($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
-          templateUrl : './pages/home.html'
+        templateUrl: './pages/home.html'
       })
       .otherwise({
-        templateUrl:'./pages/404.html'
+        templateUrl: './pages/404.html'
       });
 
     $locationProvider.html5Mode({
