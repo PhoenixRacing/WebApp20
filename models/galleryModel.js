@@ -10,4 +10,4 @@ var galleryImageSchema = mongoose.Schema({
 module.exports = {
 	GalleryImageSchema: galleryImageSchema,
 	GalleryImage: mongoose.model('GalleryImage', galleryImageSchema)
-}
+};

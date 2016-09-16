@@ -1,7 +1,9 @@
 var gallery = require("express").Router()
 
+var GalleryImage = require('../models/galleryModel').GalleryImage;
+
 gallery.post('/data', function(req, res) {
-	Gallery.find({}, function(err, images) {
+	GalleryImage.find({}, function(err, images) {
 		if (err) {
 			res.sendStatus(500);
 			return;

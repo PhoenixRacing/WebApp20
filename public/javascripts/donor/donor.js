@@ -16,7 +16,7 @@
     })
     .controller('DonorController', DonorController);
 
-  function DonorController($scope, $http, $window) {
+  function DonorController($http) {
     var vm = this;
 
     vm.reloadDonors = function() {

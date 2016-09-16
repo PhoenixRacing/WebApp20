@@ -1,23 +1,38 @@
 
-  app.controller('GalleryController', ['$scope', '$http', '$window', function($scope, $http, $window) {
 
-    function reloadTeam() {
+(function(){
+  //initialize the angular app and inject dependencies.
+  angular.module("olinbaja.gallery", ['ngRoute'])
+    .config(function($routeProvider, $locationProvider) {
+      $routeProvider
+        .when('/gallery', {
+          templateUrl : './pages/gallery.html',
+          controller: 'GalleryController',
+          controllerAs: 'vm'
+        })
+
+      $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+      });
+    })
+    .controller('GalleryController', GalleryController);
+
+  function GalleryController($http) {
+    var vm = this;
+
+    vm.reloadImages = function() {
       $http({
         method:'POST',
-        url: '/team/data'
+        url: '/gallery/data'
       }).then(function successCallback(response) {
-        $scope.team = response.data;
+        console.log(response);
+        vm.images = response.data;
       }, function errorCallback(response) {
         console.log(response);
       });
     }
 
-    $http.get('/gallery/data', {}).then(
-      function success(response) {
-        console.log(response);
-        $scope.images = response.data;
-      }, function error(response) {
-        console.log(status);
-      }
-    );
-  }]);
+    vm.reloadImages();
+  }
+})();
