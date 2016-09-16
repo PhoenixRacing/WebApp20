@@ -30,17 +30,18 @@ It is recommended to follow the angular style guide written [here](https://githu
 1. Download the installer [here](https://nodejs.org/en/download/).
 2. Run the installer
 3. Open a command prompt.
-4. Run `node -v` and `npm -v` and ensure that some version is printed.
+4. Run `node -v` and `npm -v` in a shell and ensure that some version is printed. (NOTE: shell means Command Prompt, Git Bash, or Terminal).
 
 #### On Ubuntu/Debian systems
 
-1. Run `sudo apt-get install nodejs` and `sudo apt-get install npm`
+1. Run `sudo apt-get install nodejs` and `sudo apt-get install npm`.
+4. Run `node -v` and `npm -v` in a shell and ensure that some version is printed. (NOTE: shell means Command Prompt, Git Bash, or Terminal).
 
 ### Install MongoDB
 
 #### On Windows
 
-1. Download the installer [here](https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-3.2.9-signed.msi).
+1. Download and run the installer [here](https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-3.2.9-signed.msi). Use the 'Complete' installation.
 2. Run `mkdir \data\db`.
 3. Run `mongod` to verify that MongoDB is working.
 
@@ -56,7 +57,8 @@ It is recommended to follow the angular style guide written [here](https://githu
 Recommended: Use Git Bash and follow the instructions for Ubuntu.
 
 Otherwise:
-1. Open the 'tools/install.bash' file in the 'WebApp20' directory and copy it's contents.
+
+1. Open the 'tools/install.bash' file in the 'WebApp20' directory and copy its contents.
 2. Open Command Prompt
 3. `cd` into the 'WebApp20' folder.
 4. Paste.
