@@ -47,8 +47,9 @@ It is recommended to follow the angular style guide written [here](https://githu
 
 #### On Ubuntu
 
+1. Run `sudo mkdir -p /data/db`.
 1. Follow the instructions [here](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/#install-mongodb-community-edition).
-2. Run `mongod` to verify that MongoDB is working.
+2. Run `mongod` to verify that MongoDB is working. (You might have to do `sudo mongod` if that fails, we don't know why).
 
 ### Install packages
 
