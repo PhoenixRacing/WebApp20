@@ -68,6 +68,10 @@ Otherwise:
 1. Open Terminal and `cd` into the 'WebApp20' directory.
 2. Run `bash tools/install.bash`.
 
+### Get auth.js
+
+For security reasons, we do not publish `auth.js` on GitHub. You will have to get the `auth.js` file from a team lead or teammate. You can ask Sawyer or Radmer for a copy of the file.
+
 ### Recommended step: Install `nodemon`
 
 `nodemon` automatically restarts the project when it notices any changes to files. This is very convenient. If you don't use nodemon, you'll have to manually restart the project each time you want to
