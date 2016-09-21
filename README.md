@@ -79,8 +79,18 @@ For security reasons, we do not publish `auth.js` on GitHub. You will have to ge
 
 1. Run `npm install -g nodemon` in Terminal, Git Bash, or Command Prompt. (You may need to add a `sudo` in front if using Ubuntu).
 
+## First time setup
+
+1. Run the project as detailed under `Run the project`.
+2. Go to `localhost:3000/signup` in the browser, and sign up.
+3. Go to the `WebApp20` folder in a shell.
+4. Run `mongo`. You should enter a mongo shell.
+5. Run `use olinbaja`.
+6. Run `db.users.update({}, {"$set":{"admin":true}})`.
+
 ## Run the project
 
 1. Open a shell and run `mongod`.
 2. Open another shell and `cd` into the 'WebApp20' directory.
 3. Run `nodemon app.js`. (Use `node` instead of `nodemon` if you didn't install `nodemon`). (NOTE: On Windows, you may need to do `nodemon ~/path/to/app.js` if it gives you an error).
+4. Navigate to `localhost:3000` in your browser.
