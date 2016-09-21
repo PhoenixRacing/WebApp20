@@ -34,7 +34,7 @@ It is recommended to follow the angular style guide written [here](https://githu
 
 #### On Ubuntu/Debian systems
 
-1. Run `sudo apt-get install nodejs` and `sudo apt-get install npm`.
+1. Run `sudo apt-get install node` and `sudo apt-get install npm`.
 4. Run `node -v` and `npm -v` in a shell and ensure that some version is printed. (NOTE: shell means Command Prompt, Git Bash, or Terminal).
 
 ### Install MongoDB
