@@ -33,9 +33,10 @@ It is recommended to follow the angular style guide written [here](https://githu
 4. Run `node -v` and `npm -v` in a shell and ensure that some version is printed. (NOTE: shell means Command Prompt, Git Bash, or Terminal).
 
 #### On Ubuntu/Debian systems
-
-1. Run `sudo apt-get install node` and `sudo apt-get install npm`.
-4. Run `node -v` and `npm -v` in a shell and ensure that some version is printed. (NOTE: shell means Command Prompt, Git Bash, or Terminal).
+1. Run `curl -sL https://deb.nodesource.com/setup | sudo bash -` (install curl with `sudo apt-get install curl` if needed)
+2. Run `sudo apt-get install -y nodejs` and `sudo apt-get install -y build-essential`.
+3. Run `node -v` and `npm -v` in a shell and ensure that node's version is greater than 0.10.35 and npm's version is greater than 2.1.17. (NOTE: shell means Command Prompt, Git Bash, or Terminal).
+4. If npm is out of date run `sudo npm install -g npm`
 
 ### Install MongoDB
 
