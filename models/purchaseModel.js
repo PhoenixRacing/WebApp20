@@ -1,14 +1,14 @@
 var mongoose = require('mongoose');
 
 var purchaseSchema = mongoose.Schema({
-    user: String,
+    name: String,
     item_name: String,
-    url: String,
-    cost: Number,
+    link: String,
+    price: Number,
     date: Date,
     status: String,
-    quantity: Number,
-    notes: String
+    count: Number,
+    info: String
 });
 
 // expose the model for users

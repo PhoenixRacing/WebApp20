@@ -1,0 +1,12 @@
+<h1>Make a Purchase Request</h1>
+<form novalidate class="simple-form">
+  <p>{{ vm.errorMessage }}</p>
+  Name: <input type="name" ng-model="vm.purchase.name" /><br />
+  Item name: <input type="item_name" ng-model="vm.purchase.item_name" /><br />
+  Link to order: <input type="link" ng-model="vm.purchase.link" /><br />
+  Price per unit: <input type="price" ng-model="vm.purchase.price" /><br />
+  Quantity: <input type="count" ng-model="vm.purchase.count" /><br />
+  Additional Info: <input type="info" ng-model="vm.purchase.info" /><br />
+  Today's Date: <input type="date" ng-model="vm.purchase.date" /><br />
+  <input type="submit" ng-click="vm.submit(vm.purchase)" value="Purchase" />
+</form>
