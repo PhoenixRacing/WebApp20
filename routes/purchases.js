@@ -1,9 +1,31 @@
 var purchase = require('express').Router();
 
-var purchase = require('../models/purchaseModel').Purchase;
+var Purchase = require('../models/purchaseModel').Purchase;
 
-purchase.post('/data', function(req, res) {
-	purchase.find({}, function(err, purchases) {
+purchase.post('/newpurchase', function(req, res) {
+	var p = new Purchase();
+	p.name = req.body.name;
+	p.item_name = req.body.item_name;
+	p.link = req.body.link;
+	p.price = req.body.price;
+	p.date = req.body.date;
+	p.status = req.body.status;
+	p.count = req.body.count;
+	p.info = req.body.info;
+
+	p.save(function(err, savedpurchase) {
+		if (err) {
+			console.log(err);
+			res.sendStatus(500);
+			return;
+		}
+
+		res.sendStatus(200);
+	});
+});
+
+purchase.get('/data', function(req, res){
+	Purchase.find({}, function(err, purchases) {
 		if (err) {
 			res.sendStatus(500);
 			return;
@@ -11,32 +33,6 @@ purchase.post('/data', function(req, res) {
 
 		res.send(purchases);
 	})
-});
-
-purchase.post('/new', function(req, res) {
-	var d = new Purchase();
-	d.name = req.body.purchaseName;
-	d.image = req.body.purchaseImage;
-
-	d.save(function(err, savedpurchase) {
-		if (err) {
-			res.sendStatus(500);
-			return;
-		}
-
-		res.sendStatus(200);
-	});
-});
-
-purchase.post('/delete', function(req, res) {
-	purchase.remove({'_id': req.body.purchaseId}, function(err, savedpurchase) {
-		if (err) {
-			res.sendStatus(500);
-			return;
-		}
-
-		res.sendStatus(200);
-	});
 });
 
 module.exports = purchase;

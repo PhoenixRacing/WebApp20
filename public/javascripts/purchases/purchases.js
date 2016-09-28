@@ -3,7 +3,7 @@
   angular.module("olinbaja.purchases", ['ngRoute'])
     .config(function($routeProvider, $locationProvider) {
       $routeProvider
-        .when('/purchases', {
+        .when('/purchase', {
           templateUrl : './pages/purchases.html',
           controller: 'PurchasesController',
           controllerAs: 'vm'
@@ -16,15 +16,18 @@
     })
     .controller('PurchasesController', PurchasesController);
 
-  function PurchasesController($http) {
+  function PurchasesController($http, $window) {
     var vm = this;
 
     $http.get('/auth/isAuthenticated', {}).then(
       function success(response) {
-        if (response.status != 200) {
+        if (response.status == 401) {
           $window.location = "/";
         }
       }, function error(response) {
+        if (response.status == 401) {
+          $window.location = "/";
+        }
       }
     );
 
@@ -51,7 +54,7 @@
         vm.error('Please provide a valid quantity');
         return;
       }
-      if (!purchase.link || purchase.link === '') {
+      if (!purchase.info || purchase.info === '') {
         vm.error('Please provide a description of your purchase request');
         return;
       }
@@ -59,6 +62,28 @@
         vm.error('Please provide a valid date');
         return;
       }
+
+      var body = {
+        'name': purchase.name,
+        'item_name': purchase.item_name,
+        'link': purchase.link,
+        'price': purchase.price,
+        'count': purchase.count,
+        'info': purchase.info,
+        'date': purchase.date
+      }
+      $http.post('/purchase/newpurchase', body).then(
+        function success(response) {
+          if (response.status == 200) {
+            vm.error('Purchase submitted');
+          }
+          console.log(response);
+        }, function error(response) {
+          if (response.status == 401) {
+            vm.error('There was a problem with your login.');
+          }
+        }
+      );
     };
 
     vm.error = function(error){
