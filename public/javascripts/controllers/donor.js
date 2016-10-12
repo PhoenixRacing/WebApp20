@@ -16,7 +16,7 @@
     })
     .controller('DonorController', DonorController);
 
-  function DonorController($http) {
+  function DonorController($http, $rootScope) {
     var vm = this;
 
     vm.reloadDonors = function() {
@@ -28,6 +28,8 @@
       }, function errorCallback(response) {
       });
     }
+
+    $rootScope.errorMessage = "ERROR";
 
     vm.reloadDonors();
   }

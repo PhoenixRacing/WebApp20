@@ -16,11 +16,12 @@
     })
     .controller('LoginController', LoginController);
 
-  function LoginController($http, $window) {
+  function LoginController($rootScope, $http, $window) {
     var vm = this;
 
     $http.post('/auth/isAuthenticated', {}).then(
       function success(response) {
+        console.log(response);
         if (response.status == 200) {
           $window.location = "/";
         }
@@ -29,13 +30,14 @@
     );
 
     vm.submit = function(user) {
-      if (!user.email || user.email === '')
+      $rootScope.errorMessages = [];
+      if (!user || !user.email || user.email === '')
       {
-        vm.error('Please provide a valid e-mail');
+        $rootScope.errorMessages.push('Please provide a valid e-mail');
         return;
       }
       if (!user.password || user.password === '') {
-        vm.error('Please provide a valid password');
+        $rootScope.errorMessages.push('Please provide a valid password');
         return;
       }
 
@@ -55,14 +57,10 @@
           }
         }, function error(response) {
           if (response.status == 401) {
-            vm.error('There was a problem with your login.');
+            $rootScope.errorMessages.push('There was a problem with your login.');
           }
         }
       );
-    }
-
-    vm.error = function(error) {
-      vm.errorMessage = error;
     }
   }
 })();
