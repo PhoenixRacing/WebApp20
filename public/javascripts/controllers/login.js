@@ -21,7 +21,6 @@
 
     $http.post('/auth/isAuthenticated', {}).then(
       function success(response) {
-        console.log(response);
         if (response.status == 200) {
           $window.location = "/";
         }
