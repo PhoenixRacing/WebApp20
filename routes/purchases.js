@@ -1,8 +1,8 @@
 var purchase = require('express').Router();
-
+var authHelper = require('../helpers/authHelper');
 var Purchase = require('../models/purchaseModel').Purchase;
 
-purchase.post('/newpurchase', function(req, res) {
+purchase.post('/newpurchase', authHelper.isLoggedIn, function(req, res) {
 	var p = new Purchase();
 	p.name = req.body.name;
 	p.item_name = req.body.item_name;
@@ -11,6 +11,7 @@ purchase.post('/newpurchase', function(req, res) {
 	p.date = req.body.date;
 	p.status = req.body.status;
 	p.count = req.body.count;
+	p.urgency = req.body.urgency;
 	p.info = req.body.info;
 
 	p.save(function(err, savedpurchase) {
@@ -22,6 +23,7 @@ purchase.post('/newpurchase', function(req, res) {
 
 		res.sendStatus(200);
 	});
+	console.log('Success')
 });
 
 purchase.get('/data', function(req, res){

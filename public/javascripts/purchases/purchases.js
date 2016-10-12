@@ -1,3 +1,5 @@
+var purchaseSheetKey = '1HFk8TaGWq5j9mouKGJYQeD0Xb9KxvWiXvtfs8_091A8';
+
 (function(){
   //initialize the angular app and inject dependencies.
   angular.module("olinbaja.purchases", ['ngRoute'])
@@ -54,6 +56,10 @@
         vm.error('Please provide a valid quantity');
         return;
       }
+      if (!purchase.urgency || purchase.urgency === '') {
+        vm.error('Please provide a valid urgency');
+        return;
+      }
       if (!purchase.info || purchase.info === '') {
         vm.error('Please provide a description of your purchase request');
         return;
@@ -69,6 +75,7 @@
         'link': purchase.link,
         'price': purchase.price,
         'count': purchase.count,
+        'urgency': purchase.urgency
         'info': purchase.info,
         'date': purchase.date
       }

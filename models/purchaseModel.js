@@ -8,6 +8,7 @@ var purchaseSchema = mongoose.Schema({
     date: Date,
     status: String,
     count: Number,
+    urgency: String,
     info: String
 });
 
