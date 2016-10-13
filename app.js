@@ -48,7 +48,7 @@ var routes = require('./routes/routes.js');
 var auth = require('./routes/auth.js');
 var donor = require('./routes/donor.js');
 var team = require('./routes/team.js');
-var purchase = require('./routes/purchase.js');
+var purchase = require('./routes/purchases.js');
 var upload = require('./routes/upload.js');
 var gallery = require('./routes/gallery.js');
 
