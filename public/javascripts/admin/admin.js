@@ -1,6 +1,6 @@
 (function(){
   //initialize the angular app and inject dependencies.
-  angular.module("olinbaja.admin", ['ngRoute'])
+  angular.module("olinbaja.admin", ['ngRoute', 'ngFileUpload'])
     .config(function($routeProvider, $locationProvider) {
       $routeProvider
         .when('/admin', {
@@ -16,7 +16,7 @@
     })
     .controller('AdminController', AdminController);
 
-  function AdminController($http, $window) {
+  function AdminController($http, $window, Upload) {
     var vm = this;
 
     function reloadTeam() {
@@ -26,7 +26,6 @@
       }).then(function successCallback(response) {
         vm.team = response.data;
       }, function errorCallback(response) {
-        console.log(response);
       });
     }
 
@@ -37,24 +36,20 @@
       }).then(function successCallback(response) {
         vm.donors = response.data;
       }, function errorCallback(response) {
-        console.log(response);
       });
     }
 
     vm.editAdmin = function(user, makeAdmin) {
-      console.log(user);
       $http({
         method: 'POST',
         url: '/team/editAdmin',
-        data: { 
+        data: {
           userId: user._id,
           makeAdmin: makeAdmin
         }
       }).then(function successCallback(response) {
-        console.log(response);
         reloadTeam();
       }, function errorCallback(response) {
-        console.log(response);
       });
     };
 
@@ -62,14 +57,12 @@
       $http({
         method:'POST',
         url: '/team/delete',
-        data: { 
+        data: {
           userId: user._id
         }
       }).then(function successCallback(response) {
-        console.log(response);
         reloadTeam();
       }, function errorCallback(response) {
-        console.log(response);
       });
     };
 
@@ -77,15 +70,13 @@
       $http({
         method:'POST',
         url: '/donor/new',
-        data: { 
+        data: {
           donorName: donor.name,
           donorImage: donor.image
         }
       }).then(function successCallback(response) {
-        console.log(response);
         reloadDonors();
       }, function errorCallback(response) {
-        console.log(response);
       });
     };
 
@@ -93,17 +84,32 @@
       $http({
         method:'POST',
         url: '/donor/delete',
-        data: { 
+        data: {
           donorId: donorId
         }
       }).then(function successCallback(response) {
         reloadDonors();
       }, function errorCallback(response) {
-        console.log(response);
       });
     };
 
-    $http.get('/auth/isAdmin', {}).then(
+    vm.addGallery = function(galleryImage) {
+      var file = galleryImage.image;
+      file.upload = Upload.upload({
+        url: '/upload/galleryimage',
+        data: {title: galleryImage.title, description: galleryImage.description, image: file},
+      });
+
+      file.upload.then(function success(response) {
+        // This will clear the form
+        // TODO: Show success
+        vm.newGalleryImage = {};
+      }, function failure(response) {
+        // TODO: Show a failure to the user
+      });
+    }
+
+    $http.post('/auth/isAdmin', {}).then(
       function success(response) {
         reloadTeam();
         reloadDonors();

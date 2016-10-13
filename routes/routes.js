@@ -5,7 +5,7 @@ var multiparty = require('multiparty');
 var passport = require('passport');
 var path = require('path');
 
-var authHelper = require('./../helpers/authHelper');
+var authHelper = require('./../utils/authHelper');
 var Purchase = require('../models/purchaseModel').Purchase;
 var User = require('../models/userModel').User;
 
@@ -33,30 +33,10 @@ app.post("/uploadImage", function(req, res) {//isLoggedIn, function(req, res) {
 			res.redirect("/uploadImage");
 			return;
 		}
-
-		fs.readFile(img.path, function (err, data) {
-
-			// delete the temp file
-			fs.unlink(img.path, null);
-
-			if (err) {
-				console.log(err);
-				return;
-			}
-
-			// rename the file to milliseconds
-			var time = new Date().getTime();
-			var newPath = path.join(__dirname, '../uploads', String(time) + "." + filetype);
-
-			fs.writeFile(newPath, data, function (err) {
-				if (err) {
-					console.log(err);
-				}
-				res.redirect("/uploadImage");
-			});
-		});
+		console.log(images);
+		res.json(images);
+		return;
 	});
-
 });
 
 module.exports = app;

@@ -24,10 +24,8 @@
         method:'POST',
         url: '/donor/data'
       }).then(function successCallback(response) {
-        console.log(response);
         vm.donors = response.data;
       }, function errorCallback(response) {
-        console.log(response);
       });
     }
 

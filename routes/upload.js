@@ -6,7 +6,7 @@ var path = require('path');
 
 var authHelper = require('./../utils/authHelper.js');
 var aws = require('./../utils/aws.js');
-var GalleryImage = require('./../models/galleryImageModel.js').GalleryImage;
+var GalleryImage = require('./../models/galleryModel.js').GalleryImage;
 
 app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
 	var form = new multiparty.Form();
@@ -47,7 +47,7 @@ app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
 					res.redirect("/upload/profileimage");
 	            	return;
 	            }
-	            
+
 	            // Update question
 	            req.user.image = d.Location;
 	            req.user.save(function(err, u) {
@@ -69,8 +69,9 @@ app.post("/galleryimage", authHelper.isAdmin, function(req, res) {
 	var form = new multiparty.Form();
 
 	form.parse(req, function(err, fields, files) {
-		var title = fields.title[0];
-		var description = fields.description[0];
+		console.log(fields, files);
+		var title = fields.title;
+		var description = fields.description;
 		var img = files.image[0];
 
 		var filename = img.originalFilename.split(".");
@@ -83,7 +84,7 @@ app.post("/galleryimage", authHelper.isAdmin, function(req, res) {
 
 			// delete the temp file
 			fs.unlink(img.path, function() {});
-			res.redirect("/upload/galleryimage");
+			res.sendStatus(400);
 			return;
 		}
 
@@ -106,14 +107,19 @@ app.post("/galleryimage", authHelper.isAdmin, function(req, res) {
 			}, function(err, d) {
 	            if (err) {
 	            	console.log(err);
-					res.redirect("/upload/galleryimage");
+					res.sendStatus(500);
 	            	return;
 	            }
-	            
+
 	            // Update question
 	            galleryImage.url = d.Location;
 	            galleryImage.save(function(err, img) {
-					res.redirect("/upload/galleryimage");
+	            	if (err) {
+						res.sendStatus(500);
+						return;
+					}
+
+					res.sendStatus(200);
 					return;
 	            });
 	        });
