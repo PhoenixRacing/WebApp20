@@ -8,7 +8,8 @@
     'olinbaja.team',
     'olinbaja.donor',
     'olinbaja.signup',
-    'olinbaja.gallery'
+    'olinbaja.gallery',
+    'olinbaja.purchases'
   ])
   .config(function($routeProvider, $locationProvider) {
     $routeProvider
