@@ -1,5 +1,5 @@
 var purchase = require('express').Router();
-var authHelper = require('../helpers/authHelper');
+var authHelper = require('../utils/authHelper');
 var Purchase = require('../models/purchaseModel').Purchase;
 
 purchase.post('/newpurchase', authHelper.isLoggedIn, function(req, res) {

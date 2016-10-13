@@ -75,7 +75,7 @@ var purchaseSheetKey = '1HFk8TaGWq5j9mouKGJYQeD0Xb9KxvWiXvtfs8_091A8';
         'link': purchase.link,
         'price': purchase.price,
         'count': purchase.count,
-        'urgency': purchase.urgency
+        'urgency': purchase.urgency,
         'info': purchase.info,
         'date': purchase.date
       }
