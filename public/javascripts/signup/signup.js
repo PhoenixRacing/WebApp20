@@ -19,7 +19,7 @@
   function SignupController($http, $window) {
     var vm = this;
 
-    $http.get('/auth/isAuthenticated', {}).then(
+    $http.post('/auth/isAuthenticated', {}).then(
       function success(response) {
         if (response.status == 200) {
           $window.location = "/";
