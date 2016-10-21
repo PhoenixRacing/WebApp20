@@ -10,9 +10,12 @@ var GalleryImage = require('./../models/galleryModel.js').GalleryImage;
 
 app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
 	var form = new multiparty.Form();
+	console.log(req);
 
 	form.parse(req, function(err, fields, files) {
 
+		console.log(fields);
+		console.log(files);
 		var img = files.image[0];
 		var filename = img.originalFilename.split(".");
 		var filetype = filename[filename.length-1].toLowerCase();
@@ -44,7 +47,7 @@ app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
 			}, function(err, d) {
 	            if (err) {
 	            	console.log(err);
-					res.redirect("/upload/profileimage");
+					res.redirect("/upload/profileimage"); // send status
 	            	return;
 	            }
 

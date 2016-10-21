@@ -9,6 +9,7 @@
     'olinbaja.donor',
     'olinbaja.signup',
     'olinbaja.gallery',
+    'olinbaja.profileimage',
     'olinbaja.purchases'
   ])
   .config(function($routeProvider, $locationProvider) {

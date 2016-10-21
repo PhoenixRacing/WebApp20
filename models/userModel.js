@@ -11,6 +11,7 @@ var userSchema = mongoose.Schema({
     admin: Boolean,
     requestDisplayInTeamPage: Boolean,
     shownInTeamPage: Boolean,
+    image: String,
     data: [dataSchema]
 });
 
