@@ -20,7 +20,8 @@ team.post("/data", function(req, res) {
 				"lastName":value.lastName,
 				"username":value.username,
 				"major":value.major,
-				"admin":value.admin
+				"admin":value.admin,
+				"purchaseManager": value.purchaseManager
 			});
 		});
 
