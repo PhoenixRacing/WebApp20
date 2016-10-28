@@ -20,6 +20,7 @@
     <script type="text/javascript" src="./javascripts/purchases/purchases.js"></script>
     <script type="text/javascript" src="./javascripts/resetPassword/resetPassword.js"></script>
     <script type="text/javascript" src="./javascripts/forgotPassword/forgotPassword.js"></script>
+    <script type="text/javascript" src="./javascripts/directives/error.js"></script>
 
     <!-- Import custom styling -->
   	<link rel="stylesheet" href="./css/main.css"/>
@@ -50,6 +51,8 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+
+    <div error-message></div>
 
     <div id='main' ng-class='result'>
       <div ng-view></div>
