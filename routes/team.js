@@ -1,6 +1,6 @@
 var team = require('express').Router();
 
-var authHelper = require('./../helpers/authHelper')
+var authHelper = require('./../utils/authHelper')
 var User = require('../models/userModel').User;
 
 team.post("/data", function(req, res) {

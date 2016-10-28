@@ -9,7 +9,9 @@
     'olinbaja.donor',
     'olinbaja.signup',
     'olinbaja.gallery',
-    'olinbaja.purchases'
+    'olinbaja.purchases',
+    'olinbaja.resetPassword',
+    'olinbaja.forgotPassword'
   ])
   .config(function($routeProvider, $locationProvider) {
     $routeProvider
