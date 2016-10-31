@@ -1,6 +1,8 @@
 var purchase = require('express').Router();
 var authHelper = require('../utils/authHelper');
 var Purchase = require('../models/purchaseModel').Purchase;
+var emailHelper = require('../utils/emailHelper');
+var User = require('../models/userModel').User;
 
 purchase.post('/newpurchase', authHelper.isLoggedIn, function(req, res) {
 	var p = new Purchase();
@@ -20,7 +22,10 @@ purchase.post('/newpurchase', authHelper.isLoggedIn, function(req, res) {
 			res.sendStatus(500);
 			return;
 		}
-
+		User.findOne({purchaseManager: true}, function(err, pManager){
+        emailHelper.sendEmail(pManager.email, 'New Baja Purchase Request', 'New purchase request from ' + p.name + ' for ' + p.item_name + '\nPrice: ' + p.price +
+          '.  \nLink: ' + p.link + '\nQuantity: ' + p.count + '\nUrgency: ' + p.urgency + '\nAdditional info: ' + p.info)
+      })
 		res.sendStatus(200);
 	});
 	console.log('Success')

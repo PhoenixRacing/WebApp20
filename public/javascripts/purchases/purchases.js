@@ -1,5 +1,3 @@
-var purchaseSheetKey = '1HFk8TaGWq5j9mouKGJYQeD0Xb9KxvWiXvtfs8_091A8';
-
 (function(){
   //initialize the angular app and inject dependencies.
   angular.module("olinbaja.purchases", ['ngRoute'])
@@ -79,6 +77,7 @@ var purchaseSheetKey = '1HFk8TaGWq5j9mouKGJYQeD0Xb9KxvWiXvtfs8_091A8';
         'info': purchase.info,
         'date': purchase.date
       }
+      
       $http.post('/purchase/newpurchase', body).then(
         function success(response) {
           if (response.status == 200) {
