@@ -10,12 +10,9 @@ var GalleryImage = require('./../models/galleryModel.js').GalleryImage;
 
 app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
 	var form = new multiparty.Form();
-	console.log(req);
 
 	form.parse(req, function(err, fields, files) {
 
-		console.log(fields);
-		console.log(files);
 		var img = files.image[0];
 		var filename = img.originalFilename.split(".");
 		var filetype = filename[filename.length-1].toLowerCase();
@@ -57,7 +54,6 @@ app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
 	            	if (err) {
 	            		console.log(err);
 	            	}
-	            	console.log(u);
 					res.redirect("/upload/profileimage");
 	            });
 	        });
@@ -72,7 +68,6 @@ app.post("/galleryimage", authHelper.isAdmin, function(req, res) {
 	var form = new multiparty.Form();
 
 	form.parse(req, function(err, fields, files) {
-		console.log(fields, files);
 		var title = fields.title;
 		var description = fields.description;
 		var img = files.image[0];
