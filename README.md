@@ -72,7 +72,7 @@ Otherwise:
 
 ### Get auth.js
 
-For security reasons, we do not publish `auth.js` on GitHub. You will have to get the `auth.js` file from a team lead or teammate. You can ask Sawyer or Radmer for a copy of the file.
+For security reasons, we do not publish `auth.js` on GitHub. You will have to get the `auth.js` file from a team lead or teammate. You can ask Sawyer or Radmer for a copy of the file. When you get this file, place it in the `WebApp20` folder.
 
 ### Get AWS config files
 
@@ -92,6 +92,7 @@ For security reasons, we do not publish our AWS configuration files on GitHub. Y
 4. Run `mongo`. You should enter a mongo shell.
 5. Run `use olinbaja`.
 6. Run `db.users.update({}, {"$set":{"admin":true}})`.
+7. Run `db.users.update({}, {"$set":{"purchaseManager":true}})`.
 
 ## Run the project
 
