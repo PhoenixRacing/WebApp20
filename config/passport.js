@@ -42,7 +42,6 @@ module.exports = function(passport) {
         passReqToCallback : true
     },
 
-    // before making a new user, check if there are no admins, and if there are no admins, make the user the admin (and purchase manager?)
     function(req, email, password, done) {
         User.findOne({ 'email' :  email }, function(err, user) {
             if (err) {
