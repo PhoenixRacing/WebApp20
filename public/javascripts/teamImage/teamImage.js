@@ -14,9 +14,9 @@
         requireBase: false
       });
     })
-    .controller('teamImageController', teamImageController);
+    .controller('TeamImageController', TeamImageController);
 
-  function teamImageController($http, $window, Upload) {
+  function TeamImageController($http, $window, Upload) {
     var vm = this;
 
     vm.addTeamImage = function(teamImage) {

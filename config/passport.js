@@ -41,6 +41,8 @@ module.exports = function(passport) {
         passwordField : 'password',
         passReqToCallback : true
     },
+
+    // before making a new user, check if there are no admins, and if there are no admins, make the user the admin (and purchase manager?)
     function(req, email, password, done) {
         User.findOne({ 'email' :  email }, function(err, user) {
             if (err) {
@@ -51,6 +53,12 @@ module.exports = function(passport) {
                 return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
             } else {
                 var newUser = new User();
+
+                if () {
+
+                } else {
+                    newUser.admin = true;
+                }
 
                 newUser.email = email;
                 newUser.password = newUser.generateHash(password);

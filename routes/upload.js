@@ -44,7 +44,7 @@ app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
 			}, function(err, d) {
 	            if (err) {
 	            	console.log(err);
-					res.redirect("/upload/profileimage"); // send status
+					res.sendStatus(500);
 	            	return;
 	            }
 
@@ -53,7 +53,10 @@ app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
 	            req.user.save(function(err, u) {
 	            	if (err) {
 	            		console.log(err);
+	            		res.sendStatus(500);
+	            		return;
 	            	}
+	            	res.sendStatus(200);
 					res.redirect("/upload/profileimage");
 	            });
 	        });
