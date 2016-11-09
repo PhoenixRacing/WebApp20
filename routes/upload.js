@@ -56,7 +56,6 @@ app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
 	            		res.sendStatus(500);
 	            		return;
 	            	}
-	            	res.sendStatus(200);
 					res.redirect("/upload/profileimage");
 	            });
 	        });

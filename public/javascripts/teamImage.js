@@ -5,7 +5,7 @@
       $routeProvider
         .when('/uploadProfile', {
           templateUrl: './pages/uploadProfile.html',
-          controller: 'TeamImageController',
+          controller: 'teamImageController',
           controllerAs: 'vm'
         });
 
@@ -14,9 +14,9 @@
         requireBase: false
       });
     })
-    .controller('TeamImageController', TeamImageController);
+    .controller('teamImageController', teamImageController);
 
-  function TeamImageController($http, $window, Upload) {
+  function teamImageController($http, $window, Upload) {
     var vm = this;
 
     vm.addTeamImage = function(teamImage) {
