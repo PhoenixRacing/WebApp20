@@ -12,6 +12,7 @@ var userSchema = mongoose.Schema({
     purchaseManager: Boolean,
     requestDisplayInTeamPage: Boolean,
     shownInTeamPage: Boolean,
+    image: String,
     data: [dataSchema]
 });
 

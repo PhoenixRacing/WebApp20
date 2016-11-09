@@ -44,7 +44,7 @@ app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
 			}, function(err, d) {
 	            if (err) {
 	            	console.log(err);
-					res.redirect("/upload/profileimage");
+					res.sendStatus(500);
 	            	return;
 	            }
 
@@ -53,8 +53,9 @@ app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
 	            req.user.save(function(err, u) {
 	            	if (err) {
 	            		console.log(err);
+	            		res.sendStatus(500);
+	            		return;
 	            	}
-	            	console.log(u);
 					res.redirect("/upload/profileimage");
 	            });
 	        });
@@ -69,7 +70,6 @@ app.post("/galleryimage", authHelper.isAdmin, function(req, res) {
 	var form = new multiparty.Form();
 
 	form.parse(req, function(err, fields, files) {
-		console.log(fields, files);
 		var title = fields.title;
 		var description = fields.description;
 		var img = files.image[0];
