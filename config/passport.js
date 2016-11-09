@@ -54,12 +54,6 @@ module.exports = function(passport) {
             } else {
                 var newUser = new User();
 
-                if () {
-
-                } else {
-                    newUser.admin = true;
-                }
-
                 newUser.email = email;
                 newUser.password = newUser.generateHash(password);
                 newUser.username = req.body.username;
