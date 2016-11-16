@@ -6,8 +6,7 @@ var User = require('../models/userModel').User;
 team.post("/data", function(req, res) {
 	User.find({}, function(err, users) {
 		if (err) {
-			res.sendStatus(500);
-			return;
+            return errorHelper.sendError(req, res, 'Server error', 500);
 		}
 
 		// Don't send the password back. Using map prevents this.
@@ -32,8 +31,7 @@ team.post("/data", function(req, res) {
 team.post("/delete", authHelper.isAdmin, function(req, res) {
 	User.remove({"_id": req.body.userId}, function(err, user) {
 		if (err) {
-			res.sendStatus(500);
-			return;
+            return errorHelper.sendError(req, res, 'Server error', 500);
 		}
 
 		res.sendStatus(200);

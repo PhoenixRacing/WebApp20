@@ -16,9 +16,7 @@ purchase.post('/newpurchase', authHelper.isLoggedIn, function(req, res) {
 
 	p.save(function(err, savedpurchase) {
 		if (err) {
-			console.log(err);
-			res.sendStatus(500);
-			return;
+            return errorHelper.sendError(req, res, 'Server error', 500);
 		}
 
 		res.sendStatus(200);
@@ -29,8 +27,7 @@ purchase.post('/newpurchase', authHelper.isLoggedIn, function(req, res) {
 purchase.get('/data', function(req, res){
 	Purchase.find({}, function(err, purchases) {
 		if (err) {
-			res.sendStatus(500);
-			return;
+            return errorHelper.sendError(req, res, 'Server error', 500);
 		}
 
 		res.send(purchases);

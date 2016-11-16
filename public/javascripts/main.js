@@ -11,7 +11,8 @@
     'olinbaja.gallery',
     'olinbaja.purchases',
     'olinbaja.resetPassword',
-    'olinbaja.forgotPassword'
+    'olinbaja.forgotPassword',
+    'olinbaja.error'
   ])
   .config(function($routeProvider, $locationProvider) {
     $routeProvider

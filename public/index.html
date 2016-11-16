@@ -20,6 +20,10 @@
     <script type="text/javascript" src="./javascripts/purchases/purchases.js"></script>
     <script type="text/javascript" src="./javascripts/resetPassword/resetPassword.js"></script>
     <script type="text/javascript" src="./javascripts/forgotPassword/forgotPassword.js"></script>
+    <script type="text/javascript" src="./javascripts/error/error.js"></script>
+    <script type="text/javascript" src="./javascripts/error/error-controller.js"></script>
+    <script type="text/javascript" src="./javascripts/error/error-directive.js"></script>
+    <script type="text/javascript" src="./javascripts/error/error-factory.js"></script>
 
     <!-- Import custom styling -->
   	<link rel="stylesheet" href="./css/main.css"/>
@@ -52,6 +56,7 @@
     </nav>
 
     <div id='main' ng-class='result'>
+      <div error-message></div>
       <div ng-view></div>
     </div>
 

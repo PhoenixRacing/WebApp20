@@ -19,18 +19,16 @@ app.post("/uploadImage", function(req, res) {//isLoggedIn, function(req, res) {
 	form.parse(req, function(err, fields, files) {
 
 		var img = files.image[0];
-		console.log(img);
 		var filename = img.originalFilename.split(".");
 		var filetype = filename[filename.length-1].toLowerCase();
 
 		// figure out if it's actually an image
 		var allowedTypes = ["jpg","jpeg","png","gif"];
 		if (allowedTypes.indexOf(filetype) == -1) {
-			console.log("ERROR. File must be an image.");
+            errorHelper.sendError(req, res, 'File must be an image', 400);
 
 			// delete the temp file
 			fs.unlink(img.path, null);
-			res.redirect("/uploadImage");
 			return;
 		}
 		console.log(images);

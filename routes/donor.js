@@ -5,8 +5,7 @@ var Donor = require('../models/donorModel').Donor;
 donor.post('/data', function(req, res) {
 	Donor.find({}, function(err, donors) {
 		if (err) {
-			res.sendStatus(500);
-			return;
+            return errorHelper.sendError(req, res, 'Server error', 500);
 		}
 
 		res.send(donors);
@@ -20,8 +19,7 @@ donor.post('/new', function(req, res) {
 
 	d.save(function(err, savedDonor) {
 		if (err) {
-			res.sendStatus(500);
-			return;
+            return errorHelper.sendError(req, res, 'Server error', 500);
 		}
 
 		res.sendStatus(200);
@@ -31,8 +29,7 @@ donor.post('/new', function(req, res) {
 donor.post('/delete', function(req, res) {
 	Donor.remove({'_id': req.body.donorId}, function(err, savedDonor) {
 		if (err) {
-			res.sendStatus(500);
-			return;
+            return errorHelper.sendError(req, res, 'Server error', 500);
 		}
 
 		res.sendStatus(200);

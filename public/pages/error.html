@@ -1,0 +1,5 @@
+<div id="error-message-container">
+	<div ng-repeat='errorMessage in errorMessages'>
+		<h2 style="text-align:center;z-index:100;">{{ errorMessage.error }}<a ng-click="closeError(errorMessage.id)" style="cursor:pointer;">Close</a></h2>
+	</div>
+</div>
