@@ -62,10 +62,6 @@
         vm.error('Please provide a description of your purchase request');
         return;
       }
-      if (!purchase.date || purchase.date === '') {
-        vm.error('Please provide a valid date');
-        return;
-      }
 
       var body = {
         'name': purchase.name,
@@ -77,7 +73,7 @@
         'info': purchase.info,
         'date': purchase.date
       }
-      
+
       $http.post('/purchase/newpurchase', body).then(
         function success(response) {
           if (response.status == 200) {
