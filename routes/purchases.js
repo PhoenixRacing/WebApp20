@@ -23,12 +23,12 @@ purchase.post('/newpurchase', authHelper.isLoggedIn, function(req, res) {
 			return;
 		}
 		User.findOne({purchaseManager: true}, function(err, pManager){
-        emailHelper.sendEmail(pManager.email, 'New Baja Purchase Request', 'New purchase request from ' + p.name + ' for ' + p.item_name + '\nPrice: ' + p.price +
-          '.  \nLink: ' + p.link + '\nQuantity: ' + p.count + '\nUrgency: ' + p.urgency + '\nAdditional info: ' + p.info)
-      })
+        	emailHelper.sendEmail(pManager.email, 'New Baja Purchase Request', 'New purchase request from ' + p.name + ' for ' + p.item_name + '\nPrice: ' + p.price + \
+        		'.  \nLink: ' + p.link + '\nQuantity: ' + p.count + '\nUrgency: ' + p.urgency + '\nAdditional info: ' + p.info);
+      	});
 		res.sendStatus(200);
 	});
-	console.log('Success')
+	console.log('Success');
 });
 
 purchase.get('/data', function(req, res){
