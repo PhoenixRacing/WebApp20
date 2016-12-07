@@ -51,10 +51,10 @@
 		<td class="admin-team-column-name">{{ user.username }}</td>
 		<td class="admin-team-column-major">{{ user.major }}</td>
 		<td class="admin-team-column-edit-purchase">
-			<form id="make-admin-form" ng-hide="{{ user.purchaseManager }}">
+			<form id="make-purchaser-form" ng-hide="{{ user.purchaseManager }}">
 				<input type="submit" value="Make purchase manager" ng-click="vm.editPurchaser(user, true)">
 			</form>
-			<form id="remove-admin-form" ng-show="{{ user.purchaseManager }}">
+			<form id="remove-purchaser-form" ng-show="{{ user.purchaseManager }}">
 				<input type="submit" value="Remove purchase manager" ng-click="vm.editPurchaser(user, false)">
 			</form>
 		</td>
