@@ -1,15 +1,20 @@
 
-var auth = require('./../auth.js');
+var auth;
+if (!process.env.HEROKU_ENV) {
+	auth = require('./../auth.js');
+}
 var nodemailer = require('nodemailer');
 
 
 function sendEmail(to, subject, body) {
 // create reusable transporter object using the default SMTP transport
-	var transporter = nodemailer.createTransport('smtps://'+auth.gmailEmail+':'+auth.gmailPassword+'@smtp.gmail.com');
+	var email = process.env.BOT_EMAIL || auth.gmailEmail;
+	var password = process.env.BOT_PASSWORD || auth.gmailPassword;
+	var transporter = nodemailer.createTransport('smtps://'+email+':'+password+'@smtp.gmail.com');
 
 	// setup e-mail data with unicode symbols
 	var mailOptions = {
-	    from: '"Olin Baja Bot" <olinbajabot@gmail.com>', // sender address
+	    from: '"Olin Baja Bot" <'+email+'>', // sender address
 	    to: to, // list of receivers
 	    subject: subject, // Subject line
 	    text: body, // plaintext body
