@@ -41,6 +41,44 @@ team.post("/delete", authHelper.isAdmin, function(req, res) {
 
 		res.sendStatus(200);
 	});
-})
+});
+
+team.post("/editAdmin", authHelper.isAdmin, function(req, res) {
+	User.findOne({"_id": req.body.userId}, function(err, user) {
+		if (err) {
+			res.sendStatus(500);
+			return;
+		}
+
+		user.admin = req.body.admin;
+		user.save(function(err, u) {
+			if (err) {
+				res.sendStatus(500);
+				return;
+			}
+
+			res.sendStatus(200);
+		});
+	});
+});
+
+team.post("/editPurchaseManager", authHelper.isAdmin, function(req, res) {
+	User.findOne({"_id": req.body.userId}, function(err, user) {
+		if (err) {
+			res.sendStatus(500);
+			return;
+		}
+
+		user.purchaseManager = req.body.purchaseManager;
+		user.save(function(err, u) {
+			if (err) {
+				res.sendStatus(500);
+				return;
+			}
+
+			res.sendStatus(200);
+		});
+	});
+});
 
 module.exports = team;

@@ -13,8 +13,11 @@
 		padding-left: 4px;
 	}
 	.admin-team-column-major {
-		width: 30%;
+		width: 20%;
 		padding-left: 4px;
+	}
+	.admin-team-column-edit-purchase {
+		width: 10%;
 	}
 	.admin-team-column-edit {
 		width: 10%;
@@ -47,6 +50,14 @@
 	<tr ng-repeat="user in vm.team" class="admin-table-row">
 		<td class="admin-team-column-name">{{ user.username }}</td>
 		<td class="admin-team-column-major">{{ user.major }}</td>
+		<td class="admin-team-column-edit-purchase">
+			<form id="make-admin-form" ng-hide="{{ user.purchaseManager }}">
+				<input type="submit" value="Make purchase manager" ng-click="vm.editPurchaser(user, true)">
+			</form>
+			<form id="remove-admin-form" ng-show="{{ user.purchaseManager }}">
+				<input type="submit" value="Remove purchase manager" ng-click="vm.editPurchaser(user, false)">
+			</form>
+		</td>
 		<td class="admin-team-column-edit">
 			<form id="make-admin-form" ng-hide="{{ user.admin }}">
 				<input type="submit" value="Make admin" ng-click="vm.editAdmin(user, true)">
@@ -81,6 +92,7 @@
 		</td>
 	</tr>
 </table>
+<br><br><br>
 <form enctype="multipart/form-data" name="galleryImageForm">
 	<div>
 		<label>Title:</label>
