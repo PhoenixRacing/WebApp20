@@ -45,7 +45,21 @@
         url: '/team/editAdmin',
         data: {
           userId: user._id,
-          makeAdmin: makeAdmin
+          admin: makeAdmin
+        }
+      }).then(function successCallback(response) {
+        reloadTeam();
+      }, function errorCallback(response) {
+      });
+    };
+
+    vm.editPurchaser = function(user, makePurchaser) {
+      $http({
+        method: 'POST',
+        url: '/team/editPurchaseManager',
+        data: {
+          userId: user._id,
+          purchaseManager: makePurchaser
         }
       }).then(function successCallback(response) {
         reloadTeam();
