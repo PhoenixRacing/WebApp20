@@ -1,4 +1,7 @@
-#main {
-	position:absolute;
-	top:50px;
+.navbar-left {
+	float:left;
+}
+
+.navbar-right {
+	float:right;
 }
