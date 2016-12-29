@@ -32,6 +32,7 @@
     );
 
     vm.submit = function(user) {
+      errorBus.clearErrors();
       if (!user || !user.email || user.email === '')
       {
         errorBus.emitError('Please provide a valid e-mail');
@@ -62,10 +63,6 @@
           }
         }
       );
-    }
-
-    vm.error = function(error) {
-      vm.errorMessage = error;
     }
   }
 })();

@@ -5,8 +5,15 @@ angular.module('olinbaja.error.factory', [], function($provide) {
         errorBus.emitError = function(errorMessage) {
             $rootScope.$emit('error', {'error': errorMessage});
         };
+        errorBus.clearErrors = function() {
+            $rootScope.$emit('clearErrors');
+        }
         errorBus.onError = function(func, scope) {
             var unbind = $rootScope.$on('error', func);
+            scope.$on('$destroy', unbind);
+        };
+        errorBus.onClear = function(func, scope) {
+            var unbind = $rootScope.$on('clearErrors', func);
             scope.$on('$destroy', unbind);
         };
         return errorBus;

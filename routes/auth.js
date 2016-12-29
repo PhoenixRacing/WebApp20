@@ -51,9 +51,14 @@ auth.post('/signup', passport.authenticate('local-signup', {
     failureRedirect : '/signup',
 }));
 
+auth.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+});
+
 auth.post('/logout', function(req, res) {
 	req.logout();
-	res.redirect('/');
+	res.sendStatus(200);
 });
 
 // POST /auth/forgotPassword

@@ -9,8 +9,10 @@ var userSchema = mongoose.Schema({
     email: String,
     major: String,
     admin: Boolean,
+    purchaseManager: Boolean,
     requestDisplayInTeamPage: Boolean,
     shownInTeamPage: Boolean,
+    image: String,
     data: [dataSchema]
 });
 

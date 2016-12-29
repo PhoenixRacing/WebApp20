@@ -11,12 +11,15 @@ var flash = require('connect-flash');
 
 // custom modules
 var dbConfig = require('./database/db.js');
-var auth = require('./auth.js');
+var auth;
+if (!process.env.HEROKU_ENV) {
+  auth = require('./auth.js');
+}
 var User = require('./models/userModel.js').User;
 var Data = require('./models/dataModel.js').Data;
 
 // setup things
-mongoose.connect(dbConfig.url);
+mongoose.connect(process.env.MONGODB_URI || dbConfig.url);
 
 // Initialize express app
 var app = express();
@@ -24,7 +27,7 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 //Passport setup
 app.use(session({
-	secret: auth.secret,
+	secret: process.env.SECRET_KEY || auth.secret,
 	name: 'TrojanHorse',
 	resave: false,
 	saveUninitialized: false
@@ -45,7 +48,7 @@ require('./config/passport')(passport);
 
 // this sets up all of the routes
 var routes = require('./routes/routes.js');
-var auth = require('./routes/auth.js');
+var authRoutes = require('./routes/auth.js');
 var donor = require('./routes/donor.js');
 var team = require('./routes/team.js');
 var purchase = require('./routes/purchases.js');
@@ -53,7 +56,7 @@ var upload = require('./routes/upload.js');
 var gallery = require('./routes/gallery.js');
 
 app.use("/", routes);
-app.use("/auth", auth);
+app.use("/auth", authRoutes);
 app.use("/donor", donor);
 app.use("/team", team);
 app.use("/purchase", purchase);

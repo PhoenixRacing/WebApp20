@@ -64,7 +64,6 @@ app.post("/galleryimage", authHelper.isAdmin, function(req, res) {
 	var form = new multiparty.Form();
 
 	form.parse(req, function(err, fields, files) {
-		console.log(fields, files);
 		var title = fields.title;
 		var description = fields.description;
 		var img = files.image[0];

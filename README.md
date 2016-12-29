@@ -72,7 +72,11 @@ Otherwise:
 
 ### Get auth.js
 
-For security reasons, we do not publish `auth.js` on GitHub. You will have to get the `auth.js` file from a team lead or teammate. You can ask Sawyer or Radmer for a copy of the file.
+For security reasons, we do not publish `auth.js` on GitHub. You will have to get the `auth.js` file from a team lead or teammate. You can ask Sawyer or Radmer for a copy of the file. When you get this file, place it in the `WebApp20` folder.
+
+### Get AWS config files
+
+For security reasons, we do not publish our AWS configuration files on GitHub. You will have to get a `config` and a `credentials` file from a team lead or teammate. You can ask Sawyer for a copy of these files. When you get these files, place them in the folder `~/.aws/`. This will allow you to upload photos to our S3 bucket.
 
 ### Recommended step: Install `nodemon`
 
@@ -88,6 +92,7 @@ For security reasons, we do not publish `auth.js` on GitHub. You will have to ge
 4. Run `mongo`. You should enter a mongo shell.
 5. Run `use olinbaja`.
 6. Run `db.users.update({}, {"$set":{"admin":true}})`.
+7. Run `db.users.update({}, {"$set":{"purchaseManager":true}})`.
 
 ## Run the project
 

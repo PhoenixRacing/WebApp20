@@ -11,6 +11,7 @@ team.post("/data", function(req, res) {
 
 		// Don't send the password back. Using map prevents this.
 		var response = [];
+		console.log(users);
 		users.map(function(value, index, array) {
 			response.push({
 				"email":value.email,
@@ -19,7 +20,9 @@ team.post("/data", function(req, res) {
 				"lastName":value.lastName,
 				"username":value.username,
 				"major":value.major,
-				"admin":value.admin
+				"admin":value.admin,
+				"purchaseManager": value.purchaseManager,
+				"image":value.image
 			});
 		});
 
@@ -36,6 +39,44 @@ team.post("/delete", authHelper.isAdmin, function(req, res) {
 
 		res.sendStatus(200);
 	});
-})
+});
+
+team.post("/editAdmin", authHelper.isAdmin, function(req, res) {
+	User.findOne({"_id": req.body.userId}, function(err, user) {
+		if (err) {
+			res.sendStatus(500);
+			return;
+		}
+
+		user.admin = req.body.admin;
+		user.save(function(err, u) {
+			if (err) {
+				res.sendStatus(500);
+				return;
+			}
+
+			res.sendStatus(200);
+		});
+	});
+});
+
+team.post("/editPurchaseManager", authHelper.isAdmin, function(req, res) {
+	User.findOne({"_id": req.body.userId}, function(err, user) {
+		if (err) {
+			res.sendStatus(500);
+			return;
+		}
+
+		user.purchaseManager = req.body.purchaseManager;
+		user.save(function(err, u) {
+			if (err) {
+				res.sendStatus(500);
+				return;
+			}
+
+			res.sendStatus(200);
+		});
+	});
+});
 
 module.exports = team;
