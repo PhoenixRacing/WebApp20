@@ -20,19 +20,17 @@ app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
 		// figure out if it's actually an image
 		var allowedTypes = ["jpg","jpeg","png","gif"];
 		if (allowedTypes.indexOf(filetype) == -1) {
-			console.log("ERROR. File must be an image.");
+            errorHelper.sendError(req, res, 'File must be an image', 400);
 
 			// delete the temp file
 			fs.unlink(img.path, function() {});
-			res.redirect("/upload/profileimage");
 			return;
 		}
 
 		fs.readFile(img.path, function (err, data) {
 
 			if (err) {
-				console.log(err);
-				return;
+            	return errorHelper.sendError(req, res, 'Server error', 500);
 			}
 
 			// rename the file to milliseconds
@@ -43,20 +41,16 @@ app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
 				Body : data
 			}, function(err, d) {
 	            if (err) {
-	            	console.log(err);
-					res.sendStatus(500);
-	            	return;
+            		return errorHelper.sendError(req, res, 'Server error', 500);
 	            }
 
 	            // Update question
 	            req.user.image = d.Location;
 	            req.user.save(function(err, u) {
 	            	if (err) {
-	            		console.log(err);
-	            		res.sendStatus(500);
-	            		return;
+            			return errorHelper.sendError(req, res, 'Server error', 500);
 	            	}
-					res.redirect("/upload/profileimage");
+					res.sendStatus(200);
 	            });
 	        });
 
@@ -80,19 +74,17 @@ app.post("/galleryimage", authHelper.isAdmin, function(req, res) {
 		// figure out if it's actually an image
 		var allowedTypes = ["jpg","jpeg","png","gif"];
 		if (allowedTypes.indexOf(filetype) == -1) {
-			console.log("ERROR. File must be an image.");
+            errorHelper.sendError(req, res, 'File must be an image.', 400);
 
 			// delete the temp file
 			fs.unlink(img.path, function() {});
-			res.sendStatus(400);
 			return;
 		}
 
 		fs.readFile(img.path, function (err, data) {
 
 			if (err) {
-				console.log(err);
-				return;
+            	return errorHelper.sendError(req, res, 'Server error', 500);
 			}
 
 			// rename the file to milliseconds
@@ -106,17 +98,14 @@ app.post("/galleryimage", authHelper.isAdmin, function(req, res) {
 				Body : data
 			}, function(err, d) {
 	            if (err) {
-	            	console.log(err);
-					res.sendStatus(500);
-	            	return;
+            		return errorHelper.sendError(req, res, 'Server error', 500);
 	            }
 
 	            // Update question
 	            galleryImage.url = d.Location;
 	            galleryImage.save(function(err, img) {
 	            	if (err) {
-						res.sendStatus(500);
-						return;
+            			return errorHelper.sendError(req, res, 'Server error', 500);
 					}
 
 					res.sendStatus(200);

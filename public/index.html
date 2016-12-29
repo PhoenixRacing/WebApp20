@@ -22,6 +22,10 @@
     <script type="text/javascript" src="./javascripts/purchases/purchases.js"></script>
     <script type="text/javascript" src="./javascripts/resetPassword/resetPassword.js"></script>
     <script type="text/javascript" src="./javascripts/forgotPassword/forgotPassword.js"></script>
+    <script type="text/javascript" src="./javascripts/error/error.js"></script>
+    <script type="text/javascript" src="./javascripts/error/errorController.js"></script>
+    <script type="text/javascript" src="./javascripts/error/errorDirective.js"></script>
+    <script type="text/javascript" src="./javascripts/error/errorFactory.js"></script>
     <script type="text/javascript" src="./javascripts/navbar/navbar.js"></script>
     <script type="text/javascript" src="./javascripts/navbar/navbarController.js"></script>
     <script type="text/javascript" src="./javascripts/navbar/navbarDirective.js"></script>
@@ -34,6 +38,8 @@
   </head>
   <body>
     <navbar></navbar>
+
+    <error-message></error-message>
 
     <div id='main' ng-class='result'>
       <div ng-view></div>

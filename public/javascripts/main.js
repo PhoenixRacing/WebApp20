@@ -12,6 +12,7 @@
     'olinbaja.purchases',
     'olinbaja.resetPassword',
     'olinbaja.forgotPassword',
+    'olinbaja.error',
     'olinbaja.profileimage',
     'olinbaja.navbar'
   ])

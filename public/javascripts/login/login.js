@@ -1,6 +1,8 @@
 (function(){
-	//initialize the angular app and inject dependencies.
-	angular.module("olinbaja.login", ['ngRoute'])
+  angular.module("olinbaja.login", [
+    'ngRoute',
+    'olinbaja.error.factory'
+  ])
     .config(function($routeProvider, $locationProvider) {
       $routeProvider
         .when('/login', {
@@ -16,7 +18,7 @@
     })
     .controller('LoginController', LoginController);
 
-  function LoginController($http, $window) {
+  function LoginController($http, $window, errorBus) {
     var vm = this;
 
     $http.post('/auth/isAuthenticated', {}).then(
@@ -29,13 +31,14 @@
     );
 
     vm.submit = function(user) {
-      if (!user.email || user.email === '')
+      errorBus.clearErrors();
+      if (!user || !user.email || user.email === '')
       {
-        vm.error('Please provide a valid e-mail');
+        errorBus.emitError('Please provide a valid e-mail');
         return;
       }
       if (!user.password || user.password === '') {
-        vm.error('Please provide a valid password');
+        errorBus.emitError('Please provide a valid password');
         return;
       }
 
@@ -55,14 +58,10 @@
           }
         }, function error(response) {
           if (response.status == 401) {
-            vm.error('There was a problem with your login.');
+            errorBus.emitError('There was a problem with your login.');
           }
         }
       );
-    }
-
-    vm.error = function(error) {
-      vm.errorMessage = error;
     }
   }
 })();
