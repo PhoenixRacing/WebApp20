@@ -57,7 +57,7 @@ auth.get('/logout', function(req, res) {
 
 auth.post('/logout', function(req, res) {
 	req.logout();
-	res.redirect('/');
+	res.sendStatus(200);
 });
 
 // POST /auth/forgotPassword
