@@ -11,34 +11,34 @@ var passwordHelper = require('./../utils/passwordHelper');
 var User = require('./../models/userModel').User;
 
 auth.post("/isAuthenticated", function(req, res) {
-	if (!req.user) {
+    if (!req.user) {
         return errorHelper.sendError(req, res, 'Unauthenticated user', 401);
-	} else {
-		return res.sendStatus(200);
-	}
+    } else {
+        return res.sendStatus(200);
+    }
 });
 
 auth.post("/isAdmin", function(req, res) {
-	if (!req.user) {
-        return errorHelper.sendError(req, res, 'Server error', 500);
-	} else if (!req.user.admin) {
+    if (!req.user) {
+        return errorHelper.sendError(req, res, "User isn't logged in", 500);
+    } else if (!req.user.admin) {
         return errorHelper.sendError(req, res, "User isn't an admin", 401);
-	} else {
-		return res.sendStatus(200);
-	}
+    } else {
+        return res.sendStatus(200);
+    }
 });
 
 auth.post('/login', function(req, res, next) {
   passport.authenticate('local-login', function(err, user, info) {
     if (err) {
-    	return next(err);
+        return next(err);
     }
     if (!user) {
         return errorHelper.sendError(req, res, "User doesn't exists", 401);
     }
     req.logIn(user, function(err) {
       if (err) {
-      	return next(err);
+        return next(err);
       }
 
       return res.redirect('/');
@@ -57,8 +57,8 @@ auth.get('/logout', function(req, res) {
 });
 
 auth.post('/logout', function(req, res) {
-	req.logout();
-	res.sendStatus(200);
+    req.logout();
+    res.sendStatus(200);
 });
 
 // POST /auth/forgotPassword
@@ -111,9 +111,7 @@ auth.post('/resetPassword', function(req, res) {
         }
 
         if (!passwordHelper.isPasswordValid(newPassword)) {
-            // TODO: send error message using passwordHelper.passwordError(password)
-            // This should be done after error handling is merged.
-            return errorHelper.sendError(req, res, "New password doesn't meet requirements", 400);
+            return errorHelper.sendError(req, res, passwordHelper.passwordError(newPassword), 400);
         }
 
         user.password = user.generateHash(newPassword);
@@ -135,17 +133,17 @@ function isLoggedIn(req, res, next) {
 }
 
 function isAdmin(req, res, next) {
-	if (!req.user) {
-		res.redirect('/login');
-		return;
-	}
+    if (!req.user) {
+        res.redirect('/login');
+        return;
+    }
 
-	if (!req.user.admin) {
-		res.redirect('/');
-		return;
-	}
+    if (!req.user.admin) {
+        res.redirect('/');
+        return;
+    }
 
-	return next();
+    return next();
 }
 
 module.exports = auth;

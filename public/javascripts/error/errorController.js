@@ -1,8 +1,8 @@
 (function(){
-    //initialize the angular app and inject dependencies.
-    var app = angular.module("olinbaja.error.controller", [
-      'olinbaja.error.factory'
-    ])
+  //initialize the angular app and inject dependencies.
+  angular.module("olinbaja.error.controller", [
+    'olinbaja.error.factory'
+  ])
     .controller('ErrorController', ErrorController);
 
   function ErrorController(errorBus, $scope, $rootScope) {

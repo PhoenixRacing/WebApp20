@@ -1,9 +1,8 @@
 (function(){
-	//initialize the angular app and inject dependencies.
-	angular.module("olinbaja.login", [
-      'ngRoute',
-      'olinbaja.error.factory'
-    ])
+  angular.module("olinbaja.login", [
+    'ngRoute',
+    'olinbaja.error.factory'
+  ])
     .config(function($routeProvider, $locationProvider) {
       $routeProvider
         .when('/login', {
