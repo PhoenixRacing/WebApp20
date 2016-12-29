@@ -1,6 +1,6 @@
 (function(){
-	//initialize the angular app and inject dependencies.
-	angular.module("olinbaja.logout", ['ngRoute'])
+  //initialize the angular app and inject dependencies.
+  angular.module("olinbaja.logout", ['ngRoute'])
     .config(function($routeProvider, $locationProvider) {
       $routeProvider
         .when('/logout', {
@@ -18,8 +18,6 @@
 
   function LogoutController($http, $window) {
     var vm = this;
-
-    console.log('hi');
 
     $http.post('/auth/logout', {}).then(
       function success(response) {
