@@ -8,6 +8,7 @@ var path = require('path');
 var emailHelper = require('./../utils/emailHelper');
 var errorHelper = require('./../utils/errorHelper');
 var passwordHelper = require('./../utils/passwordHelper');
+var userResponse = require('./../utils/userResponse');
 var User = require('./../models/userModel').User;
 
 auth.post("/isAuthenticated", function(req, res) {
@@ -59,6 +60,23 @@ auth.get('/logout', function(req, res) {
 auth.post('/logout', function(req, res) {
     req.logout();
     res.sendStatus(200);
+});
+
+auth.post('/user', function(req, res) {
+    User.findOne({ '_id' :  req.user._id }, function(err, user) {
+        if (err) {
+            return errorHelper.sendError(req, res, 'Error looking up user', 500);
+        }
+
+        if (!user) {
+            return errorHelper.sendError(req, res, 'No user with that id', 401);
+        }
+
+        var users = [user];
+        var mapped = users.map(userResponse.userMap);
+
+        res.send(mapped[0]);
+    });
 });
 
 // POST /auth/forgotPassword

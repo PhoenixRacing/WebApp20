@@ -1,6 +1,7 @@
 var team = require('express').Router();
 
 var authHelper = require('./../utils/authHelper')
+var userResponse = require('./../utils/userResponse');
 var User = require('../models/userModel').User;
 
 team.post("/data", function(req, res) {
@@ -12,21 +13,8 @@ team.post("/data", function(req, res) {
         // Don't send the password back. Using map prevents this.
         var response = [];
         console.log(users);
-        users.map(function(value, index, array) {
-            response.push({
-                "email":value.email,
-                "_id":value._id,
-                "firstName":value.firstName,
-                "lastName":value.lastName,
-                "username":value.username,
-                "major":value.major,
-                "admin":value.admin,
-                "purchaseManager": value.purchaseManager,
-                "image":value.image
-            });
-        });
 
-        res.json(response);
+        res.json(users.map(userResponse.userMap));
         return;
     });
 });

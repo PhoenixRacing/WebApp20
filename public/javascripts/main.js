@@ -14,7 +14,8 @@
     'olinbaja.forgotPassword',
     'olinbaja.error',
     'olinbaja.profileimage',
-    'olinbaja.navbar'
+    'olinbaja.navbar',
+    'olinbaja.profile'
   ])
   .config(function($routeProvider, $locationProvider) {
     $routeProvider
