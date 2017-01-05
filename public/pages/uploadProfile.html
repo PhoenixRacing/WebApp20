@@ -6,7 +6,7 @@
 <div>
      <canvas width="500" height="300" id="canvas" image-cropper image="vm.cropper.sourceImage" cropped-image="vm.cropper.croppedImage" crop-width="200" crop-height="200" keep-aspect="true" touch-radius="30" crop-area-bounds="vm.bounds"></canvas>
 </div>
-<div>Cropped Image (Left: {{vm.bounds.left}} Right: {{vm.bounds.right}} Top: {{vm.bounds.top}} Bottom: {{vm.bounds.bottom}})</div>
+<h3>Preview:</h3>
 <div ng-show="vm.cropper.croppedImage!=null"><img ng-src="{{vm.cropper.croppedImage}}" /></div>
 <input type="submit" value="Submit" ng-click="vm.addProfileImage(vm.cropper.croppedImage)" />
 
