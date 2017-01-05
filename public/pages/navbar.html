@@ -23,6 +23,7 @@
         <ul class="nav navbar-nav">
           <li ng-class="{active:vm.isActive('/login')}" ng-hide="vm.isLoggedIn"><a href="/login">Login</a></li>
           <li ng-class="{active:vm.isActive('/signup')}" ng-hide="vm.isLoggedIn"><a href="/signup">Sign up</a></li>
+          <li ng-class="{active:vm.isActive('/profile')}" ng-show="vm.isLoggedIn"><a href="/profile">Profile</a></li>
           <li ng-class="{active:vm.isActive('/logout')}" ng-show="vm.isLoggedIn"><a href="/logout">Log out</a></li>
         </ul>
       </div><!--/.nav-collapse -->

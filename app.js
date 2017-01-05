@@ -54,6 +54,7 @@ var team = require('./routes/team.js');
 var purchase = require('./routes/purchases.js');
 var upload = require('./routes/upload.js');
 var gallery = require('./routes/gallery.js');
+var profile = require('./routes/profile.js');
 
 app.use("/", routes);
 app.use("/auth", authRoutes);
@@ -62,6 +63,7 @@ app.use("/team", team);
 app.use("/purchase", purchase);
 app.use("/upload", upload);
 app.use('/gallery', gallery);
+app.use('/profile', profile);
 
 app.get("/test", function(req, res) {
   var url = path.resolve( __dirname + '/test.html');
