@@ -48,7 +48,7 @@ auth.post('/login', function(req, res, next) {
 });
 
 auth.post('/signup', passport.authenticate('local-signup', {
-    successRedirect : '/',
+    successRedirect : '/uploadProfile',
     failureRedirect : '/signup',
 }));
 

@@ -15,7 +15,8 @@
     'olinbaja.error',
     'olinbaja.profileimage',
     'olinbaja.navbar',
-    'olinbaja.profile'
+    'olinbaja.profile',
+    'olinbaja.utils'
   ])
   .config(function($routeProvider, $locationProvider) {
     $routeProvider

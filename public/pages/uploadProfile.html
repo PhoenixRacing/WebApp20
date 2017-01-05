@@ -1,11 +1,18 @@
-<!DOCTYPE html>
-<html>
-  <body>
-    <h1>Image Upload Example</h1>
-    <form enctype="multipart/form-data">
-		<input type="file" ngf-select name="file" accept="image/*" name="image" ng-model="vm.newTeamImage.image" />
-		<img ng-show="myForm.file.$valid" width='100' height='100' ngf-thumbnail="vm.newTeamImage.image" class="thumb"> <button ng-click="vm.newTeamImage.image = null" ng-show="vm.newTeamImage.image">Remove</button>
-		<input type="submit" value="Submit" ng-click="vm.addTeamImage(vm.newTeamImage)" />
-  	</form>
-  </body>
-</html>
+<!-- <link href="./../vendor/cropper/cropper.css" rel="stylesheet"> -->
+<!-- <script src="./../vendor/angular-img-cropper/angular-img-cropper.min.js"></script> -->
+
+<h1>Upload Profile Picture</h1>
+<input type="file" img-cropper-fileread image="vm.cropper.sourceImage" />
+<div>
+     <canvas width="500" height="300" id="canvas" image-cropper image="vm.cropper.sourceImage" cropped-image="vm.cropper.croppedImage" crop-width="200" crop-height="200" keep-aspect="true" touch-radius="30" crop-area-bounds="vm.bounds"></canvas>
+</div>
+<div>Cropped Image (Left: {{vm.bounds.left}} Right: {{vm.bounds.right}} Top: {{vm.bounds.top}} Bottom: {{vm.bounds.bottom}})</div>
+<div ng-show="vm.cropper.croppedImage!=null"><img ng-src="{{vm.cropper.croppedImage}}" /></div>
+<input type="submit" value="Submit" ng-click="vm.addProfileImage(vm.cropper.croppedImage)" />
+
+<style>
+img {
+  max-width: 100%; /* This rule is very important, please do not ignore this! */
+}
+</style>
+
