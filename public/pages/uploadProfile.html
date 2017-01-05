@@ -1,10 +1,10 @@
 <h1>Upload Profile Picture</h1>
 <input type="file" img-cropper-fileread image="vm.cropper.sourceImage" />
 <div>
-     <canvas width="500" height="300" id="canvas" image-cropper image="vm.cropper.sourceImage" cropped-image="vm.cropper.croppedImage" crop-width="200" crop-height="200" keep-aspect="true" touch-radius="30" crop-area-bounds="vm.bounds"></canvas>
+     <canvas width="400" height="400" id="canvas" image-cropper image="vm.cropper.sourceImage" cropped-image="vm.cropper.croppedImage" crop-width="200" crop-height="200" keep-aspect="true" touch-radius="30" crop-area-bounds="vm.bounds"></canvas>
 </div>
 <h3>Preview:</h3>
-<div ng-show="vm.cropper.croppedImage!=null"><img ng-src="{{vm.cropper.croppedImage}}" /></div>
+<div ng-show="vm.cropper.croppedImage!=null"><img width="250" height="250" style="border-radius:50%" ng-src="{{vm.cropper.croppedImage}}" /></div>
 <input type="submit" value="Submit" ng-click="vm.addProfileImage(vm.cropper.croppedImage)" />
 
 <style>
