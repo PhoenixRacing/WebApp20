@@ -19,6 +19,7 @@ var User = require('./models/userModel.js').User;
 var Data = require('./models/dataModel.js').Data;
 
 // setup things
+mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI || dbConfig.url);
 
 // Initialize express app
