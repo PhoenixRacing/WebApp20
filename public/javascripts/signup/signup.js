@@ -16,8 +16,10 @@
     })
     .controller('SignupController', SignupController);
 
-  function SignupController($http, $window) {
+  function SignupController($http, $window, errorBus) {
     var vm = this;
+
+    vm.isBusy = false;
 
     $http.post('/auth/isAuthenticated', {}).then(
       function success(response) {
@@ -29,21 +31,30 @@
     );
 
     vm.submit = function(user) {
+      if (vm.isBusy) {
+        return;
+      }
+      vm.isBusy = true;
+
       if (!user.email || user.email === '')
       {
-        vm.error('Please provide a valid e-mail');
+        errorBus.emitError('Please provide a valid e-mail');
+        vm.isBusy = false;
         return;
       }
       if (!user.password || user.password === '') {
-        vm.error('Please provide a valid password');
+        errorBus.emitError('Please provide a valid password');
+        vm.isBusy = false;
         return;
       }
       if (!user.username || user.username === '') {
-        vm.error('Please provide a valid username');
+        errorBus.emitError('Please provide a valid username');
+        vm.isBusy = false;
         return;
       }
       if (!user.major || user.major === '') {
-        vm.error('Please provide a valid major');
+        errorBus.emitError('Please provide a valid major');
+        vm.isBusy = false;
         return;
       }
 
@@ -61,18 +72,16 @@
       $http.post('/auth/signup', body).then(
         function success(response) {
           if (response.status == 200) {
-            $window.location = "/";
+            $window.location = "/uploadProfile";
           }
+          vm.isBusy = false;
         }, function error(response) {
           if (response.status == 401) {
-            vm.error('There was a problem with your signup.');
+            errorBus.emitError(response.data.error);
           }
+          vm.isBusy = false;
         }
       );
-    }
-
-    vm.error = function(error) {
-      vm.errorMessage = error;
     }
   }
 })();

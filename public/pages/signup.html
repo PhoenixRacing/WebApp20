@@ -4,5 +4,5 @@
   Major: <input type="text" ng-model="vm.user.major" />
   E-mail: <input type="email" ng-model="vm.user.email" /><br />
   Password: <input type="password" ng-model="vm.user.password" />
-  <input type="submit" ng-click="vm.submit(vm.user)" value="Login" />
-</form>
+  <input type="submit" ng-disabled="vm.isBusy" ng-click="vm.submit(vm.user)" value="Sign Up" />
+</form

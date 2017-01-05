@@ -24,7 +24,6 @@
         method: 'POST',
         url: '/auth/user'
       }).then(function successCallback(response) {
-        console.log(response);
         vm.user = response.data;
       }, function errorCallback(response) {
         $window.location = "/";

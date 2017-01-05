@@ -25,11 +25,11 @@ module.exports = function(passport) {
             }
 
             if (!user) {
-                return done(null, false, req.flash('loginMessage', 'No user found'));
+                return done(null, false, {errorMessage: 'No user with that email found.'});
             }
 
             if (!user.validPassword(password)) {
-                return done(null, false, req.flash('loginMessage', 'Wrong password'));
+                return done(null, false, {errorMessage: 'Wrong password.'});
             }
 
             return done(null, user);
@@ -49,7 +49,7 @@ module.exports = function(passport) {
             }
 
             if (user) {
-                return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                return done(null, false, {errorMessage: 'That email is already taken.'});
             } else {
                 var newUser = new User();
 
@@ -57,7 +57,7 @@ module.exports = function(passport) {
                 newUser.password = newUser.generateHash(password);
                 newUser.username = req.body.username;
                 newUser.major = req.body.major;
-                newUser.image = "";
+                newUser.image = "/images/default-person.jpg";
 
                 // save the user
                 newUser.save(function(err) {
