@@ -6,3 +6,7 @@
 .navbar-right {
 	float:right;
 }
+
+input[disabled] {
+	color: gray;
+}

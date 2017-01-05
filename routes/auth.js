@@ -35,8 +35,9 @@ auth.post('/login', function(req, res, next) {
         return next(err);
     }
     if (!user) {
-        return errorHelper.sendError(req, res, "User doesn't exists", 401);
+        return errorHelper.sendError(req, res, info.errorMessage, 401);
     }
+
     req.logIn(user, function(err) {
       if (err) {
         return next(err);
@@ -47,14 +48,24 @@ auth.post('/login', function(req, res, next) {
   })(req, res, next);
 });
 
-auth.post('/signup', passport.authenticate('local-signup', {
-    successRedirect : '/uploadProfile',
-    failureRedirect : '/signup',
-}));
+auth.post('/signup', function(req, res, next) {
+  passport.authenticate('local-signup', function(err, user, info) {
+    if (err) {
+      return next(err);
+    }
 
-auth.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
+    if (!user) {
+      return errorHelper.sendError(req, res, info.errorMessage, 401);
+    }
+
+    req.login(user, function(loginErr) {
+      if (loginErr) {
+        return next(loginErr);
+      }
+
+      return res.sendStatus(200);
+    });
+  })(req, res, next);
 });
 
 auth.post('/logout', function(req, res) {
@@ -63,6 +74,10 @@ auth.post('/logout', function(req, res) {
 });
 
 auth.post('/user', function(req, res) {
+    if (!req.user || !req.user._id) {
+        return errorHelper.sendError(req, res, 'No user is logged in', 401);
+    }
+
     User.findOne({ '_id' :  req.user._id }, function(err, user) {
         if (err) {
             return errorHelper.sendError(req, res, 'Error looking up user', 500);
