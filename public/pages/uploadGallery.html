@@ -1,0 +1,16 @@
+<h1>Upload Gallery Image</h1>
+Title: <input type="text" ng-model="vm.title" />
+Description: <input type="text" ng-model="vm.description" />
+<input type="file" img-cropper-fileread image="vm.cropper.sourceImage" />
+<div>
+     <canvas width="600" height="400" id="canvas" image-cropper image="vm.cropper.sourceImage" cropped-image="vm.cropper.croppedImage" crop-width="600" crop-height="400" keep-aspect="true" touch-radius="30" crop-area-bounds="vm.bounds"></canvas>
+</div>
+<h3>Preview:</h3>
+<div ng-show="vm.cropper.croppedImage!=null"><img width="450" height="300" ng-src="{{vm.cropper.croppedImage}}" /></div>
+<input type="submit" value="Submit" ng-click="vm.addGalleryImage(vm.cropper.croppedImage)" />
+
+<style>
+img {
+  max-width: 100%; /* This rule is very important, please do not ignore this! */
+}
+</style>

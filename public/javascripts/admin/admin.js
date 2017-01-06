@@ -107,22 +107,6 @@
       });
     };
 
-    vm.addGallery = function(galleryImage) {
-      var file = galleryImage.image;
-      file.upload = Upload.upload({
-        url: '/upload/galleryimage',
-        data: {title: galleryImage.title, description: galleryImage.description, image: file},
-      });
-
-      file.upload.then(function success(response) {
-        // This will clear the form
-        // TODO: Show success
-        vm.newGalleryImage = {};
-      }, function failure(response) {
-        // TODO: Show a failure to the user
-      });
-    }
-
     $http.post('/auth/isAdmin', {}).then(
       function success(response) {
         reloadTeam();
