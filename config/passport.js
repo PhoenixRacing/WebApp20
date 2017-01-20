@@ -59,12 +59,20 @@ module.exports = function(passport) {
                 newUser.major = req.body.major;
                 newUser.image = "/images/default-person.jpg";
 
-                // save the user
-                newUser.save(function(err) {
-                    if (err) {
-                        throw err;
+                User.findOne({ 'admin':  true }, function(err, user) {
+                    if (user) {
+                        newUser.admin = false;
+                    } else {
+                        newUser.admin = true;
                     }
-                    return done(null, newUser);
+
+                    // save the user
+                    newUser.save(function(err) {
+                        if (err) {
+                            throw err;
+                        }
+                        return done(null, newUser);
+                    });
                 });
             }
 
