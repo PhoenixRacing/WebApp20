@@ -1,4 +1,20 @@
 
+/*
+
+Olin Baja Color Scheme
+
+Primary Blue: #144663;
+Dark Accent Blue: #00072E;
+Light Accent Blue: #0630BF;
+Neutral Gray: #191F29;
+Complementary Orange: #FF5E5C;
+
+*/
+
+* {
+	font-family: 'Roboto Slab', serif;
+}
+
 .navbar-left {
 	float:left;
 }
