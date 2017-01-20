@@ -51,7 +51,6 @@ module.exports = function(passport) {
             if (user) {
                 return done(null, false, {errorMessage: 'That email is already taken.'});
             } else {
-
                 var newUser = new User();
 
                 newUser.email = email;
@@ -60,7 +59,7 @@ module.exports = function(passport) {
                 newUser.major = req.body.major;
                 newUser.image = "/images/default-person.jpg";
 
-                ser.findOne({ 'admin':  true }, function(err, user) {
+                User.findOne({ 'admin':  true }, function(err, user) {
                     if (user) {
                         newUser.admin = false;
                     } else {
@@ -73,7 +72,7 @@ module.exports = function(passport) {
                             throw err;
                         }
                         return done(null, newUser);
-                        });
+                    });
                 });
             }
 
