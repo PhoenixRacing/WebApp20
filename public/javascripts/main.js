@@ -14,6 +14,7 @@
     'olinbaja.forgotPassword',
     'olinbaja.error',
     'olinbaja.profileimage',
+    'olinbaja.galleryimage',
     'olinbaja.navbar',
     'olinbaja.profile',
     'olinbaja.utils'

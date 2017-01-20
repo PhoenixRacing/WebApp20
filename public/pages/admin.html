@@ -93,20 +93,4 @@
 	</tr>
 </table>
 <br><br><br>
-<form enctype="multipart/form-data" name="galleryImageForm">
-	<div>
-		<label>Title:</label>
-		<input type="text" name="title" ng-model="vm.newGalleryImage.title" />
-		<br/>
-	</div>
-	<div>
-		<label>Description:</label>
-		<input type="text" name="description" ng-model="vm.newGalleryImage.description" />
-		<br/>
-	</div>
-	<div>
-		<input type="file" ngf-select name="file" accept="image/*" name="image" ng-model="vm.newGalleryImage.image" />
-		<img ng-show="myForm.file.$valid" width='100' height='100' ngf-thumbnail="vm.newGalleryImage.image" class="thumb"> <button ng-click="vm.newGalleryImage.image = null" ng-show="vm.newGalleryImage.image">Remove</button>
-		<input type="submit" value="Submit" ng-click="vm.addGallery(vm.newGalleryImage)" />
-	</div>
-</form>
+<a href="/uploadGallery"><button>Upload Gallery Images</button></a>
