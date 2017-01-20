@@ -7,6 +7,7 @@ Primary Blue: #144663;
 Dark Accent Blue: #00072E;
 Light Accent Blue: #0630BF;
 Neutral Gray: #191F29;
+Darker Gray: #090F19;
 Complementary Orange: #FF5E5C;
 
 */
@@ -26,3 +27,31 @@ Complementary Orange: #FF5E5C;
 input[disabled] {
 	color: gray;
 }
+
+.navbar {
+	background-color: #191F29;
+	border: 0;
+	border-radius: 0;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+	background-color: #090F19;
+	color: #DDD;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: #FFF;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+	color: #DDD;
+}
+
+.navbar-default .navbar-brand, .navbar-default .navbar-brand:focus {
+	color: #FFF;
+}
+
+.navbar-default .navbar-brand:hover {
+	color: #DDD;
+}
+
