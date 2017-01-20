@@ -19,7 +19,7 @@
   function PurchasesController($http, $window) {
     var vm = this;
 
-    $http.get('/auth/isAuthenticated', {}).then(
+    $http.post('/auth/isAuthenticated', {}).then(
       function success(response) {
         if (response.status == 401) {
           $window.location = "/";

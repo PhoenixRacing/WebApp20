@@ -8,19 +8,17 @@
     vm.isLoggedIn = false;
     vm.isAdmin = false;
 
-    $http.post('/auth/isAuthenticated', {}).then(
+    $http.post('/auth/user', {}).then(
       function success(response) {
         if (response.status == 200) {
           vm.isLoggedIn = true;
         }
-      }, function error(response) {
-      }
-    );
-
-    $http.post('/auth/isAdmin', {}).then(
-      function success(response) {
-        if (response.status == 200) {
+        if (response.data.admin) {
           vm.isAdmin = true;
+          vm.isPurchaseManaging = true;
+        }
+        if (response.data.purchaseManager) {
+          vm.isPurchaseManaging = true;
         }
       }, function error(response) {
       }

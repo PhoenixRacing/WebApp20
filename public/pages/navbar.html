@@ -17,6 +17,7 @@
           <li ng-class="{active:vm.isActive('/donor')}"><a href="/donor">Donors</a></li>
           <li ng-class="{active:vm.isActive('/gallery')}"><a href="/gallery">Gallery</a></li>
           <li ng-class="{active:vm.isActive('/purchase')}" ng-show="vm.isLoggedIn"><a href="/purchase">Purchase Request</a></li>
+          <li ng-class="{active:vm.isActive('/purchaseManager')}" ng-show="vm.isPurchaseManaging"><a href="/purchaseManager">Purchase Management</a></li>
           <li ng-class="{active:vm.isActive('/admin')}" ng-show="vm.isAdmin"><a href="/admin">Admin Console</a></li>
         </ul>
       </div><!--/.nav-collapse -->

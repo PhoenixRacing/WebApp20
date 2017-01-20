@@ -78,6 +78,8 @@ app.get("/test/JSON", function(req, res) {
 });
 
 app.get("/*", function(req, res) {
+  console.log("HI");
+  console.log(req.url);
   var url = path.resolve(__dirname + '/public/index.html');
   res.sendFile(url);
 });
