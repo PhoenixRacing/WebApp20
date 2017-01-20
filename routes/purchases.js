@@ -21,12 +21,14 @@ purchase.post('/newpurchase', authHelper.isLoggedIn, function(req, res) {
             return errorHelper.sendError(req, res, 'Server error', 500);
         }
         User.findOne({purchaseManager: true}, function(err, pManager){
+            console.log(pManager);
+            console.log(pManager.email);
             emailHelper.sendEmail(pManager.email, 'New Baja Purchase Request', 'New purchase request from ' + p.name + ' for ' + p.item_name + '\nPrice: ' + p.price +
                 '.  \nLink: ' + p.link + '\nQuantity: ' + p.count + '\nUrgency: ' + p.urgency + '\nAdditional info: ' + p.info);
+            console.log('Success');
+            res.sendStatus(200);
         });
-        res.sendStatus(200);
     });
-    console.log('Success');
 });
 
 purchase.get('/data', function(req, res){
