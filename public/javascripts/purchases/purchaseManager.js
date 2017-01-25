@@ -47,19 +47,20 @@
             vm.purchases[i].date = vm.dateToString(date);
           }
         }, function error(response) {
+          if (response.data.errorMessage) {
+            return errorBus.emitError(response.data.errorMessage);
+          }
         });
     }
 
     vm.setStatus = function(purchase) {
       errorBus.clearErrors();
-      console.log(purchase);
 
       $http.post('/purchase/update', {
         'purchaseId': purchase._id,
         'newStatus': purchase.newStatus
       }).then(
         function success(response) {
-          console.log(response);
           vm.reloadPurchases();
         }, function error(response) {
           if (response.data.errorMessage) {
