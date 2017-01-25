@@ -13,7 +13,7 @@ var User = require('./../models/userModel').User;
 
 auth.post("/isAuthenticated", function(req, res) {
     if (!req.user) {
-        return errorHelper.sendError(req, res, 'Unauthenticated user', 401);
+        return errorHelper.sendError(res, 'Unauthenticated user', 401);
     } else {
         return res.sendStatus(200);
     }
@@ -21,9 +21,19 @@ auth.post("/isAuthenticated", function(req, res) {
 
 auth.post("/isAdmin", function(req, res) {
     if (!req.user) {
-        return errorHelper.sendError(req, res, "User isn't logged in", 500);
+        return errorHelper.sendError(res, "User isn't logged in", 500);
     } else if (!req.user.admin) {
-        return errorHelper.sendError(req, res, "User isn't an admin", 401);
+        return errorHelper.sendError(res, "User isn't an admin", 401);
+    } else {
+        return res.sendStatus(200);
+    }
+});
+
+auth.post("/isPurchaseManaging", function(req, res) {
+    if (!req.user) {
+        return errorHelper.sendError(res, "User isn't logged in", 401);
+    } else if (!req.user.admin && !req.user.purchaseManager) {
+        return errorHelper.sendError(res, "User isn't an admin or purchase manager.", 401);
     } else {
         return res.sendStatus(200);
     }
@@ -35,7 +45,7 @@ auth.post('/login', function(req, res, next) {
         return next(err);
     }
     if (!user) {
-        return errorHelper.sendError(req, res, info.errorMessage, 401);
+        return errorHelper.sendError(res, info.errorMessage, 401);
     }
 
     req.logIn(user, function(err) {
@@ -55,7 +65,7 @@ auth.post('/signup', function(req, res, next) {
     }
 
     if (!user) {
-      return errorHelper.sendError(req, res, info.errorMessage, 401);
+      return errorHelper.sendError(res, info.errorMessage, 401);
     }
 
     req.login(user, function(loginErr) {
@@ -75,16 +85,16 @@ auth.post('/logout', function(req, res) {
 
 auth.post('/user', function(req, res) {
     if (!req.user || !req.user._id) {
-        return errorHelper.sendError(req, res, 'No user is logged in', 401);
+        return errorHelper.sendError(res, 'No user is logged in', 401);
     }
 
     User.findOne({ '_id' :  req.user._id }, function(err, user) {
         if (err) {
-            return errorHelper.sendError(req, res, 'Error looking up user', 500);
+            return errorHelper.sendError(res, 'Error looking up user', 500);
         }
 
         if (!user) {
-            return errorHelper.sendError(req, res, 'No user with that id', 401);
+            return errorHelper.sendError(res, 'No user with that id', 401);
         }
 
         var users = [user];
@@ -104,11 +114,11 @@ auth.post('/forgotPassword', function(req, res) {
 
     User.findOne({ 'email' :  email }, function(err, user) {
         if (err) {
-            return errorHelper.sendError(req, res, 'Error looking up user', 500);
+            return errorHelper.sendError(res, 'Error looking up user', 500);
         }
 
         if (!user) {
-            return errorHelper.sendError(req, res, 'No user with that email', 401);
+            return errorHelper.sendError(res, 'No user with that email', 401);
         }
 
         var newPassword = Math.random().toString(36).slice(2, 10);
@@ -132,19 +142,19 @@ auth.post('/resetPassword', function(req, res) {
 
     User.findOne({ 'email' :  email }, function(err, user) {
         if (err) {
-            return errorHelper.sendError(req, res, 'Error looking up user', 500);
+            return errorHelper.sendError(res, 'Error looking up user', 500);
         }
 
         if (!user) {
-            return errorHelper.sendError(req, res, 'No user with that email', 404);
+            return errorHelper.sendError(res, 'No user with that email', 404);
         }
 
         if (!user.validPassword(oldPassword)) {
-            return errorHelper.sendError(req, res, 'Incorrect password', 401);
+            return errorHelper.sendError(res, 'Incorrect password', 401);
         }
 
         if (!passwordHelper.isPasswordValid(newPassword)) {
-            return errorHelper.sendError(req, res, passwordHelper.passwordError(newPassword), 400);
+            return errorHelper.sendError(res, passwordHelper.passwordError(newPassword), 400);
         }
 
         user.password = user.generateHash(newPassword);

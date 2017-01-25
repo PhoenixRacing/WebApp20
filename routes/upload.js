@@ -14,7 +14,7 @@ app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
         var img = files.image[0];
 
         if (!imageHelper.isImage(img.originalFilename)) {
-            errorHelper.sendError(req, res, 'File must be an image', 400);
+            errorHelper.sendError(res, 'File must be an image', 400);
 
             // delete the temp file
             fs.unlink(img.path, function() {});
@@ -23,19 +23,19 @@ app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
 
         imageHelper.resizeImage(img.path, 250, 250, function (err, data) {
             if (err) {
-                return errorHelper.sendError(req, res, 'Server error', 500);
+                return errorHelper.sendError(res, 'Server error', 500);
             }
 
             imageHelper.uploadImageToS3(data, function(err, d) {
                 if (err) {
-                    return errorHelper.sendError(req, res, 'Server error', 500);
+                    return errorHelper.sendError(res, 'Server error', 500);
                 }
 
                 // Update question
                 req.user.image = d.Location;
                 req.user.save(function(err, u) {
                     if (err) {
-                        return errorHelper.sendError(req, res, 'Server error', 500);
+                        return errorHelper.sendError(res, 'Server error', 500);
                     }
                     res.sendStatus(200);
                 });
@@ -53,7 +53,7 @@ app.post("/galleryimage", authHelper.isAdmin, function(req, res) {
         var img = files.image[0];
 
         if (!imageHelper.isImage(img.originalFilename)) {
-            errorHelper.sendError(req, res, 'File must be an image.', 400);
+            errorHelper.sendError(res, 'File must be an image.', 400);
 
             // delete the temp file
             fs.unlink(img.path, function() {});
@@ -62,12 +62,12 @@ app.post("/galleryimage", authHelper.isAdmin, function(req, res) {
 
         imageHelper.resizeImage(img.path, 900, 600, function (err, data) {
             if (err) {
-                return errorHelper.sendError(req, res, 'Server error', 500);
+                return errorHelper.sendError(res, 'Server error', 500);
             }
 
             imageHelper.uploadImageToS3(data, function(err, d) {
                 if (err) {
-                    return errorHelper.sendError(req, res, 'Server error', 500);
+                    return errorHelper.sendError(res, 'Server error', 500);
                 }
 
                 var galleryImage = new GalleryImage();
@@ -78,7 +78,7 @@ app.post("/galleryimage", authHelper.isAdmin, function(req, res) {
 
                 galleryImage.save(function(err, u) {
                     if (err) {
-                        return errorHelper.sendError(req, res, 'Server error', 500);
+                        return errorHelper.sendError(res, 'Server error', 500);
                     }
                     res.sendStatus(200);
                 });

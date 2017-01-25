@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 var purchaseSchema = mongoose.Schema({
     name: String,
+    userId: String,
     item_name: String,
     link: String,
     price: String,

@@ -11,19 +11,19 @@ profile.post('/edit', function(req, res) {
     }
 
     if (!userId) {
-        return errorHelper.sendError(req, res, "No user id supplied", 400);
+        return errorHelper.sendError(res, "No user id supplied", 400);
     }
     if (!req.body.edits) {
-        return errorHelper.sendError(req, res, "No edits supplied", 400);
+        return errorHelper.sendError(res, "No edits supplied", 400);
     }
 
     User.findOne({ '_id': userId }, function(err, user) {
         if (err) {
-            return errorHelper.sendError(req, res, 'Error finding user', 500);
+            return errorHelper.sendError(res, 'Error finding user', 500);
         }
 
         if (!user) {
-            return errorHelper.sendError(req, res, "Couldn't find user with that id", 401);
+            return errorHelper.sendError(res, "Couldn't find user with that id", 401);
         }
 
         var editableFields = ["major", "username"];
@@ -37,7 +37,7 @@ profile.post('/edit', function(req, res) {
 
         user.save(function(err, u) {
             if (err) {
-                return errorHelper.sendError(req, res, 'Error finding user', 500);
+                return errorHelper.sendError(res, 'Error finding user', 500);
             }
 
             res.send(u);
