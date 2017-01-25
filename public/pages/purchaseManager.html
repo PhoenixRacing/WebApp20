@@ -1,0 +1,56 @@
+<style type="text/css">
+	.purchase-table {
+		width:80%;
+		margin-left: 10%;
+		margin-right: 10%;
+		margin-top: 20px;
+	}
+	.purchase-table-row {
+		height: 20px;
+	}
+	.purchase-column-large {
+		width: 10%;
+	}
+	.purchase-column {
+		width: 10%;
+	}
+	.purchase-column-small {
+		width: 5%;
+	}
+	.purchase-column-tiny {
+		width: 2.5%;
+	}
+	.purchase-item-column {
+		width:20%;
+	}
+</style>
+<table border="1" class="purchase-table">
+	<tr ng-repeat="purchase in vm.purchases" class="purchase-table-row">
+		<td class="purchase-column-small">{{ purchase.name }}</td>
+		<td class="purchase-column">{{ purchase.item_name }}</td>
+		<td class="purchase-column">{{ purchase.link }}</td>
+		<td class="purchase-column-tiny">{{ purchase.price }}</td>
+		<td class="purchase-column-small">{{ purchase.date }}</p></td>
+		<td class="purchase-column-small">{{ purchase.status }}</td>
+		<td class="purchase-column-tiny">{{ purchase.count }}</td>
+		<td class="purchase-column-small">{{ purchase.urgency }}</td>
+		<td class="purchase-column-large">{{ purchase.info }}</td>
+
+		<!-- Actions -->
+		<td class="purchase-column-tiny">
+			<form id="delete-user-form">
+				<select ng-model="purchase.newStatus">
+			  	  <option value="Incomplete">Incomplete</option>
+			  	  <option value="Purchasing">Purchasing</option>
+			  	  <option value="Complete">Complete</option>
+			  	</select>
+			  	<input type="submit" value="Set status" ng-click="vm.setStatus(purchase)">
+			</form>
+		</td>
+		<td class="purchase-column-tiny">
+			<form id="delete-user-form">
+				<input type="submit" value="Delete" ng-click="vm.deletePurchase(purchase)">
+			</form>
+		</td>
+	</tr>
+</table>

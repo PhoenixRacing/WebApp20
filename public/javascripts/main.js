@@ -17,7 +17,8 @@
     'olinbaja.galleryimage',
     'olinbaja.navbar',
     'olinbaja.profile',
-    'olinbaja.utils'
+    'olinbaja.utils',
+    'olinbaja.purchase.manager'
   ])
   .config(function($routeProvider, $locationProvider) {
     $routeProvider

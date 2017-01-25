@@ -1,7 +1,7 @@
 
-function sendError(req, res, error, code) {
-    console.log(error);
-    res.status(code).send({ 'error': error });
+function sendError(res, errorMessage, code) {
+    console.log(errorMessage);
+    res.status(code).send({ 'errorMessage': errorMessage });
 }
 
 module.exports = {

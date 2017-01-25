@@ -8,6 +8,7 @@ var mongoose = require("mongoose");
 var passport = require('passport');
 var session = require('express-session');
 var flash = require('connect-flash');
+var favicon = require('serve-favicon');
 
 // custom modules
 var dbConfig = require('./database/db.js');
@@ -47,6 +48,8 @@ app.use(flash());
 // configure passport
 require('./config/passport')(passport);
 
+app.use(favicon(path.join(__dirname, 'public/images/favicon.ico')));
+
 // this sets up all of the routes
 var routes = require('./routes/routes.js');
 var authRoutes = require('./routes/auth.js');
@@ -77,7 +80,7 @@ app.get("/test/JSON", function(req, res) {
   res.sendFile(url);
 });
 
-app.get("/*", function(req, res) {
+app.get("*", function(req, res) {
   var url = path.resolve(__dirname + '/public/index.html');
   res.sendFile(url);
 });

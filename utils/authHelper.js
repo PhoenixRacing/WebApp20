@@ -1,25 +1,35 @@
 
+var errorHelper = require('./errorHelper');
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
-        return next();
+    if (!req.user) {
+        return errorHelper.sendError(res, "You are not logged in", 401);
+    }
 
-    // if they aren't redirect them to the home page
-    res.redirect('/auth/login');
+    return next();
 }
 
 function isAdmin(req, res, next) {
 	if (!req.user) {
-		res.redirect('/auth/login');
-		return;
+        return errorHelper.sendError(res, "You are not logged in", 401);
 	}
 
 	if (!req.user.admin) {
-		res.redirect('/');
-		return;
+        return errorHelper.sendError(res, "You are not an administrator", 401);
+	}
+
+	return next();
+}
+
+function isPurchaseManaging(req, res, next) {
+	if (!req.user) {
+        return errorHelper.sendError(res, "You are not logged in", 401);
+	}
+
+	if (!req.user.admin && !req.user.purchaseManager) {
+        return errorHelper.sendError(res, "You are not a purchase manager", 401);
 	}
 
 	return next();
@@ -27,5 +37,6 @@ function isAdmin(req, res, next) {
 
 module.exports = {
 	'isLoggedIn' : isLoggedIn,
-	'isAdmin' : isAdmin
+	'isAdmin' : isAdmin,
+	'isPurchaseManaging': isPurchaseManaging
 }

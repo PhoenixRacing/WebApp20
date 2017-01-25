@@ -25,7 +25,7 @@ app.post("/uploadImage", function(req, res) {//isLoggedIn, function(req, res) {
         // figure out if it's actually an image
         var allowedTypes = ["jpg","jpeg","png","gif"];
         if (allowedTypes.indexOf(filetype) == -1) {
-            errorHelper.sendError(req, res, 'File must be an image', 400);
+            errorHelper.sendError(res, 'File must be an image', 400);
 
             // delete the temp file
             fs.unlink(img.path, null);
