@@ -85,5 +85,5 @@ app.get("*", function(req, res) {
   res.sendFile(url);
 });
 
-app.listen(PORT);
+app.listen(PORT, "0.0.0.0");
 console.log('Listening on Port', PORT);
