@@ -3,7 +3,7 @@
   angular.module("olinbaja.donor", ['ngRoute'])
     .config(function($routeProvider, $locationProvider) {
       $routeProvider
-        .when('/donor', {
+        .when('/sponsorship', {
           templateUrl : './pages/donor.html',
           controller: 'DonorController',
           controllerAs: 'vm'
