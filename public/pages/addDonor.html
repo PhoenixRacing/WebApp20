@@ -39,7 +39,12 @@
 </table>
 
 <h1>Add Donor</h1>
-Donor Name: <input type="text" ng-model="vm.donorName" />
+<p>Donor Name: <input type="text" ng-model="vm.donor.donorName" /></p>
+<input type="radio" ng-model="vm.donor.donorType" name="donorType" value="family" checked="checked">Family or Individual<br>
+<input type="radio" ng-model="vm.donor.donorType" name="donorType" value="corporate">Corporate Sponsor<br>
+
+<input type="submit" value="Submit Without Image" ng-click="vm.addDonorWithoutImage(vm.donor)" /><br><br>
+
 <input type="file" img-cropper-fileread image="vm.cropper.sourceImage" />
 <div>
      <canvas width="600" height="400" id="canvas" image-cropper image="vm.cropper.sourceImage" cropped-image="vm.cropper.croppedImage" crop-width="600" crop-height="400" keep-aspect="true" touch-radius="30" crop-area-bounds="vm.bounds"></canvas>

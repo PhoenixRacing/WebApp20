@@ -23,6 +23,8 @@
     var vm = this;
 
     vm.donors = [];
+    vm.donor = {};
+    vm.donor.donorType = "family";
 
     vm.cropper = {};
     vm.cropper.sourceImage = null;
@@ -32,7 +34,7 @@
 
     vm.addDonor = function(image) {
       errorBus.clearErrors();
-      if (!vm.donorName || vm.donorName == '') {
+      if (!vm.donor.donorName || vm.donor.donorName == '') {
         return errorBus.emitError('Please enter a donor name.');
       }
       if (!image) {
@@ -42,9 +44,16 @@
       var blob = utils.dataURItoBlob(image);
       var file = utils.blobToImageFile(blob);
 
+      console.log(vm.donor.donorType);
+      var isCorporate = false;
+      if (vm.donor.donorType == "corporate") {
+        isCorporate = true;
+      }
+      console.log(isCorporate);
+
       file.upload = Upload.upload({
         url: '/donor/new',
-        data: {donorName: vm.donorName, image: file},
+        data: {donorName: vm.donor.donorName, isCorporate: isCorporate, image: file},
       });
 
       file.upload.then(function success(response) {
@@ -55,12 +64,31 @@
       });
     }
 
+    vm.addDonorWithoutImage = function(donor) {
+      var isCorporate = false;
+      if (donor.donorType == "corporate") {
+        isCorporate = true;
+      }
+
+      $http({
+        method:'POST',
+        url: '/donor/newNoImage',
+        data: {
+          donorName: donor.donorName,
+          isCorporate: isCorporate
+        }
+      }).then(function successCallback(response) {
+        reloadDonors();
+      }, function errorCallback(response) {
+      });
+    }
+
     function reloadDonors() {
       $http({
         method: 'POST',
         url: '/donor/data'
       }).then(function successCallback(response) {
-        vm.donors = response.data;
+        vm.donors = response.data.corporateDonors.concat(response.data.familyDonors);
       }, function errorCallback(response) {
       });
     }

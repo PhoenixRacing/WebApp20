@@ -1,5 +1,46 @@
-<h1>Donor Page</h1>
-<div ng-repeat="donor in vm.donors">
-	<img ng-src="{{donor.image}}">
-	<h2>{{ donor.name }}</h2>
+
+<!--Decorators and Background Images-->
+<div class="donate-background">
+	<img class="banner-img" src="{{url_for('static',filename='img/background.jpg')}}">
 </div>
+<div class="decorator2">
+  <div><img src="{{url_for('static',filename='img/donate-page-decorator.png')}}"></div>
+</div>
+<!--Words and shit-->
+<div class="donate-caption">
+	<div class="small-12 small-centered columns" style="margin:auto; text-align:center">
+		<div><br><br>
+			<h2>Interested in Donating to Olin Baja?</h2>
+			<div><br>
+		<a href="https://www.olin.edu/invest/ways/making-your-gift-olin-college/" target="_blank"><button class="button secondary radius">Donate Online</button></a>
+		</div><br>
+			<p>We are an entirely donation-funded organization, so we rely on the support of people like you to keep this valuable educational opportunity available to our students. To donate online, please visit the Olin donation website by clicking the button above and select "Student Project: Mini-Baja (Phoenix Racing Team)" in the 'Gift Information' field.</p>
+			<p><a href="{{url_for('static',filename='img/ParentSponsorshipLevels.pdf')}}">Click here </a> for further information on individual sponsorship.</p>
+			<p><strong>See below for information about becoming a corporate sponsor!</strong></p>
+		</div>
+	</div>
+</div>
+
+<div class = "sponsors-blurb-wrap">
+	<div class = "sponsors-blurb">
+		<h1>Our 2015-2016 Sponsors</h1><br>
+		<p>What we do is only possible thanks to the help of the following people and organizations. <p><a href="{{url_for('static',filename='img/CorporateSponsorshipLevels.png')}}">Click here</a> to view our corporate sponsorship brochure. For further information on corporate sponsorship, please contact our marketing manager, <a class="inline-a" ng-href="mailto:{{vm.purchaseManager.email}}">{{ vm.purchaseManager.username }}</a>.</p><br>
+		<h3>Thank you to all of our Corporate sponsors! </h3><br><br>
+
+		<div ng-repeat="donor in vm.corporateDonors">
+			<img ng-src="{{donor.image}}">
+			<h2>{{ donor.name }}</h2>
+		</div>
+	</div>
+</div>
+<div class = "sponsors-blurb-wrap">
+	<div class = "sponsors-blurb"><br>
+		<h3>Thank you to the following individuals and families!</h3><br><br>
+		<div ng-repeat="donor in vm.familyDonors">
+			<img ng-src="{{donor.image}}">
+			<h2>{{ donor.name }}</h2>
+		</div>
+	</div>
+</div>
+
+

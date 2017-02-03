@@ -12,7 +12,6 @@ team.post("/data", function(req, res) {
 
         // Don't send the password back. Using map prevents this.
         var response = [];
-        console.log(users);
 
         res.json(users.map(userResponse.userMap));
         return;

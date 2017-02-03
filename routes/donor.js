@@ -13,7 +13,19 @@ donor.post('/data', function(req, res) {
             return errorHelper.sendError(res, 'Server error', 500);
         }
 
-        res.send(donors);
+        var corporateDonors = [];
+        var familyDonors = [];
+
+        for (var i in donors) {
+            var donor = donors[i];
+            if (donor.isCorporate) {
+                corporateDonors.push(donor);
+            } else {
+                familyDonors.push(donor);
+            }
+        }
+
+        res.send({'corporateDonors': corporateDonors, 'familyDonors': familyDonors});
     })
 });
 
@@ -22,6 +34,8 @@ donor.post('/new', authHelper.isAdmin, function(req, res) {
 
     form.parse(req, function(err, fields, files) {
         var donorName = fields.donorName;
+        // idk why
+        var isCorporate = fields.isCorporate == 'true';
         var img = files.image[0];
 
         if (!imageHelper.isImage(img.originalFilename)) {
@@ -44,6 +58,7 @@ donor.post('/new', authHelper.isAdmin, function(req, res) {
 
                 var d = new Donor();
                 d.name = donorName;
+                d.isCorporate = isCorporate;
                 d.image = data.Location;
 
                 d.save(function(err, savedDonor) {
@@ -55,6 +70,24 @@ donor.post('/new', authHelper.isAdmin, function(req, res) {
                 });
             });
         });
+    });
+
+});
+
+donor.post('/newNoImage', authHelper.isAdmin, function(req, res) {
+    var donorName = req.body.donorName;
+    var isCorporate = req.body.isCorporate;
+
+    var d = new Donor();
+    d.name = donorName;
+    d.isCorporate = isCorporate;
+
+    d.save(function(err, savedDonor) {
+        if (err) {
+            return errorHelper.sendError(res, 'Server error', 500);
+        }
+
+        res.sendStatus(200);
     });
 
 });
