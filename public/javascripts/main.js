@@ -7,6 +7,7 @@
     'olinbaja.admin',
     'olinbaja.team',
     'olinbaja.donor',
+    'olinbaja.donor.add',
     'olinbaja.signup',
     'olinbaja.gallery',
     'olinbaja.purchases',

@@ -29,16 +29,6 @@
       });
     }
 
-    function reloadDonors() {
-      $http({
-        method: 'POST',
-        url: '/donor/data'
-      }).then(function successCallback(response) {
-        vm.donors = response.data;
-      }, function errorCallback(response) {
-      });
-    }
-
     vm.editAdmin = function(user, makeAdmin) {
       $http({
         method: 'POST',
@@ -80,37 +70,9 @@
       });
     };
 
-    vm.addDonor = function(donor) {
-      $http({
-        method:'POST',
-        url: '/donor/new',
-        data: {
-          donorName: donor.name,
-          donorImage: donor.image
-        }
-      }).then(function successCallback(response) {
-        reloadDonors();
-      }, function errorCallback(response) {
-      });
-    };
-
-    vm.removeDonor = function(donorId) {
-      $http({
-        method:'POST',
-        url: '/donor/delete',
-        data: {
-          donorId: donorId
-        }
-      }).then(function successCallback(response) {
-        reloadDonors();
-      }, function errorCallback(response) {
-      });
-    };
-
     $http.post('/auth/isAdmin', {}).then(
       function success(response) {
         reloadTeam();
-        reloadDonors();
       }, function error(response) {
         if (response.status == 401) {
           $window.location = "/";

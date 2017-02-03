@@ -88,8 +88,4 @@ app.post("/galleryimage", authHelper.isAdmin, function(req, res) {
 
 });
 
-app.delete("/galleryimage", authHelper.isAdmin, function(req, res) {
-
-});
-
 module.exports = app;
