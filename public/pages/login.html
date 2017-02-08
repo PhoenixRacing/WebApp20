@@ -1,8 +1,16 @@
+<div class = "loginPage">
 <form novalidate class="simple-form">
   <p>{{ vm.errorMessage }}</p>
+  <div class = "email">
   E-mail: <input type="email" ng-model="vm.user.email" /><br />
+  </div>
+  <div class = "password">
   Password: <input type="password" ng-model="vm.user.password" />
-  <input type="submit" ng-click="vm.submit(vm.user)" value="Login" />
+  </div>
+  <input type="submit" ng-click="vm.submit(vm.user)" value="Login" class = "loginButton" />
 </form>
-<a href='/forgotPassword'><p>Forgot password?</p></a>
-<a href='/resetPassword'><p>Reset password.</p></a>
+<div class = "forgotLinks">
+<p><a href='/forgotPassword'>Forgot password?</a></p><br>
+<p><a href='/resetPassword'>Reset password.</a></p><br>
+</div>
+</div>

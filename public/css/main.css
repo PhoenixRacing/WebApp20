@@ -62,3 +62,73 @@ input[disabled] {
 	color: #DDD;
 }
 
+.loginPage {
+	width: 500px;
+    height: 500px;
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+}
+
+.email {
+	width: 400px;
+	height: 20px;
+	position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: 0 auto;
+}
+
+.email input{
+	width: 300px;
+}
+
+.password {
+	width: 400px;
+	height: 20px;
+	position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: 50px auto;
+}
+
+.password input{
+	width: 279px;
+}
+
+.loginButton{
+	width: 200px;
+	height: 40px;
+	position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: 100px auto;
+}
+
+.forgotLinks{
+	width: 400px;
+	height: 20px;
+	position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    text-align: center;
+
+    margin: 160px auto;
+}
