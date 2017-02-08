@@ -85,7 +85,6 @@ input[disabled] {
     right: 0;
 
     margin: 0 auto;
-	font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
 }
 
 .email input{
@@ -102,11 +101,10 @@ input[disabled] {
     right: 0;
 
     margin: 50px auto;
-	font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
 }
 
 .password input{
-	width: 280px;
+	width: 279px;
 }
 
 .loginButton{
@@ -119,7 +117,6 @@ input[disabled] {
     right: 0;
 
     margin: 100px auto;
-	font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
 }
 
 .forgotLinks{
@@ -134,5 +131,4 @@ input[disabled] {
     text-align: center;
 
     margin: 160px auto;
-	font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
 }
