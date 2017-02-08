@@ -80,9 +80,16 @@ app.get("/test/JSON", function(req, res) {
   res.sendFile(url);
 });
 
-app.get("*", function(req, res) {
-  var url = path.resolve(__dirname + '/public/index.html');
-  res.sendFile(url);
+app.get("/:route", function(req, res) {
+  var route = req.params.route;
+
+  // If requesting a file (which for now means a naive assumption that it contains a '.'), don't serve html
+  if (route.indexOf('.') > -1) {
+    res.sendStatus(404);
+  } else {
+    var url = path.resolve(__dirname + '/public/index.html');
+    res.sendFile(url);
+  }
 });
 
 app.listen(PORT, "0.0.0.0");
