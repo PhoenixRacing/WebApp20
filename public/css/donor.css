@@ -1,0 +1,75 @@
+
+#donate-container {
+	width:100vw;
+	/* This is the aspect ratio of the background image */
+	height:40.8vw;
+}
+
+#donate-img {
+	width:100vw;
+	/* This is the aspect ratio of the background image */
+	height:40.8vw;
+	position:absolute;
+}
+
+#donate-background-img {
+	width:100%;
+	/* Keeps the caption below it */
+	position:absolute;
+}
+
+#donate-caption {
+	position: absolute;
+	background-color: rgba(34,34,34,0.65);
+	top:10%;
+	min-height:200px;
+	width:100%;
+	text-align:center;
+	color:white;
+	padding-left:10%;
+	padding-right:10%;
+	padding-bottom:20px;
+}
+
+#donate-button {
+	margin:20px;
+}
+
+#donate-caption-title {
+	margin-top:0px;
+	padding-top:20px;
+}
+
+#sponsors-container {
+	text-align: center;
+}
+
+@media (max-width: 900px) {
+
+	#donate-caption {
+		top:0;
+	}
+
+}
+
+@media (max-width: 720px) {
+
+	#donate-container {
+		height:auto;
+	}
+
+	#donate-img {
+		height:auto;
+		position:relative;
+	}
+
+	#donate-background-img {
+		width:100%;
+		/* Keeps the caption below it */
+		position:relative;
+	}
+
+	#donate-caption {
+		position: relative;
+	}
+}
