@@ -13,7 +13,13 @@ Complementary Orange: #FF5E5C;
 */
 
 * {
+	margin: 0;
 	font-family: 'Roboto Slab', serif;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .navbar-left {
@@ -29,13 +35,14 @@ input[disabled] {
 }
 
 .navbar {
-	background-color: #191F29;
+	background-color: #111;
 	border: 0;
 	border-radius: 0;
+	margin:0;
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-	background-color: #090F19;
+	background-color: #000;
 	color: #DDD;
 }
 
