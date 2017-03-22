@@ -25,26 +25,6 @@
 	.admin-team-column-delete {
 		width: 10%;
 	}
-	.admin-donor-column-name {
-		width: 80%;
-		padding-left: 4px;
-	}
-	.admin-donor-column-delete {
-		width: 20%;
-		padding-left: 4px;
-	}
-	.admin-donor-column-name {
-		width: 60%;
-		padding-left: 4px;
-	}
-	.admin-donor-column-image {
-		width: 20%;
-		padding-left: 4px;
-	}
-	.admin-donor-column-submit {
-		width: 20%;
-		padding-left: 4px;
-	}
 </style>
 <table border="1" class="admin-table">
 	<tr ng-repeat="user in vm.team" class="admin-table-row">
@@ -73,24 +53,7 @@
 		</td>
 	</tr>
 </table>
-<table border="1" class="admin-table">
-	<tr ng-repeat="donor in vm.donors" class="admin-table-row">
-		<td class="admin-donor-column-name">{{ donor.name }}</td>
-		<td class="admin-donor-column-delete">
-			<form id="delete-donor-form">
-				<input type="submit" value="Delete" ng-click="vm.removeDonor(donor._id)">
-			</form>
-		</td>
-	</tr>
-	<tr class="admin-table-row">
-		<td class="admin-donor-column-delete">
-			<form id="delete-donor-form">
-				<input type="text" value="Name" ng-model="vm.newDonor.name">
-				<input type="text" value="Image" ng-model="vm.newDonor.image">
-				<input type="submit" value="Add Donor" ng-click="vm.addDonor(vm.newDonor)">
-			</form>
-		</td>
-	</tr>
-</table>
+<br><br><br>
+<a href="/addDonor"><button>Edit Donors</button></a>
 <br><br><br>
 <a href="/uploadGallery"><button>Upload Gallery Images</button></a>

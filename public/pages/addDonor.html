@@ -1,0 +1,60 @@
+<style type="text/css">
+	.donor-table {
+		width:80%;
+		margin-left: 10%;
+		margin-right: 10%;
+		margin-top: 20px;
+	}
+	.donor-column-name {
+		width: 80%;
+		padding-left: 4px;
+	}
+	.donor-column-delete {
+		width: 20%;
+		padding-left: 4px;
+	}
+	.donor-column-name {
+		width: 60%;
+		padding-left: 4px;
+	}
+	.donor-column-image {
+		width: 20%;
+		padding-left: 4px;
+	}
+	.donor-column-submit {
+		width: 20%;
+		padding-left: 4px;
+	}
+</style>
+
+<table border="1" class="donor-table">
+	<tr ng-repeat="donor in vm.donors" class="donor-table-row">
+		<td class="donor-column-name">{{ donor.name }}</td>
+		<td class="donor-column-delete">
+			<form id="delete-donor-form">
+				<input type="submit" value="Delete" ng-click="vm.removeDonor(donor._id)">
+			</form>
+		</td>
+	</tr>
+</table>
+
+<h1>Add Donor</h1>
+<p>Donor Name: <input type="text" ng-model="vm.donor.donorName" /></p>
+<input type="radio" ng-model="vm.donor.donorType" name="donorType" value="family" checked="checked">Family or Individual<br>
+<input type="radio" ng-model="vm.donor.donorType" name="donorType" value="corporate">Corporate Sponsor<br>
+
+<input type="submit" value="Submit Without Image" ng-click="vm.addDonorWithoutImage(vm.donor)" /><br><br>
+
+<input type="file" img-cropper-fileread image="vm.cropper.sourceImage" />
+<div>
+     <canvas width="600" height="400" id="canvas" image-cropper image="vm.cropper.sourceImage" cropped-image="vm.cropper.croppedImage" crop-width="600" crop-height="400" keep-aspect="true" touch-radius="30" crop-area-bounds="vm.bounds"></canvas>
+</div>
+<h3>Preview:</h3>
+<div ng-show="vm.cropper.croppedImage!=null"><img width="500" height="250" ng-src="{{vm.cropper.croppedImage}}" /></div>
+<input type="submit" value="Submit" ng-click="vm.addDonor(vm.cropper.croppedImage)" />
+
+<style>
+img {
+  max-width: 100%; /* This rule is very important, please do not ignore this! */
+}
+</style>

@@ -1,0 +1,114 @@
+
+#donate-container {
+	width:100vw;
+	/* This is the aspect ratio of the background image */
+	height:40.8vw;
+	min-height: 500px;
+}
+
+#donate-img {
+	width:100vw;
+	/* This is the aspect ratio of the background image */
+	height:40.8vw;
+	position:absolute;
+}
+
+#donate-background-img {
+	width:100%;
+	/* Keeps the caption below it */
+	position:absolute;
+}
+
+#donate-caption {
+	position: absolute;
+	background-color: rgba(34,34,34,0.65);
+	top:10%;
+	min-height:200px;
+	width:100%;
+	text-align:center;
+	color:white;
+	padding-left:10%;
+	padding-right:10%;
+	padding-bottom:20px;
+}
+
+#donate-button {
+	margin:20px;
+}
+
+#donate-button a button {
+	border-radius: 4px;
+	background-color: #e7e7e7;
+	color: #191F29;
+	padding: 10px 20px;
+	font-size: 1.5em;
+}
+
+#donate-caption-title {
+	margin-top:0px;
+	padding-top:20px;
+}
+
+#sponsors-container {
+	text-align: center;
+}
+
+@media (max-width: 900px) {
+	#donate-caption {
+		top:0;
+	}
+}
+
+@media (max-width: 720px) {
+
+	#donate-container {
+		height:auto;
+	}
+
+	#donate-img {
+		height:auto;
+		position:relative;
+	}
+
+	#donate-background-img {
+		width:100%;
+		/* Keeps the caption below it */
+		position:relative;
+	}
+
+	#donate-caption {
+		position: relative;
+	}
+}
+
+#corporate-sponsors-blurb {
+	margin-bottom: 40px;
+}
+
+#corporate-sponsors-blurb h1 {
+	margin-top: 40px;
+}
+
+.donor-container {
+	max-width: 1000px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#corporate-donor-container div div {
+	margin: 10px 0 10px 0;
+	height: 125px;
+	min-width: 250px;
+}
+
+#corporate-donor-container div div img {
+	height:auto;
+	width:auto;
+	max-height: 100%;
+	max-width: 100%;
+}
+
+#corporate-donor-container div div h2 {
+	/* Couldn't figure out how to center vertically, I hate CSS */
+	padding-top: 20px;
+}

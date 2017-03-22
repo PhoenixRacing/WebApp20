@@ -39,6 +39,19 @@ auth.post("/isPurchaseManaging", function(req, res) {
     }
 });
 
+auth.post('/purchaseManager', function(req, res) {
+    User.findOne({'purchaseManager': true}, function(err, user) {
+        if (err) {
+            return errorHelper.sendError(res, "No purchase manager exists", 500);
+        }
+
+        var users = [user];
+        var mapped = users.map(userResponse.userMap);
+
+        res.send(mapped[0]);
+    });
+});
+
 auth.post('/login', function(req, res, next) {
   passport.authenticate('local-login', function(err, user, info) {
     if (err) {

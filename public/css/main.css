@@ -12,6 +12,26 @@ Complementary Orange: #FF5E5C;
 
 */
 
+h1,h2,h3 {
+	line-height:1.2;
+}
+
+p {
+	font-size: 1.2em;
+}
+
+h1,h2,h3,h4,h5,h6,p {
+	color:white;
+}
+
+@media (min-width: 900px) {
+	p {
+		max-width: 80%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
 * {
 	margin: 0;
 	font-family: 'Roboto Slab', serif;
@@ -20,6 +40,8 @@ Complementary Orange: #FF5E5C;
 html, body {
     max-width: 100%;
     overflow-x: hidden;
+	background-color: #111;
+	line-height:1.6;
 }
 
 .navbar-left {
@@ -35,7 +57,7 @@ input[disabled] {
 }
 
 .navbar {
-	background-color: #111;
+	background-color: #222;
 	border: 0;
 	border-radius: 0;
 	margin:0;

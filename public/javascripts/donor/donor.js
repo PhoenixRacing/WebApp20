@@ -3,7 +3,7 @@
   angular.module("olinbaja.donor", ['ngRoute'])
     .config(function($routeProvider, $locationProvider) {
       $routeProvider
-        .when('/donor', {
+        .when('/sponsorship', {
           templateUrl : './pages/donor.html',
           controller: 'DonorController',
           controllerAs: 'vm'
@@ -24,11 +24,23 @@
         method:'POST',
         url: '/donor/data'
       }).then(function successCallback(response) {
-        vm.donors = response.data;
+        vm.corporateDonors = response.data.corporateDonors;
+        vm.familyDonors = response.data.familyDonors;
       }, function errorCallback(response) {
       });
     }
 
+    vm.reloadPurchaseManager = function() {
+      $http({
+        method:'POST',
+        url: '/auth/purchaseManager'
+      }).then(function successCallback(response) {
+        vm.purchaseManager = response.data;
+      }, function errorCallback(response) {
+      });
+    }
+
+    vm.reloadPurchaseManager();
     vm.reloadDonors();
   }
 })();
