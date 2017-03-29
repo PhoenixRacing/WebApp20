@@ -41,7 +41,7 @@ auth.post("/isPurchaseManaging", function(req, res) {
 
 auth.post('/purchaseManager', function(req, res) {
     User.findOne({'purchaseManager': true}, function(err, user) {
-        if (err) {
+        if (err || !user) {
             return errorHelper.sendError(res, "No purchase manager exists", 500);
         }
 

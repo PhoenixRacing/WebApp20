@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="./css/error.css"/>
 <div id="error-message-container" ng-controller="ErrorController as vm">
 	<div ng-repeat='errorMessage in vm.errorMessages'>
 		<h2 style="text-align:center;z-index:100;">{{ errorMessage.error }}<a ng-click="vm.closeError(errorMessage.id)" style="cursor:pointer;">Close</a></h2>

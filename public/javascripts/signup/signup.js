@@ -52,6 +52,11 @@
         vm.isBusy = false;
         return;
       }
+      if (!user.graduatingClass || user.graduatingClass === '') {
+        errorBus.emitError('Please provide a valid graduating class');
+        vm.isBusy = false;
+        return;
+      }
       if (!user.major || user.major === '') {
         errorBus.emitError('Please provide a valid major');
         vm.isBusy = false;
@@ -66,7 +71,8 @@
         'email': user.email,
         'password': user.password,
         'username': user.username,
-        'major': user.major
+        'major': user.major,
+        'graduatingClass': user.graduatingClass
       }
 
       $http.post('/auth/signup', body).then(

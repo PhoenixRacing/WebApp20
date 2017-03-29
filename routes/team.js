@@ -28,33 +28,22 @@ team.post("/delete", authHelper.isAdmin, function(req, res) {
     });
 });
 
-team.post("/editAdmin", authHelper.isAdmin, function(req, res) {
+team.post("/edit", authHelper.isAdmin, function(req, res) {
+    var keys = ["admin", "purchaseManager", "teamCaptain", "systemLead", "title"];
+
     User.findOne({"_id": req.body.userId}, function(err, user) {
         if (err) {
             res.sendStatus(500);
             return;
         }
 
-        user.admin = req.body.admin;
-        user.save(function(err, u) {
-            if (err) {
-                res.sendStatus(500);
-                return;
+        for (var i in keys) {
+            var key = keys[i];
+            if (key in req.body) {
+                user[key] = req.body[key];
             }
-
-            res.sendStatus(200);
-        });
-    });
-});
-
-team.post("/editPurchaseManager", authHelper.isAdmin, function(req, res) {
-    User.findOne({"_id": req.body.userId}, function(err, user) {
-        if (err) {
-            res.sendStatus(500);
-            return;
         }
 
-        user.purchaseManager = req.body.purchaseManager;
         user.save(function(err, u) {
             if (err) {
                 res.sendStatus(500);

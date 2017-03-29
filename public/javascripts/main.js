@@ -1,6 +1,7 @@
 (function(){
 	//initialize the angular app and inject dependencies.
 	angular.module("olinbaja", [
+    'angularCSS',
     'olinbaja.login',
     'olinbaja.logout',
     'olinbaja.car',
@@ -24,7 +25,8 @@
   .config(function($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: '/pages/home.html'
+        templateUrl: '/pages/home.html',
+        css: './css/index.css'
       })
       .otherwise({
         templateUrl: '/pages/404.html'

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="olinbaja">
-  <head>
+<head>
   	<meta charset="utf-8">
     <title>Olin Baja</title>
 
@@ -15,6 +15,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-route.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.2.11/ng-file-upload.min.js"></script>
     <script src="./vendor/angular-img-cropper/angular-img-cropper.min.js"></script>
+    <script src="./vendor/angular-css/angular-css.min.js"></script>
 
     <!-- Import all js files -->
     <script type="text/javascript" src="./javascripts/gl-matrix-min.js"></script>
@@ -24,6 +25,7 @@
     <script type="text/javascript" src="./javascripts/car/car.js"></script>
     <script type="text/javascript" src="./javascripts/admin/admin.js"></script>
     <script type="text/javascript" src="./javascripts/team/team.js"></script>
+    <script type="text/javascript" src="./javascripts/team/userDirective.js"></script>
     <script type="text/javascript" src="./javascripts/donor/donor.js"></script>
     <script type="text/javascript" src="./javascripts/donor/addDonor.js"></script>
     <script type="text/javascript" src="./javascripts/signup/signup.js"></script>
@@ -54,17 +56,15 @@
 
     <!-- Import custom styling last so it overrides others -->
     <link rel="stylesheet" href="./css/main.css"/>
-    <link rel="stylesheet" href="./css/index.css"/>
-    <link rel="stylesheet" href="./css/donor.css"/>
-  </head>
-  <body>
+</head>
+<body>
     <navbar></navbar>
 
     <error-message></error-message>
 
     <div id='main' ng-class='result'>
-      <div ng-view></div>
+        <div ng-view></div>
     </div>
 
-  </body>
+</body>
 </html>

@@ -10,7 +10,13 @@ function sendEmail(to, subject, body) {
 // create reusable transporter object using the default SMTP transport
 	var email = process.env.BOT_EMAIL || auth.gmailEmail;
 	var password = process.env.BOT_PASSWORD || auth.gmailPassword;
-	var transporter = nodemailer.createTransport('smtps://'+email+':'+password+'@smtp.gmail.com');
+	var transporter = nodemailer.createTransport({
+	    service: 'Gmail',
+	    auth: {
+	        user: email,
+	        pass: password
+	    }
+	});
 
 	// setup e-mail data with unicode symbols
 	var mailOptions = {

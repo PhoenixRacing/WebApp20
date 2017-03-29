@@ -1,0 +1,10 @@
+
+<div class="user-container">
+	<img ng-src="{{user.image}}" class="user-image">
+	<h3>{{ user.username }}</h3>
+	<p ng-if="user.title"><strong>{{ user.title }}</strong></p>
+	<p>{{ user.major }}</p>
+	<p>Class of {{ user.graduatingClass }}</p>
+	<a ng-href="mailto:{{user.email}}"><p>Email</p></a>
+</div>
+

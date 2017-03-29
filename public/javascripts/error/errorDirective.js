@@ -3,7 +3,8 @@
     .directive('errorMessage', function() {
       return {
         restrict: 'E',
-        templateUrl: './pages/error.html'
+        templateUrl: './pages/error.html',
+        css: './css/error.css'
       };
     });
 })();

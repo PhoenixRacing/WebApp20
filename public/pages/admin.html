@@ -31,19 +31,24 @@
 		<td class="admin-team-column-name">{{ user.username }}</td>
 		<td class="admin-team-column-major">{{ user.major }}</td>
 		<td class="admin-team-column-edit-purchase">
-			<form id="make-purchaser-form" ng-hide="{{ user.purchaseManager }}">
-				<input type="submit" value="Make purchase manager" ng-click="vm.editPurchaser(user, true)">
-			</form>
-			<form id="remove-purchaser-form" ng-show="{{ user.purchaseManager }}">
-				<input type="submit" value="Remove purchase manager" ng-click="vm.editPurchaser(user, false)">
+			<form id="make-admin-form">
+				<p>Current title: {{ user.title }}</p>
+				<input type="text" ng-model="user.newTitle">
+				<input type="submit" value="Submit" ng-click="vm.edit(user, 'title', user.newTitle)">
 			</form>
 		</td>
-		<td class="admin-team-column-edit">
-			<form id="make-admin-form" ng-hide="{{ user.admin }}">
-				<input type="submit" value="Make admin" ng-click="vm.editAdmin(user, true)">
+		<td class="admin-team-column-edit-purchase">
+			<form id="make-purchaser-form">
+				<input type="submit" value="{{ user.teamCaptain == true ? 'Remove team captain' : 'Make team captain' }}" ng-click="vm.edit(user, 'teamCaptain', !user.teamCaptain)">
 			</form>
-			<form id="remove-admin-form" ng-show="{{ user.admin }}">
-				<input type="submit" value="Remove admin" ng-click="vm.editAdmin(user, false)">
+			<form id="remove-purchaser-form">
+				<input type="submit" value="{{ user.systemLead == true ? 'Remove system lead' : 'Make system lead' }}" ng-click="vm.edit(user, 'systemLead', !user.systemLead)">
+			</form>
+			<form id="remove-purchaser-form">
+				<input type="submit" value="{{ user.purchaseManager == true ? 'Remove purchase manager' : 'Make purchase manager' }}" ng-click="vm.edit(user, 'purchaseManager', !user.purchaseManager)">
+			</form>
+			<form id="make-admin-form">
+				<input type="submit" value="{{ user.admin == true ? 'Remove admin' : 'Make admin' }}" ng-click="vm.edit(user, 'admin', !user.admin)">
 			</form>
 		</td>
 		<td class="admin-table-column-delete">

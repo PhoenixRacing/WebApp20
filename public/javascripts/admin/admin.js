@@ -29,28 +29,16 @@
       });
     }
 
-    vm.editAdmin = function(user, makeAdmin) {
-      $http({
-        method: 'POST',
-        url: '/team/editAdmin',
-        data: {
-          userId: user._id,
-          admin: makeAdmin
-        }
-      }).then(function successCallback(response) {
-        reloadTeam();
-      }, function errorCallback(response) {
-      });
-    };
+    vm.edit = function(user, key, value) {
+      var body = {
+        userId: user._id,
+      };
+      body[key] = value;
 
-    vm.editPurchaser = function(user, makePurchaser) {
       $http({
         method: 'POST',
-        url: '/team/editPurchaseManager',
-        data: {
-          userId: user._id,
-          purchaseManager: makePurchaser
-        }
+        url: '/team/edit',
+        data: body
       }).then(function successCallback(response) {
         reloadTeam();
       }, function errorCallback(response) {

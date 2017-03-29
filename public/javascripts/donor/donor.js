@@ -6,7 +6,8 @@
         .when('/sponsorship', {
           templateUrl : './pages/donor.html',
           controller: 'DonorController',
-          controllerAs: 'vm'
+          controllerAs: 'vm',
+          css: './css/donor.css'
         })
 
       $locationProvider.html5Mode({
