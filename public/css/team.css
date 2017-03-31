@@ -2,6 +2,11 @@
 #team-header {
 	text-align: center;
 	margin-bottom: 30px;
+	margin-top: 60px;
+}
+
+#team-header h1 {
+	font-size: 4em;
 }
 
 .members-header {
@@ -10,8 +15,16 @@
 	margin-bottom: 30px;
 }
 
+.team-user-container {
+	width:80%;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:40px;
+}
+
 #team-blurb {
 	text-align: center;
+	margin-bottom: 80px;
 }
 
 #team-blurb p {

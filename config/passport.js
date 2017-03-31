@@ -1,6 +1,8 @@
 var LocalStrategy   = require('passport-local').Strategy;
 var User            = require('./../models/userModel').User;
 
+var emailHelper = require('./../utils/emailHelper');
+
 module.exports = function(passport) {
 
     passport.serializeUser(function(user, done) {
@@ -59,13 +61,17 @@ module.exports = function(passport) {
                 newUser.major = req.body.major;
                 newUser.graduatingClass = req.body.graduatingClass;
                 newUser.image = "/images/default-person.jpg";
+                newUser.shownInTeamPage = false;
 
-                User.findOne({ 'admin':  true }, function(err, user) {
-                    if (user) {
+                User.findOne({ 'admin':  true }, function(err, adminUser) {
+                    if (adminUser) {
                         newUser.admin = false;
                     } else {
                         newUser.admin = true;
+                        newUser.shownInTeamPage = true;
                     }
+
+                    emailHelper.sendEmail(adminUser.email, 'New Olin Baja User', 'Hello,\n\n'+newUser.username+' has created an account on the Olin Baja site. They need your confirmation to be shown in the team page. Login and go to the admin page to confirm this user.');
 
                     // save the user
                     newUser.save(function(err) {

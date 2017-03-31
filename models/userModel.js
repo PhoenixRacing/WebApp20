@@ -14,7 +14,6 @@ var userSchema = mongoose.Schema({
     teamCaptain: Boolean,
     systemLead: Boolean,
     purchaseManager: Boolean,
-    requestDisplayInTeamPage: Boolean,
     shownInTeamPage: Boolean,
     image: String,
     data: [dataSchema]

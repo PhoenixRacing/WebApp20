@@ -13,15 +13,17 @@
 </div>
 
 <!-- All this sketch is needed to add a new row for each three columns -->
-<div ng-repeat="user in vm.teamCaptains" ng-if="$index % 3 == 0" class="row" >
-    <div class="col-sm-4">
-		<user user="vm.teamCaptains[$index]">
-	</div>
-    <div class="col-sm-4" ng-if="vm.teamCaptains.length > ($index + 1)">
-		<user user="vm.teamCaptains[$index + 1]">
-	</div>
-    <div class="col-sm-4" ng-if="vm.teamCaptains.length > ($index + 2)">
-		<user user="vm.teamCaptains[$index + 2]">
+<div class="team-user-container">
+	<div ng-repeat="user in vm.teamCaptains" ng-if="$index % 3 == 0" class="row" >
+	    <div class="col-sm-4">
+			<user user="vm.teamCaptains[$index]">
+		</div>
+	    <div class="col-sm-4" ng-if="vm.teamCaptains.length > ($index + 1)">
+			<user user="vm.teamCaptains[$index + 1]">
+		</div>
+	    <div class="col-sm-4" ng-if="vm.teamCaptains.length > ($index + 2)">
+			<user user="vm.teamCaptains[$index + 2]">
+		</div>
 	</div>
 </div>
 
@@ -30,18 +32,20 @@
 </div>
 
 <!-- All this sketch is needed to add a new row for each four columns -->
-<div ng-repeat="user in vm.systemLeads" ng-if="$index % 4 == 0" class="row" >
-    <div class="col-sm-3">
-		<user user="vm.systemLeads[$index]">
-	</div>
-    <div class="col-sm-3" ng-if="vm.systemLeads.length > ($index + 1)">
-		<user user="vm.systemLeads[$index + 1]">
-	</div>
-    <div class="col-sm-3" ng-if="vm.systemLeads.length > ($index + 2)">
-		<user user="vm.systemLeads[$index + 2]">
-	</div>
-    <div class="col-sm-3" ng-if="vm.systemLeads.length > ($index + 3)">
-		<user user="vm.systemLeads[$index + 3]">
+<div class="team-user-container">
+	<div ng-repeat="user in vm.systemLeads" ng-if="$index % 4 == 0" class="row" >
+	    <div class="col-sm-3">
+			<user user="vm.systemLeads[$index]">
+		</div>
+	    <div class="col-sm-3" ng-if="vm.systemLeads.length > ($index + 1)">
+			<user user="vm.systemLeads[$index + 1]">
+		</div>
+	    <div class="col-sm-3" ng-if="vm.systemLeads.length > ($index + 2)">
+			<user user="vm.systemLeads[$index + 2]">
+		</div>
+	    <div class="col-sm-3" ng-if="vm.systemLeads.length > ($index + 3)">
+			<user user="vm.systemLeads[$index + 3]">
+		</div>
 	</div>
 </div>
 
@@ -50,14 +54,16 @@
 </div>
 
 <!-- All this sketch is needed to add a new row for each three columns -->
-<div ng-repeat="user in vm.generalMembers" ng-if="$index % 3 == 0" class="row" >
-    <div class="col-sm-4">
-		<user user="vm.generalMembers[$index]">
-	</div>
-    <div class="col-sm-4" ng-if="vm.generalMembers.length > ($index + 1)">
-		<user user="vm.generalMembers[$index + 1]">
-	</div>
-    <div class="col-sm-4" ng-if="vm.generalMembers.length > ($index + 2)">
-		<user user="vm.generalMembers[$index + 2]">
+<div class="team-user-container">
+	<div ng-repeat="user in vm.generalMembers" ng-if="$index % 3 == 0" class="row" >
+	    <div class="col-sm-4">
+			<user user="vm.generalMembers[$index]">
+		</div>
+	    <div class="col-sm-4" ng-if="vm.generalMembers.length > ($index + 1)">
+			<user user="vm.generalMembers[$index + 1]">
+		</div>
+	    <div class="col-sm-4" ng-if="vm.generalMembers.length > ($index + 2)">
+			<user user="vm.generalMembers[$index + 2]">
+		</div>
 	</div>
 </div>

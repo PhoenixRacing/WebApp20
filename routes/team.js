@@ -29,7 +29,7 @@ team.post("/delete", authHelper.isAdmin, function(req, res) {
 });
 
 team.post("/edit", authHelper.isAdmin, function(req, res) {
-    var keys = ["admin", "purchaseManager", "teamCaptain", "systemLead", "title"];
+    var keys = ["admin", "purchaseManager", "teamCaptain", "systemLead", "title", "shownInTeamPage"];
 
     User.findOne({"_id": req.body.userId}, function(err, user) {
         if (err) {

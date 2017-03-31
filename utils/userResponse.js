@@ -12,7 +12,8 @@ function userMap(value, index, array) {
         "teamCaptain":value.teamCaptain,
         "title":value.title,
         "systemLead":value.systemLead,
-        "graduatingClass":value.graduatingClass
+        "graduatingClass":value.graduatingClass,
+        "shownInTeamPage":value.shownInTeamPage
     };
 }
 

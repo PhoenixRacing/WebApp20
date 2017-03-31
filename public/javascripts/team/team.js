@@ -43,6 +43,10 @@
         for (var i in vm.team) {
           var member = vm.team[i];
 
+          if (!member.shownInTeamPage) {
+            continue;
+          }
+
           if (member.teamCaptain) {
             vm.teamCaptains.push(member);
           } else if (member.systemLead) {

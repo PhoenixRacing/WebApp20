@@ -26,10 +26,14 @@
 		width: 10%;
 	}
 </style>
+<br><br><br>
+<a href="/addDonor"><button>Edit Donors</button></a>
+<br><br><br>
+<a href="/uploadGallery"><button>Upload Gallery Images</button></a>
+<br><br><br>
 <table border="1" class="admin-table">
 	<tr ng-repeat="user in vm.team" class="admin-table-row">
-		<td class="admin-team-column-name">{{ user.username }}</td>
-		<td class="admin-team-column-major">{{ user.major }}</td>
+		<td class="admin-team-column-name"><user user="user"></user></td>
 		<td class="admin-team-column-edit-purchase">
 			<form id="make-admin-form">
 				<p>Current title: {{ user.title }}</p>
@@ -38,6 +42,9 @@
 			</form>
 		</td>
 		<td class="admin-team-column-edit-purchase">
+			<form id="make-purchaser-form">
+				<input type="submit" value="{{ user.shownInTeamPage == true ? 'Remove From Team Page' : 'Show In Team Page' }}" ng-click="vm.edit(user, 'shownInTeamPage', !user.shownInTeamPage)">
+			</form>
 			<form id="make-purchaser-form">
 				<input type="submit" value="{{ user.teamCaptain == true ? 'Remove team captain' : 'Make team captain' }}" ng-click="vm.edit(user, 'teamCaptain', !user.teamCaptain)">
 			</form>
@@ -58,7 +65,3 @@
 		</td>
 	</tr>
 </table>
-<br><br><br>
-<a href="/addDonor"><button>Edit Donors</button></a>
-<br><br><br>
-<a href="/uploadGallery"><button>Upload Gallery Images</button></a>
