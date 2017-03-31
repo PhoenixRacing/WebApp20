@@ -6,7 +6,8 @@
         .when('/admin', {
           templateUrl: './pages/admin.html',
           controller: 'AdminController',
-          controllerAs: 'vm'
+          controllerAs: 'vm',
+          css: './css/admin.css'
         });
 
       $locationProvider.html5Mode({

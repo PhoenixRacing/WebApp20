@@ -39,22 +39,14 @@
 </table>
 
 <h1>Add Donor</h1>
-<p>Donor Name: <input type="text" ng-model="vm.donor.donorName" /></p>
+<p>Donor Name: <input type="text" ng-model="vm.donor.donorName"></p>
 <input type="radio" ng-model="vm.donor.donorType" name="donorType" value="family" checked="checked">Family or Individual<br>
 <input type="radio" ng-model="vm.donor.donorType" name="donorType" value="corporate">Corporate Sponsor<br>
 
 <input type="submit" value="Submit Without Image" ng-click="vm.addDonorWithoutImage(vm.donor)" /><br><br>
 
-<input type="file" img-cropper-fileread image="vm.cropper.sourceImage" />
-<div>
-     <canvas width="600" height="400" id="canvas" image-cropper image="vm.cropper.sourceImage" cropped-image="vm.cropper.croppedImage" crop-width="600" crop-height="400" keep-aspect="true" touch-radius="30" crop-area-bounds="vm.bounds"></canvas>
-</div>
-<h3>Preview:</h3>
-<div ng-show="vm.cropper.croppedImage!=null"><img width="500" height="250" ng-src="{{vm.cropper.croppedImage}}" /></div>
-<input type="submit" value="Submit" ng-click="vm.addDonor(vm.cropper.croppedImage)" />
+<input type="file" ngf-select name="file" accept="image/*" name="image" ng-model="vm.donor.image">
+<img ng-show="myForm.file.$valid" width='100' height='100' ngf-thumbnail="vm.donor.image" class="thumb">
+<button ng-click="vm.donor.image = null" ng-show="vm.donor.image">Remove</button>
+<input type="submit" value="Submit" ng-click="vm.addDonor()">
 
-<style>
-img {
-  max-width: 100%; /* This rule is very important, please do not ignore this! */
-}
-</style>

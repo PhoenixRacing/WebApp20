@@ -46,7 +46,7 @@ donor.post('/new', authHelper.isAdmin, function(req, res) {
             return;
         }
 
-        imageHelper.resizeImage(img.path, 400, 200, function (err, data) {
+        fs.readFile(img.path, function (err, data) {
             if (err) {
                 return errorHelper.sendError(res, 'Server error', 500);
             }

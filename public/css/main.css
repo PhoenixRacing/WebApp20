@@ -24,6 +24,10 @@ h1,h2,h3,h4,h5,h6,p {
 	color:white;
 }
 
+input[type="text"] {
+	color:black;
+}
+
 @media (min-width: 900px) {
 	p {
 		max-width: 80%;

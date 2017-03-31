@@ -1,0 +1,26 @@
+.admin-table {
+	width:80%;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 20px;
+}
+.admin-table-row {
+	height: 20px;
+}
+.admin-team-column-name {
+	width: 50%;
+	padding-left: 4px;
+}
+.admin-team-column-major {
+	width: 20%;
+	padding-left: 4px;
+}
+.admin-team-column-edit-purchase {
+	width: 10%;
+}
+.admin-team-column-edit {
+	width: 10%;
+}
+.admin-team-column-delete {
+	width: 10%;
+}

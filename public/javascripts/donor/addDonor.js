@@ -26,37 +26,26 @@
     vm.donor = {};
     vm.donor.donorType = "family";
 
-    vm.cropper = {};
-    vm.cropper.sourceImage = null;
-    vm.cropper.croppedImage   = null;
-    vm.bounds = {};
-    vm.donorName = '';
-
     vm.addDonor = function(image) {
       errorBus.clearErrors();
       if (!vm.donor.donorName || vm.donor.donorName == '') {
         return errorBus.emitError('Please enter a donor name.');
       }
-      if (!image) {
+      if (!vm.donor.image) {
         return errorBus.emitError('Please upload an image.');
       }
 
-      var blob = utils.dataURItoBlob(image);
-      var file = utils.blobToImageFile(blob);
-
-      console.log(vm.donor.donorType);
       var isCorporate = false;
       if (vm.donor.donorType == "corporate") {
         isCorporate = true;
       }
-      console.log(isCorporate);
 
-      file.upload = Upload.upload({
+      var upload = Upload.upload({
         url: '/donor/new',
-        data: {donorName: vm.donor.donorName, isCorporate: isCorporate, image: file},
+        data: {donorName: vm.donor.donorName, isCorporate: isCorporate, image: vm.donor.image},
       });
 
-      file.upload.then(function success(response) {
+      upload.then(function success(response) {
         // This will clear the form
         $window.location.reload();
       }, function failure(response) {
