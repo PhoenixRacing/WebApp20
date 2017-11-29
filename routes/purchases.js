@@ -3,6 +3,7 @@ var authHelper = require('../utils/authHelper');
 var Purchase = require('../models/purchaseModel').Purchase;
 var emailHelper = require('../utils/emailHelper');
 var User = require('../models/userModel').User;
+var errorHelper = require('./../utils/errorHelper');
 
 purchase.post('/newpurchase', authHelper.isLoggedIn, function(req, res) {
     var p = new Purchase();

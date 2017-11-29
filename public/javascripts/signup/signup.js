@@ -42,6 +42,11 @@
         vm.isBusy = false;
         return;
       }
+      if (!(user.email.includes('olin.edu'))) {
+        errorBus.emitError('Only Olin emails are valid for signup');
+        vm.isBusy = false;
+        return;
+      }
       if (!user.password || user.password === '') {
         errorBus.emitError('Please provide a valid password');
         vm.isBusy = false;

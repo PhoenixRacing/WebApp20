@@ -13,7 +13,9 @@ var userSchema = mongoose.Schema({
     requestDisplayInTeamPage: Boolean,
     shownInTeamPage: Boolean,
     image: String,
-    data: [dataSchema]
+    data: [dataSchema],
+    lead: String,
+    subteamLead: String
 });
 
 userSchema.methods.generateHash = function(password) {

@@ -6,6 +6,7 @@ var multiparty = require('multiparty');
 var authHelper = require('./../utils/authHelper.js');
 var Donor = require('../models/donorModel').Donor;
 var imageHelper = require('./../utils/imageHelper');
+var errorHelper = require('./../utils/errorHelper');
 
 donor.post('/data', function(req, res) {
     Donor.find({}, function(err, donors) {

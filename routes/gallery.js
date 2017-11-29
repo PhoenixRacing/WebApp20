@@ -2,6 +2,7 @@ var gallery = require("express").Router()
 
 var authHelper = require('../utils/authHelper')
 var GalleryImage = require('../models/galleryModel').GalleryImage;
+var errorHelper = require('./../utils/errorHelper');
 
 gallery.post('/data', function(req, res) {
     GalleryImage.find({}, function(err, images) {

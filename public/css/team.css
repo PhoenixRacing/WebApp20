@@ -1,0 +1,100 @@
+body,html{
+    height:100%;
+    width:100%;
+    background-color: #111;
+    -webkit-font-smoothing: antialiased !important;
+	-moz-osx-font-smoothing: grayscale !important;
+	font-size: 1.06rem;
+}
+
+body,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: "Raleway", sans-serif;
+    opacity: 0.99;
+}
+
+h1 {
+	text-align: center;
+}
+
+h2 {
+	text-align: center;
+	font-size: 3rem;
+}
+
+h3 {
+	text-align: center;
+	font-size: 2rem;
+}
+
+.all-members {
+	width: 100%;
+	height:100%;
+	margin: auto;
+	text-align: center;
+	padding-top: 1.5rem;
+	padding-bottom: 3.5rem;
+}
+
+.leads {
+	text-align: center;
+}
+
+.subteamLeads {
+	text-align: center;
+}
+
+.general {
+	position: relative;
+	width:76%;
+	margin:auto;
+	text-align: center;	
+	padding:1.5rem;
+	padding-left:1.5%;
+	padding-right:1.5%;
+	line-height: 90% !important;
+}
+
+.teamMembers img {
+	border-radius:50%;
+	-moz-box-shadow:    0 0 1rem #000;
+   	-webkit-box-shadow: 0 0 1rem #000;
+   	box-shadow:        0 0 1rem #000;
+}
+
+.teamMembers {
+	padding-left:1.5%;
+	padding-right:1.5%;
+	line-height: 90% !important;
+}
+
+.team-caption {
+	position: relative;
+	width:76%;
+	margin:auto;
+	text-align: center;	
+	padding:1.5rem;
+}
+
+ul {
+	/*-webkit-column-count: auto;
+	-moz-column-count: auto;
+	column-count: auto;
+
+	-moz-column-width: 12em;
+  -moz-columns: 12em;
+  -webkit-columns: 12em;
+  columns: 12em;*/
+}

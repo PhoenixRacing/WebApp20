@@ -22,6 +22,23 @@
     $http.post('/team/data', {}).then(
       function success(response) {
         vm.team = response.data;
+        console.log(vm.team);
+        vm.leads = [];
+        vm.subteamLeads = [];
+        vm.general = [];
+        for (var mem of vm.team) {
+          console.log(mem);
+          if (mem.lead) {
+            vm.leads.push(mem);
+          }
+          else if (mem.subteamLead) {
+            vm.subteamLeads.push(mem);
+          }
+          else {
+            vm.general.push(mem);
+          }
+          console.log(vm.subteamLeads);
+        }
       }, function error(response) {
       }
     );

@@ -6,6 +6,7 @@ var multiparty = require('multiparty');
 var authHelper = require('./../utils/authHelper.js');
 var GalleryImage = require('./../models/galleryModel.js').GalleryImage;
 var imageHelper = require('./../utils/imageHelper');
+var errorHelper = require('./../utils/errorHelper');
 
 app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
     var form = new multiparty.Form();
@@ -22,11 +23,13 @@ app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
         }
 
         imageHelper.resizeImage(img.path, 250, 250, function (err, data) {
+            console.log(err);
             if (err) {
                 return errorHelper.sendError(res, 'Server error', 500);
             }
 
             imageHelper.uploadImageToS3(data, function(err, d) {
+                console.log(err);
                 if (err) {
                     return errorHelper.sendError(res, 'Server error', 500);
                 }
@@ -34,6 +37,7 @@ app.post("/profileimage", authHelper.isLoggedIn, function(req, res) {
                 // Update question
                 req.user.image = d.Location;
                 req.user.save(function(err, u) {
+                    console.log(err);
                     if (err) {
                         return errorHelper.sendError(res, 'Server error', 500);
                     }

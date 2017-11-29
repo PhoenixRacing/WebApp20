@@ -8,6 +8,7 @@ var path = require('path');
 var authHelper = require('./../utils/authHelper');
 var Purchase = require('../models/purchaseModel').Purchase;
 var User = require('../models/userModel').User;
+var errorHelper = require('./../utils/errorHelper');
 
 app.get("/uploadImage", function(req, res) {//isLoggedIn, function(req, res) {
     res.sendFile(path.join(__dirname, '../views', 'uploadImage.html'));

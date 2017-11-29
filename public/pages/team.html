@@ -1,7 +1,53 @@
 <h1>Team Page</h1>	
-<div ng-repeat="user in vm.team">
-	<h2>{{ user.username }}</h2>
-	<p>{{ user.major }}</p>
-	<p>Is admin: {{ user.admin }}</p>
-	<img ng-src="{{user.image}}">
+</br>
+<div class="all-members">
+	<h2>Team Leads</h2>
+	<div class="team-caption">
+		<ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
+			<li ng-repeat="user in vm.leads">
+				<div class="teamMembers">
+					<h3>{{ user.username }}</h3>
+					<p>{{ user.major }}</p>
+					<!-- <p>Is admin: {{ user.admin }}</p> -->
+					<img ng-src="{{user.image}}">
+				</div>
+			</li>
+		</ul>
+	</div>
+	<!-- <div ng-repeat="user in vm.leads" class="leads">
+		<h3>{{ user.username }}</h3>
+		<p>{{ user.major }}</p>
+		<img ng-src="{{user.image}}">
+	</div> -->
+	<h2>Subteam Leads</h2>
+	<div class="team-caption">
+		<ul class="small-block-grid-1 medium-block-grid-2 large-block-grid-3">
+			<li ng-repeat="user in vm.subteamLeads">
+				<div class="teamMembers">
+					<h3>{{ user.username }}</h3>
+					<p>{{ user.major }}</p>
+					<!-- <p>Is admin: {{ user.admin }}</p> -->
+					<img ng-src="{{user.image}}">
+				</div>
+			</li>
+		</ul>
+	</div>
+	<!-- <div ng-repeat="user in vm.subteamLeads" class="subteamLeads">
+		<h3>{{ user.username }}</h3>
+		<p>{{ user.major }}</p>
+		<img ng-src="{{user.image}}">
+	</div> -->
+	<h2>General Members</h2>
+	<div class="team-caption">
+		<ul class="small-block-grid-3 medium-block-grid-3 large-block-grid-3">
+			<li ng-repeat="user in vm.general">
+				<div class="teamMembers">
+					<h3>{{ user.username }}</h3>
+					<p>{{ user.major }}</p>
+					<!-- <p>Is admin: {{ user.admin }}</p> -->
+					<img ng-src="{{user.image}}">
+				</div>
+			</li>
+		</ul>
+	</div>
 </div>

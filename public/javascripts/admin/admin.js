@@ -70,6 +70,36 @@
       });
     };
 
+    vm.editLead = function(user, makeLead, leadType) {
+      $http({
+        method:'POST',
+        url: '/team/editLead',
+        data: {
+          userId: user._id,
+          makeLead: makeLead,
+          leadType: leadType
+        }
+      }).then(function successCallback(response) {
+        reloadTeam();
+      }, function errorCallback(response) {
+      });
+    };
+
+    vm.editSubLead = function(user, makeLead, leadType) {
+      $http({
+        method:'POST',
+        url: '/team/editSubLead',
+        data: {
+          userId: user._id,
+          makeLead: makeLead,
+          leadType: leadType
+        }
+      }).then(function successCallback(response) {
+        reloadTeam();
+      }, function errorCallback(response) {
+      });
+    };
+
     $http.post('/auth/isAdmin', {}).then(
       function success(response) {
         reloadTeam();

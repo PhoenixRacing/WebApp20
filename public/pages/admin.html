@@ -51,6 +51,24 @@
 				<input type="submit" value="Delete user" ng-click="vm.removeUser(user)">
 			</form>
 		</td>
+		<td class="edit-lead">
+			<form id="make-lead-form" ng-hide="{{ user.lead != null && user.lead != false && user.lead != 'false' }}">
+				Lead Type: <input value="user.lead" type="text" ng-model="vm.leadType" />
+				<input type="submit" value="Make lead" ng-click="vm.editLead(user, true, vm.leadType)">
+			</form>
+			<form id="remove-lead-form" ng-show="{{ user.lead != null && user.lead != false && user.lead != 'false' }}">
+				<input type="submit" value="Remove lead" ng-click="vm.editLead(user, false, '')">
+			</form>
+		</td>
+		<td class="subteam-lead">
+			<form id="make-sublead-form" ng-hide="{{ user.subteamLead != null && user.subteamLead != false }}">
+				Subteam Lead Type: <input value="user.subteamLead" type="text" ng-model="vm.subLeadType" />
+				<input type="submit" value="Make subteam lead" ng-click="vm.editSubLead(user, true, vm.subLeadType)">
+			</form>
+			<form id="remove-sublead-form" ng-show="{{ user.subteamLead != null && user.subteamLead != false }}">
+				<input type="submit" value="Remove subteam lead" ng-click="vm.editSubLead(user, false, '')">
+			</form>
+		</td>
 	</tr>
 </table>
 <br><br><br>

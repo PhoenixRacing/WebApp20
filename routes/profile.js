@@ -1,6 +1,7 @@
 var profile = require('express').Router();
 
 var User = require('../models/userModel').User;
+var errorHelper = require('./../utils/errorHelper');
 
 profile.post('/edit', function(req, res) {
     var userId;

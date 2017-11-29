@@ -3,6 +3,7 @@ var team = require('express').Router();
 var authHelper = require('./../utils/authHelper')
 var userResponse = require('./../utils/userResponse');
 var User = require('../models/userModel').User;
+var errorHelper = require('./../utils/errorHelper');
 
 team.post("/data", function(req, res) {
     User.find({}, function(err, users) {
@@ -55,6 +56,54 @@ team.post("/editPurchaseManager", authHelper.isAdmin, function(req, res) {
         }
 
         user.purchaseManager = req.body.purchaseManager;
+        user.save(function(err, u) {
+            if (err) {
+                res.sendStatus(500);
+                return;
+            }
+
+            res.sendStatus(200);
+        });
+    });
+});
+
+team.post("/editLead", authHelper.isAdmin, function(req, res) {
+    User.findOne({"_id": req.body.userId}, function(err, user) {
+        if (err) {
+            res.sendStatus(500);
+            return;
+        }
+        if (req.body.makeLead) {
+            user.lead = req.body.leadType;
+            console.log('hi');
+        }
+        else {
+            user.lead = '';
+        }
+        user.save(function(err, u) {
+            if (err) {
+                res.sendStatus(500);
+                return;
+            }
+
+            res.sendStatus(200);
+        });
+    });
+});
+
+team.post("/editSubLead", authHelper.isAdmin, function(req, res) {
+    User.findOne({"_id": req.body.userId}, function(err, user) {
+        if (err) {
+            res.sendStatus(500);
+            return;
+        }
+
+        if (req.body.makeLead) {
+            user.subteamLead = req.body.leadType;
+        }
+        else {
+            user.subteamLead = '';
+        }
         user.save(function(err, u) {
             if (err) {
                 res.sendStatus(500);

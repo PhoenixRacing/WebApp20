@@ -8,7 +8,9 @@ function userMap(value, index, array) {
         "major":value.major,
         "admin":value.admin,
         "purchaseManager": value.purchaseManager,
-        "image":value.image
+        "image":value.image,
+        "lead": value.lead,
+        "subteamLead": value.subteamLead
     };
 }
 
